@@ -1,0 +1,325 @@
+====================================================================================================
+一、候选全局地址内存内容
+====================================================================================================
+
+--- kmalloc_caches? (__kmalloc/kmem_cache_alloc 索引) @ 0xffffff800a1fdb40 (OFF=0x217db40) ---
+   +0x000: 0x0000000000000000
+   +0x008: 0x0000000000000000
+   +0x010: 0x0000000000000000
+   +0x018: 0x0000000000000000
+   +0x020: 0x0000000000000000
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000000000000000
+   +0x038: 0x0000000000000000
+
+--- root_task_group? (sched_init x5) @ 0xffffff800a1f6980 (OFF=0x2176980) ---
+   +0x000: 0x00000000fffedb08
+   +0x008: 0x0000000000000000
+   +0x010: 0x0000000000000000
+   +0x018: 0x0000000000000000
+   +0x020: 0x0000000000000000
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000000000000000
+   +0x038: 0x0000000000000000
+
+--- init_uts_ns? (copy_utsname x4) @ 0xffffff8009ff5ad8 (OFF=0x1f75ad8) ---
+   +0x000: 0x0000000000000000
+   +0x008: 0x0000000000000000
+   +0x010: 0x544154534b534154  "TASKSTAT"
+   +0x018: 0x0000000000000053
+   +0x020: 0x0000000400000001
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000000000000000
+   +0x038: 0x0000000000000000
+
+--- pipe_inode_info_cachep? (alloc_pipe_info) @ 0xffffff8009ff5c10 (OFF=0x1f75c10) ---
+   +0x000: 0x0000000000000000
+   +0x008: 0x0000000000000000
+   +0x010: 0x0000000000000000
+   +0x018: 0x0000000000000000
+   +0x020: 0x0000000000000000
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000000000000000
+   +0x038: 0x0000000000000000
+
+--- selinux_state? (selinux_init 清零) @ 0xffffff800a260bb8 (OFF=0x21e0bb8) ---
+   +0x000: 0x0000000000000001
+   +0x008: 0x000004e200000000
+   +0x010: 0x000000000000000a
+   +0x018: 0x0000000000000000
+   +0x020: 0x0000000000000000
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000000000000000
+   +0x038: 0x0000000000000000
+
+--- selinux_state? (complete_init 读) @ 0xffffff800a544192 (OFF=0x24c4192) ---
+   +0x000: 0x3932000000000000
+   +0x008: 0xa0b8ffffff8009e1
+   +0x010: 0x9ee3ffffff8009d3
+   +0x018: 0xd011ffffff8009d6
+   +0x020: 0x1cbbffffff8009e8
+   +0x028: 0x3932000000000000
+   +0x030: 0x1794ffffff8009e1
+   +0x038: 0x9ee3ffffff8009db
+
+--- wq 数组起点 (workqueue_init_early) @ 0xffffff800a1fdb70 (OFF=0x217db70) ---
+   +0x000: 0x0000000000000000
+   +0x008: 0x0000000000000000
+   +0x010: 0x0000000000000000
+   +0x018: 0x0000000000000000
+   +0x020: 0x0000000000000000
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000000000000000
+   +0x038: 0x0000000000000000
+
+--- init_cred @ 0xffffff800a219890 (OFF=0x2199890) ---
+   +0x000: 0x0000000000000004
+   +0x008: 0x0000000000000000
+   +0x010: 0x0000000000000000
+   +0x018: 0x0000000000000000
+   +0x020: 0x0000000000000000
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000003fffffffff
+   +0x038: 0x0000003fffffffff
+
+--- ashmem_misc.fops 槽 @ 0xffffff800a4e1948 (OFF=0x2461948) ---
+   +0x000: 0xffffff8009b2e178  <- 0xffffff8009b2e178
+   +0x008: 0x0000000000000000
+   +0x010: 0x0000000000000000
+   +0x018: 0x0000000000000000
+   +0x020: 0x0000000000000000
+   +0x028: 0x0000000000000000
+   +0x030: 0x0000000000000000
+   +0x038: 0x0000000000000000
+
+--- anon_pipe_buf_ops? (簇32) @ 0xffffff80093e82c8 (OFF=0x13682c8) ---
+   +0x000: 0xffffff800829f8e4  <- generic_pipe_buf_confirm
+   +0x008: 0xffffff80082a1328  <- anon_pipe_buf_release
+   +0x010: 0xffffff80082a13a4  <- anon_pipe_buf_steal
+   +0x018: 0xffffff800829f898  <- generic_pipe_buf_get
+   +0x020: 0x0000000000000000
+   +0x028: 0xffffff800829f8e4  <- generic_pipe_buf_confirm
+   +0x030: 0xffffff80082a1328  <- anon_pipe_buf_release
+   +0x038: 0xffffff80082a13a4  <- anon_pipe_buf_steal
+
+====================================================================================================
+二、start_kernel / sched_init / selinux_init 开头（找 init_task / root_task_group / selinux_state）
+====================================================================================================
+
+  --- start_kernel @ 0xffffff800a07068c ---
+    0xffffff800a07068c: sub       sp, sp, #0x50                             
+    0xffffff800a070690: stp       x29, x30, [sp, #0x20]                     
+    0xffffff800a070694: stp       x22, x21, [sp, #0x30]                     
+    0xffffff800a070698: stp       x20, x19, [sp, #0x40]                     
+    0xffffff800a07069c: add       x29, sp, #0x20                            
+    0xffffff800a0706a0: adrp      x8, #0xffffff800a1fd000                    [0xffffff800a1fd000 OFF=0x217d000]
+    0xffffff800a0706a4: ldr       x8, [x8, #0xb08]                          
+    0xffffff800a0706a8: adrp      x0, #0xffffff800a20d000                    [0xffffff800a20d000 OFF=0x218d000]
+    0xffffff800a0706ac: add       x0, x0, #0x6c0                            
+    0xffffff800a0706b0: stur      x8, [x29, #-8]                            
+    0xffffff800a0706b4: bl        #0xffffff80080b3f2c                        -> set_task_stack_end_magic
+    0xffffff800a0706b8: bl        #0xffffff800a0743a4                        -> smp_setup_processor_id
+    0xffffff800a0706bc: bl        #0xffffff800a08280c                        -> cgroup_init_early
+    0xffffff800a0706c0: msr       daifset, #2                               
+    0xffffff800a0706c4: adrp      x21, #0xffffff800a1fd000                   [0xffffff800a1fd000 OFF=0x217d000]
+    0xffffff800a0706c8: mov       w19, #1                                   
+    0xffffff800a0706cc: strb      w19, [x21, #0xb05]                        
+    0xffffff800a0706d0: bl        #0xffffff800a0792bc                        -> boot_cpu_init
+    0xffffff800a0706d4: adrp      x0, #0xffffff8009d1e000                    [0xffffff8009d1e000 OFF=0x1c9e000]
+    0xffffff800a0706d8: adrp      x1, #0xffffff80093c0000                    [0xffffff80093c0000 OFF=0x1340000]
+    0xffffff800a0706dc: add       x0, x0, #0x696                            
+    0xffffff800a0706e0: add       x1, x1, #0x18                             
+    0xffffff800a0706e4: bl        #0xffffff800813242c                        -> printk
+    0xffffff800a0706e8: add       x0, sp, #8                                
+    0xffffff800a0706ec: bl        #0xffffff800a074504                        -> setup_arch
+    0xffffff800a0706f0: ldr       x0, [sp, #8]                              
+    0xffffff800a0706f4: adrp      x8, #0xffffff800a23b000                    [0xffffff800a23b000 OFF=0x21bb000]
+    0xffffff800a0706f8: str       xzr, [x8, #0x148]                         
+    0xffffff800a0706fc: bl        #0xffffff800a070a40                        -> setup_command_line
+    0xffffff800a070700: bl        #0xffffff800a082234                        -> setup_nr_cpu_ids
+
+  --- sched_init @ 0xffffff800a07d954 ---
+    0xffffff800a07d954: stp       x29, x30, [sp, #-0x60]!                   
+    0xffffff800a07d958: stp       x28, x27, [sp, #0x10]                     
+    0xffffff800a07d95c: stp       x26, x25, [sp, #0x20]                     
+    0xffffff800a07d960: stp       x24, x23, [sp, #0x30]                     
+    0xffffff800a07d964: stp       x22, x21, [sp, #0x40]                     
+    0xffffff800a07d968: stp       x20, x19, [sp, #0x50]                     
+    0xffffff800a07d96c: mov       x29, sp                                   
+    0xffffff800a07d970: bl        #0xffffff800a07e10c                        -> wait_bit_init
+    0xffffff800a07d974: adrp      x25, #0xffffff800a1fd000                   [0xffffff800a1fd000 OFF=0x217d000]
+    0xffffff800a07d978: ldr       w8, [x25, #0xca8]                         
+    0xffffff800a07d97c: lsl       w8, w8, #1                                
+    0xffffff800a07d980: cbz       w8, #0xffffff800a07d9b4                   
+    0xffffff800a07d984: mov       w8, w8                                    
+    0xffffff800a07d988: mov       w1, #0x8000                               
+    0xffffff800a07d98c: lsl       x0, x8, #3                                
+    0xffffff800a07d990: movk      w1, #0x40, lsl #16                        
+    0xffffff800a07d994: bl        #0xffffff8008271bc8                        -> __kmalloc
+    0xffffff800a07d998: mov       x19, x0                                   
+    0xffffff800a07d99c: bl        #0xffffff800812753c                        -> iso_cpumask_init
+    0xffffff800a07d9a0: ldr       w8, [x25, #0xca8]                         
+    0xffffff800a07d9a4: adrp      x9, #0xffffff800a5d4000                    [0xffffff800a5d4000 OFF=0x2554000]
+    0xffffff800a07d9a8: add       x9, x9, #0xbd0                            
+    0xffffff800a07d9ac: add       x8, x19, x8, lsl #3                       
+    0xffffff800a07d9b0: stp       x19, x8, [x9]                             
+    0xffffff800a07d9b4: adrp      x19, #0xffffff800a21d000                   [0xffffff800a21d000 OFF=0x219d000]
+    0xffffff800a07d9b8: adrp      x20, #0xffffff800a21d000                   [0xffffff800a21d000 OFF=0x219d000]
+
+  --- selinux_init @ 0xffffff800a09fb80 ---
+    0xffffff800a09fb80: stp       x29, x30, [sp, #-0x30]!                   
+    0xffffff800a09fb84: str       x21, [sp, #0x10]                          
+    0xffffff800a09fb88: stp       x20, x19, [sp, #0x20]                     
+    0xffffff800a09fb8c: mov       x29, sp                                   
+    0xffffff800a09fb90: adrp      x0, #0xffffff8009e13000                    [0xffffff8009e13000 OFF=0x1d93000]
+    0xffffff800a09fb94: add       x0, x0, #0x932                            
+    0xffffff800a09fb98: bl        #0xffffff800a09f828                        -> security_module_enable
+    0xffffff800a09fb9c: adrp      x8, #0xffffff800a260000                    [0xffffff800a260000 OFF=0x21e0000]
+    0xffffff800a09fba0: cbnz      w0, #0xffffff800a09fbbc                   
+    0xffffff800a09fba4: str       wzr, [x8, #0xbb8]                         
+    0xffffff800a09fba8: ldp       x20, x19, [sp, #0x20]                     
+    0xffffff800a09fbac: ldr       x21, [sp, #0x10]                          
+    0xffffff800a09fbb0: mov       w0, wzr                                   
+    0xffffff800a09fbb4: ldp       x29, x30, [sp], #0x30                     
+    0xffffff800a09fbb8: ret                                                 
+
+  --- selinux_complete_init @ 0xffffff8008480600 ---
+    0xffffff8008480600: stp       x29, x30, [sp, #-0x10]!                   
+    0xffffff8008480604: mov       x29, sp                                   
+    0xffffff8008480608: adrp      x8, #0xffffff800a544000                    [0xffffff800a544000 OFF=0x24c4000]
+    0xffffff800848060c: ldrb      w8, [x8, #0x192]                          
+    0xffffff8008480610: tbnz      w8, #2, #0xffffff8008480638               
+    0xffffff8008480614: adrp      x8, #0xffffff800a544000                    [0xffffff800a544000 OFF=0x24c4000]
+    0xffffff8008480618: ldrb      w8, [x8, #0x1ba]                          
+    0xffffff800848061c: tbnz      w8, #2, #0xffffff8008480650               
+    0xffffff8008480620: adrp      x0, #0xffffff8008480000                   
+    0xffffff8008480624: add       x0, x0, #0x668                            
+    0xffffff8008480628: mov       x1, xzr                                   
+    0xffffff800848062c: bl        #0xffffff800829856c                        -> iterate_supers
+    0xffffff8008480630: ldp       x29, x30, [sp], #0x10                     
+    0xffffff8008480634: ret                                                 
+
+  --- enforcing_setup @ 0xffffff800a09fab8 ---
+    0xffffff800a09fab8: sub       sp, sp, #0x20                             
+    0xffffff800a09fabc: stp       x29, x30, [sp, #0x10]                     
+    0xffffff800a09fac0: add       x29, sp, #0x10                            
+    0xffffff800a09fac4: adrp      x8, #0xffffff800a1fd000                    [0xffffff800a1fd000 OFF=0x217d000]
+    0xffffff800a09fac8: ldr       x8, [x8, #0xb08]                          
+    0xffffff800a09facc: mov       x2, sp                                    
+    0xffffff800a09fad0: mov       w1, wzr                                   
+    0xffffff800a09fad4: str       x8, [sp, #8]                              
+    0xffffff800a09fad8: bl        #0xffffff8008514f50                        -> kstrtoull
+    0xffffff800a09fadc: cbnz      w0, #0xffffff800a09faf4                   
+    0xffffff800a09fae0: ldr       x8, [sp]                                  
+    0xffffff800a09fae4: adrp      x9, #0xffffff800a904000                    [0xffffff800a904000 OFF=0x2884000]
+    0xffffff800a09fae8: cmp       x8, #0                                    
+    0xffffff800a09faec: cset      w8, ne                                    
+    0xffffff800a09faf0: str       w8, [x9, #0x70]                           
+    0xffffff800a09faf4: adrp      x9, #0xffffff800a1fd000                    [0xffffff800a1fd000 OFF=0x217d000]
+    0xffffff800a09faf8: ldr       x8, [sp, #8]                              
+    0xffffff800a09fafc: ldr       x9, [x9, #0xb08]                          
+    0xffffff800a09fb00: cmp       x9, x8                                    
+    0xffffff800a09fb04: b.ne      #0xffffff800a09fb18                       
+    0xffffff800a09fb08: ldp       x29, x30, [sp, #0x10]                     
+    0xffffff800a09fb0c: mov       w0, #1                                    
+
+  --- copy_utsname @ 0xffffff8008190384 ---
+    0xffffff8008190384: cbz       x2, #0xffffff80081904cc                   
+    0xffffff8008190388: stp       x29, x30, [sp, #-0x40]!                   
+    0xffffff800819038c: str       x23, [sp, #0x10]                          
+    0xffffff8008190390: stp       x22, x21, [sp, #0x20]                     
+    0xffffff8008190394: stp       x20, x19, [sp, #0x30]                     
+    0xffffff8008190398: mov       x29, sp                                   
+    0xffffff800819039c: mov       x21, x0                                   
+    0xffffff80081903a0: mov       x0, x2                                    
+    0xffffff80081903a4: mov       x19, x2                                   
+    0xffffff80081903a8: mov       x20, x1                                   
+    0xffffff80081903ac: bl        #0xffffff8008513618                        -> refcount_inc_checked
+    0xffffff80081903b0: tbnz      w21, #0x1a, #0xffffff80081903bc           
+    0xffffff80081903b4: mov       x20, x19                                  
+    0xffffff80081903b8: b         #0xffffff800819046c                       
+    0xffffff80081903bc: mrs       x8, sp_el0                                
+    0xffffff80081903c0: ldr       x8, [x8, #0x768]                          
+    0xffffff80081903c4: mov       w2, #2                                    
+    0xffffff80081903c8: mov       x0, x20                                   
+    0xffffff80081903cc: ldr       w1, [x8, #0x14]                           
+    0xffffff80081903d0: bl        #0xffffff80080e8178                        -> inc_ucount
+
+====================================================================================================
+三、task_struct 剩余字段：针对性函数锚点
+====================================================================================================
+
+  --- __arm64_sys_getpid @ 0xffffff80080d3ad8 ---
+    0xffffff80080d3aec: bl        #0xffffff80080e0300                      -> __task_pid_nr_ns
+
+  --- __arm64_sys_gettid @ 0xffffff80080d3afc ---
+    0xffffff80080d3b10: bl        #0xffffff80080e0300                      -> __task_pid_nr_ns
+  task_pid_vnr                       ❌ 无符号
+
+  --- prctl_get_seccomp @ 0xffffff80081a1088 ---
+    0xffffff80081a108c: ldrsw     x0, [x8, #0x810]                         [#0x810]
+
+  --- __seccomp_filter @ 0xffffff80081a0c48 ---
+    0xffffff80081a0c68: ldr       x8, [x8, #0xb08]                         [#0xb08]
+    0xffffff80081a0c7c: ldr       x24, [x20, #0x818]                       [#0x818]
+    0xffffff80081a0ca0: ldr       w9, [x8, #0x3fd8]                        [#0x3fd8]
+    0xffffff80081a0cc0: ldr       x9, [x8, #0x3fd0]                        [#0x3fd0]
+    0xffffff80081a0cc4: ldr       x10, [x8, #0x3ec8]                       [#0x3ec8]
+    0xffffff80081a0cc8: ldr       x11, [x8, #0x3ed0]                       [#0x3ed0]
+    0xffffff80081a0ccc: ldr       x12, [x8, #0x3ed8]                       [#0x3ed8]
+    0xffffff80081a0cd0: ldr       x13, [x8, #0x3ee0]                       [#0x3ee0]
+    0xffffff80081a0cd4: ldr       x8, [x8, #0x3ee8]                        [#0x3ee8]
+    0xffffff80081a0ce8: ldr       x8, [x8, #0x3fc0]                        [#0x3fc0]
+    0xffffff80081a0d58: ldrb      w8, [x8, #0x1b8]                         [#0x1b8]
+  task_no_new_privs                  ❌ 无符号
+  sched_getparam                     ❌ 无符号
+
+  --- __arm64_sys_sched_getparam @ 0xffffff80080f6984 ---
+    0xffffff80080f699c: ldr       x8, [x8, #0xb08]                         [#0xb08]
+    0xffffff80080f69bc: bl        #0xffffff8008148d44                      -> __rcu_read_lock
+    0xffffff80080f69c8: bl        #0xffffff80080e008c                      -> find_task_by_vpid
+    0xffffff80080f69d8: bl        #0xffffff800847c9e0                      -> security_task_getscheduler
+    0xffffff80080f69e4: ldr       w8, [x19, #0x440]                        [#0x440]
+    0xffffff80080f69fc: bl        #0xffffff8008148d58                      -> __rcu_read_unlock
+    0xffffff80080f6a5c: bl        #0xffffff800938bf00                      -> __arch_copy_to_user
+    0xffffff80080f6a78: bl        #0xffffff8008148d58                      -> __rcu_read_unlock
+    0xffffff80080f6a88: ldr       x9, [x9, #0xb08]                         [#0xb08]
+
+  --- task_blocks_on_rt_mutex @ 0xffffff800812bda0 ---
+    0xffffff800812bde0: bl        #0xffffff80093aa858                      -> _raw_spin_lock
+    0xffffff800812bdf0: ldr       x9, [x20, #0x390]                        [#0x390]
+    0xffffff800812bea0: bl        #0xffffff8009399534                      -> rb_insert_color_cached
+    0xffffff800812bea8: str       x22, [x20, #0x858]                       [#0x858]
+    0xffffff800812beac: bl        #0xffffff80093aa9ac                      -> _raw_spin_unlock
+    0xffffff800812bebc: bl        #0xffffff80093aa858                      -> _raw_spin_lock
+
+  --- cgroup_path_ns @ 0xffffff80081815c8 ---
+    0xffffff80081815f0: bl        #0xffffff80093a6034                      -> mutex_lock
+    0xffffff80081815fc: bl        #0xffffff80093aa908                      -> _raw_spin_lock_irq
+    0xffffff8008181604: ldr       x8, [x21, #0x210]                        [#0x210]
+    0xffffff8008181628: ldr       x10, [x9, #0x120]                        [#0x120]
+    0xffffff800818163c: ldr       x12, [x9, #0x210]                        [#0x210]
+    0xffffff8008181660: ldr       x0, [x21, #0x140]                        [#0x140]
+    0xffffff8008181664: ldr       x1, [x9, #0x140]                         [#0x140]
+    0xffffff8008181670: bl        #0xffffff8008340900                      -> kernfs_path_from_node
+    0xffffff8008181680: bl        #0xffffff80093aaa30                      -> _raw_spin_unlock_irq
+    0xffffff800818168c: bl        #0xffffff80093a60a0                      -> mutex_unlock
+
+  --- proc_pid_status @ 0xffffff800832c0e4 ---
+    0xffffff800832c108: ldr       x8, [x8, #0xb08]                         [#0xb08]
+    0xffffff800832c124: bl        #0xffffff80080b4428                      -> get_task_mm
+    0xffffff800832c138: bl        #0xffffff80082c4ae8                      -> seq_puts
+    0xffffff800832c148: bl        #0xffffff800832bf30                      -> proc_task_name
+    0xffffff800832c154: bl        #0xffffff80082c4ac4                      -> seq_putc
+    0xffffff800832c158: bl        #0xffffff8008148d44                      -> __rcu_read_lock
+    0xffffff800832c15c: ldr       x8, [x20, #0x620]                        [#0x620]
+    0xffffff800832c164: ldr       x0, [x20, #0x5c8]                        [#0x5c8]
+    0xffffff800832c170: bl        #0xffffff80080e0300                      -> __task_pid_nr_ns
+    0xffffff800832c19c: bl        #0xffffff80080e0300                      -> __task_pid_nr_ns
+    0xffffff800832c1a8: bl        #0xffffff80080e580c                      -> get_task_cred
+    0xffffff800832c1b8: bl        #0xffffff80093aa858                      -> _raw_spin_lock
+    0xffffff800832c1bc: ldr       x8, [x20, #0x788]                        [#0x788]
+    0xffffff800832c1c8: ldr       x8, [x20, #0x790]                        [#0x790]
+    0xffffff800832c1e4: ldr       x8, [x20, #0x790]                        [#0x790]
+    0xffffff800832c1f4: bl        #0xffffff80093aa9ac                      -> _raw_spin_unlock
+    0xffffff800832c1f8: bl        #0xffffff8008148d58                      -> __rcu_read_unlock

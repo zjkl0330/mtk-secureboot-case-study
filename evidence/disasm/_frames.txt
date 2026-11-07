@@ -1,0 +1,119 @@
+============================================================================================
+一、精确栈帧（全函数扫描，取 SP 最深点；对比交接文档的只看前 5 条）
+============================================================================================
+  __arm64_sys_futex            0xffffff800816f64c 帧=0x70     (112 B)
+        0xffffff800816f64c  sub sp, sp, #0x70                          -112  cum=-112
+        0xffffff800816f7c8  add sp, sp, #0x70                          +112  cum=+0
+  do_futex                     0xffffff800816bed8 帧=0x210    (528 B)  ⚠️ 交接文档记 0x60 → 差 0x1b0
+        0xffffff800816bed8  stp x29, x30, [sp, #-0x60]!                -96  cum=-96
+        0xffffff800816bef4  sub sp, sp, #0x1b0                         -432  cum=-528
+        0xffffff800816cae4  add sp, sp, #0x1b0                         +432  cum=-96
+        0xffffff800816cafc  ldp x29, x30, [sp], #0x60                  +96  cum=+0
+  futex_requeue                0xffffff800816de00 帧=0x140    (320 B)
+        0xffffff800816de00  sub sp, sp, #0x140                         -320  cum=-320
+        0xffffff800816eed4  add sp, sp, #0x140                         +320  cum=+0
+  futex_wait_requeue_pi        ❌ 无符号
+  futex_wait                   0xffffff800816d7c0 帧=0x140    (320 B)
+        0xffffff800816d7c0  sub sp, sp, #0x140                         -320  cum=-320
+        0xffffff800816da7c  add sp, sp, #0x140                         +320  cum=+0
+  __arm64_sys_pselect6         0xffffff80082b08b8 帧=0xc0     (192 B)
+        0xffffff80082b08b8  sub sp, sp, #0xc0                          -192  cum=-192
+        0xffffff80082b0d90  add sp, sp, #0xc0                          +192  cum=+0
+  __arm64_sys_select           0xffffff80082b0708 帧=0x80     (128 B)
+        0xffffff80082b0708  sub sp, sp, #0x80                          -128  cum=-128
+        0xffffff80082b0884  add sp, sp, #0x80                          +128  cum=+0
+  core_sys_select              0xffffff80082afc98 帧=0x1c0    (448 B)
+        0xffffff80082afc98  sub sp, sp, #0x1c0                         -448  cum=-448
+        0xffffff80082b0088  add sp, sp, #0x1c0                         +448  cum=+0
+  do_select                    0xffffff80082b00b4 帧=0x380    (896 B)
+        0xffffff80082b00b4  stp x29, x30, [sp, #-0x60]!                -96  cum=-96
+        0xffffff80082b00d0  sub sp, sp, #0x320                         -800  cum=-896
+        0xffffff80082b06d0  add sp, sp, #0x320                         +800  cum=-96
+        0xffffff80082b06e8  ldp x29, x30, [sp], #0x60                  +96  cum=+0
+  __arm64_sys_ppoll            0xffffff80082b0ee4 帧=0xb0     (176 B)
+        0xffffff80082b0ee4  sub sp, sp, #0xb0                          -176  cum=-176
+        0xffffff80082b1130  add sp, sp, #0xb0                          +176  cum=+0
+  __arm64_sys_futex_time32     ❌ 无符号
+
+============================================================================================
+二、do_futex 完整反汇编中的 rt_mutex / waiter 相关（size=0x1400）
+============================================================================================
+  0xffffff800816bedc: stp       x28, x27, [sp, #0x10]                     
+  0xffffff800816bee0: stp       x26, x25, [sp, #0x20]                     
+  0xffffff800816bee4: stp       x24, x23, [sp, #0x30]                     
+  0xffffff800816bee8: stp       x22, x21, [sp, #0x40]                     
+  0xffffff800816beec: stp       x20, x19, [sp, #0x50]                     
+  0xffffff800816bef4: sub       sp, sp, #0x1b0                            
+  0xffffff800816bfb4: bl        #0xffffff800816eef8                         -> futex_lock_pi
+  0xffffff800816bfe0: bl        #0xffffff800816d7c0                         -> futex_wait
+  0xffffff800816c000: bl        #0xffffff800816da8c                         -> futex_wake
+  0xffffff800816c04c: add       x2, sp, #0x70                             
+  0xffffff800816c078: bl        #0xffffff8008170850                         -> get_futex_key
+  0xffffff800816c090: str       x8, [sp, #0x18]                           
+  0xffffff800816c0cc: bl        #0xffffff8008170850                         -> get_futex_key
+  0xffffff800816c270: str       x8, [sp, #0x10]                           
+  0xffffff800816c27c: str       w17, [sp, #0x34]                          
+  0xffffff800816c280: stp       x11, x16, [sp, #0x20]                     
+  0xffffff800816c284: stp       x24, x8, [sp, #0x58]                      
+  0xffffff800816c288: str       x25, [sp, #0x38]                          
+  0xffffff800816c290: ldr       x24, [sp, #0x58]                          
+  0xffffff800816c2a8: ldr       x0, [sp, #0x60]                           
+  0xffffff800816c2b0: ldr       x0, [sp, #0x60]                           
+  0xffffff800816c2cc: ldr       x12, [sp, #0x40]                          
+  0xffffff800816c2fc: ldr       x12, [sp, #0x40]                          
+  0xffffff800816c320: ldr       x10, [sp, #0x48]                          
+  0xffffff800816c340: ldr       x11, [sp, #0x48]                          
+  0xffffff800816c880: ldr       x8, [sp, #0x18]                           
+  0xffffff800816c890: ldr       x0, [sp, #0x60]                           
+  0xffffff800816c8ec: ldr       x25, [sp, #0x38]                          
+  0xffffff800816c908: ldr       w9, [sp, #0x34]                           
+  0xffffff800816c998: add       x2, sp, #0x70                             
+  0xffffff800816c9a8: bl        #0xffffff8008170850                         -> get_futex_key
+  0xffffff800816c9ec: str       x22, [sp, #0x58]                          
+  0xffffff800816ca04: bl        #0xffffff800816eef8                         -> futex_lock_pi
+  0xffffff800816ca2c: stp       x8, x10, [sp, #0xc0]                      
+  0xffffff800816ca34: stp       x11, x12, [sp, #0xd0]                     
+  0xffffff800816ca40: stp       x8, x10, [sp, #0xa0]                      
+  0xffffff800816ca48: stp       x11, x12, [sp, #0xb0]                     
+  0xffffff800816ca50: stp       x8, x10, [sp, #0x80]                      
+  0xffffff800816ca58: stp       x11, x12, [sp, #0x90]                     
+  0xffffff800816cac8: bl        #0xffffff800816de00                         -> futex_requeue
+  0xffffff800816cae4: add       sp, sp, #0x1b0                            
+  0xffffff800816cae8: ldp       x20, x19, [sp, #0x50]                     
+  0xffffff800816caec: ldp       x22, x21, [sp, #0x40]                     
+  0xffffff800816caf0: ldp       x24, x23, [sp, #0x30]                     
+  0xffffff800816caf4: ldp       x26, x25, [sp, #0x20]                     
+  0xffffff800816caf8: ldp       x28, x27, [sp, #0x10]                     
+
+============================================================================================
+三、core_sys_select：stack_fds 定位（SELECT_STACK_ALLOC=256 → 32 words）
+============================================================================================
+  0xffffff80082afc98: sub       sp, sp, #0x1c0
+  0xffffff80082afcb4: add       x29, sp, #0x160
+  0xffffff80082afcdc: bl        #0xffffff8008148d44                        -> __rcu_read_lock
+  0xffffff80082afcf0: bl        #0xffffff8008148d58                        -> __rcu_read_unlock
+  0xffffff80082afd24: bl        #0xffffff800823ad30                        -> kvmalloc_node
+  0xffffff80082afd40: add       x19, sp, #0x50
+  0xffffff80082afd8c: bl        #0xffffff8008289fcc                        -> __check_object_size
+  0xffffff80082afde8: bl        #0xffffff800938b8c0                        -> __arch_copy_from_user
+  0xffffff80082afe04: bl        #0xffffff8008289fcc                        -> __check_object_size
+  0xffffff80082afe60: bl        #0xffffff800938b8c0                        -> __arch_copy_from_user
+  0xffffff80082afe7c: bl        #0xffffff8008289fcc                        -> __check_object_size
+  0xffffff80082afee0: bl        #0xffffff800938b8c0                        -> __arch_copy_from_user
+  0xffffff80082aff00: bl        #0xffffff800938c8c0                        -> __memset
+  0xffffff80082aff14: bl        #0xffffff800938c8c0                        -> __memset
+  0xffffff80082aff28: bl        #0xffffff800938c8c0                        -> __memset
+  0xffffff80082aff40: bl        #0xffffff800938c8c0                        -> __memset
+  0xffffff80082aff50: bl        #0xffffff800938c8c0                        -> __memset
+  0xffffff80082aff60: bl        #0xffffff800938c8c0                        -> __memset
+  0xffffff80082aff68: add       x1, sp, #0x20
+  0xffffff80082aff6c: bl        #0xffffff80082b00b4                        -> do_select
+  0xffffff80082aff94: bl        #0xffffff8008289fcc                        -> __check_object_size
+  0xffffff80082affb8: bl        #0xffffff800938bf00                        -> __arch_copy_to_user
+  0xffffff80082affd0: bl        #0xffffff8008289fcc                        -> __check_object_size
+  0xffffff80082afff4: bl        #0xffffff800938bf00                        -> __arch_copy_to_user
+  0xffffff80082b000c: bl        #0xffffff8008289fcc                        -> __check_object_size
+  0xffffff80082b0030: bl        #0xffffff800938bf00                        -> __arch_copy_to_user
+  0xffffff80082b0044: add       x8, sp, #0x50
+  0xffffff80082b0054: bl        #0xffffff800823a9a4                        -> kvfree
+  0xffffff80082b0088: add       sp, sp, #0x1c0

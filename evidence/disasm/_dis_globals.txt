@@ -1,0 +1,640 @@
+组: globals   基址: 0xffffff8008080000   符号数: 64923
+
+====================================================================================================
+### ashmem_init @ 0xffffff800a0d939c  (OFF=0x205939c)
+====================================================================================================
+  0xffffff800a0d939c: stp       x29, x30, [sp, #-0x30]!    ; [sp+#0x-30]
+  0xffffff800a0d93a0: str       x21, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a0d93a4: stp       x20, x19, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a0d93a8: mov       x29, sp
+  0xffffff800a0d93ac: adrp      x0, #0xffffff8009f79000    ; PAGE=0xffffff8009f79000 OFF=0x1ef9000
+  0xffffff800a0d93b0: add       x0, x0, #0xf75    ; IMM=0xf75
+  0xffffff800a0d93b4: mov       w1, #0x138
+  0xffffff800a0d93b8: mov       w2, wzr
+  0xffffff800a0d93bc: mov       w3, wzr
+  0xffffff800a0d93c0: mov       x4, xzr
+  0xffffff800a0d93c4: bl        #0xffffff80082453b8    ; -> kmem_cache_create
+  0xffffff800a0d93c8: adrp      x20, #0xffffff800a1ff000    ; PAGE=0xffffff800a1ff000 OFF=0x217f000
+  0xffffff800a0d93cc: str       x0, [x20, #0xef0]    ; [x20+#0xef0]
+  0xffffff800a0d93d0: cbnz      x0, #0xffffff800a0d93e8
+  0xffffff800a0d93d4: adrp      x0, #0xffffff8009fa9000    ; PAGE=0xffffff8009fa9000 OFF=0x1f29000
+  0xffffff800a0d93d8: add       x0, x0, #0xa8a    ; IMM=0xa8a
+  0xffffff800a0d93dc: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a0d93e0: mov       w19, #-0xc
+  0xffffff800a0d93e4: b         #0xffffff800a0d9494    ; -> 0xffffff800a0d9494
+  0xffffff800a0d93e8: adrp      x0, #0xffffff8009fd9000    ; PAGE=0xffffff8009fd9000 OFF=0x1f59000
+  0xffffff800a0d93ec: add       x0, x0, #0xa9b    ; IMM=0xa9b
+  0xffffff800a0d93f0: mov       w1, #0x40
+  0xffffff800a0d93f4: mov       w2, wzr
+  0xffffff800a0d93f8: mov       w3, wzr
+  0xffffff800a0d93fc: mov       x4, xzr
+  0xffffff800a0d9400: bl        #0xffffff80082453b8    ; -> kmem_cache_create
+  0xffffff800a0d9404: adrp      x21, #0xffffff800a1ff000    ; PAGE=0xffffff800a1ff000 OFF=0x217f000
+  0xffffff800a0d9408: str       x0, [x21, #0xef8]    ; [x21+#0xef8]
+  0xffffff800a0d940c: cbnz      x0, #0xffffff800a0d9424
+  0xffffff800a0d9410: adrp      x0, #0xffffff8009fa9000    ; PAGE=0xffffff8009fa9000 OFF=0x1f29000
+  0xffffff800a0d9414: add       x0, x0, #0xa8a    ; IMM=0xa8a
+  0xffffff800a0d9418: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a0d941c: mov       w19, #-0xc
+  0xffffff800a0d9420: b         #0xffffff800a0d948c    ; -> 0xffffff800a0d948c
+  0xffffff800a0d9424: adrp      x0, #0xffffff800a4e1000    ; PAGE=0xffffff800a4e1000 OFF=0x2461000
+  0xffffff800a0d9428: add       x0, x0, #0x938    ; IMM=0x938
+  0xffffff800a0d942c: bl        #0xffffff800862b87c    ; -> misc_register
+  0xffffff800a0d9430: cbnz      w0, #0xffffff800a0d9458
+  0xffffff800a0d9434: adrp      x0, #0xffffff800a4e1000    ; PAGE=0xffffff800a4e1000 OFF=0x2461000
+  0xffffff800a0d9438: add       x0, x0, #0x988    ; IMM=0x988
+  0xffffff800a0d943c: bl        #0xffffff800822d498    ; -> register_shrinker
+  0xffffff800a0d9440: mov       w19, w0
+  0xffffff800a0d9444: cbnz      w0, #0xffffff800a0d946c
+  0xffffff800a0d9448: adrp      x0, #0xffffff8009fd9000    ; PAGE=0xffffff8009fd9000 OFF=0x1f59000
+  0xffffff800a0d944c: add       x0, x0, #0xaae    ; IMM=0xaae
+  0xffffff800a0d9450: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a0d9454: b         #0xffffff800a0d9494    ; -> 0xffffff800a0d9494
+  0xffffff800a0d9458: mov       w19, w0
+  0xffffff800a0d945c: adrp      x0, #0xffffff8009d35000    ; PAGE=0xffffff8009d35000 OFF=0x1cb5000
+  0xffffff800a0d9460: add       x0, x0, #0xf5    ; IMM=0xf5
+  0xffffff800a0d9464: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a0d9468: b         #0xffffff800a0d9484    ; -> 0xffffff800a0d9484
+  0xffffff800a0d946c: adrp      x0, #0xffffff8009e27000    ; PAGE=0xffffff8009e27000 OFF=0x1da7000
+  0xffffff800a0d9470: add       x0, x0, #0x4da    ; IMM=0x4da
+  0xffffff800a0d9474: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a0d9478: adrp      x0, #0xffffff800a4e1000    ; PAGE=0xffffff800a4e1000 OFF=0x2461000
+  0xffffff800a0d947c: add       x0, x0, #0x938    ; IMM=0x938
+  0xffffff800a0d9480: bl        #0xffffff800862ba14    ; -> misc_deregister
+  0xffffff800a0d9484: ldr       x0, [x21, #0xef8]    ; [x21+#0xef8]
+  0xffffff800a0d9488: bl        #0xffffff8008245894    ; -> kmem_cache_destroy
+  0xffffff800a0d948c: ldr       x0, [x20, #0xef0]    ; [x20+#0xef0]
+  0xffffff800a0d9490: bl        #0xffffff8008245894    ; -> kmem_cache_destroy
+  0xffffff800a0d9494: mov       w0, w19
+  0xffffff800a0d9498: ldp       x20, x19, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a0d949c: ldr       x21, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a0d94a0: ldp       x29, x30, [sp], #0x30    ; [sp+#0x0]
+  0xffffff800a0d94a4: ret       
+
+====================================================================================================
+### create_kmalloc_caches @ 0xffffff800a08caf0  (OFF=0x200caf0)
+====================================================================================================
+  0xffffff800a08caf0: stp       x29, x30, [sp, #-0x30]!    ; [sp+#0x-30]
+  0xffffff800a08caf4: stp       x22, x21, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a08caf8: stp       x20, x19, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a08cafc: mov       x29, sp
+  0xffffff800a08cb00: adrp      x22, #0xffffff8009ff5000    ; PAGE=0xffffff8009ff5000 OFF=0x1f75000
+  0xffffff800a08cb04: mov       w19, w0
+  0xffffff800a08cb08: mov       x20, xzr
+  0xffffff800a08cb0c: add       x22, x22, #0xbd0    ; IMM=0xbd0
+  0xffffff800a08cb10: mov       w21, #7
+  0xffffff800a08cb14: ldr       x8, [x22, x21, lsl #3]    ; [x22+#0x0]
+  0xffffff800a08cb18: cbz       x8, #0xffffff800a08cb2c
+  0xffffff800a08cb1c: add       x21, x21, #1    ; IMM=0x1
+  0xffffff800a08cb20: cmp       x21, #0xe
+  0xffffff800a08cb24: b.ne      #0xffffff800a08cb14
+  0xffffff800a08cb28: b         #0xffffff800a08cb40    ; -> 0xffffff800a08cb40
+  0xffffff800a08cb2c: mov       w0, w21
+  0xffffff800a08cb30: mov       w1, w20
+  0xffffff800a08cb34: mov       w2, w19
+  0xffffff800a08cb38: bl        #0xffffff800a08cb6c    ; -> new_kmalloc_cache
+  0xffffff800a08cb3c: b         #0xffffff800a08cb1c    ; -> 0xffffff800a08cb1c
+  0xffffff800a08cb40: add       x20, x20, #1    ; IMM=0x1
+  0xffffff800a08cb44: cmp       x20, #2
+  0xffffff800a08cb48: add       x22, x22, #0x70    ; IMM=0x70
+  0xffffff800a08cb4c: b.ne      #0xffffff800a08cb10
+  0xffffff800a08cb50: ldp       x20, x19, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a08cb54: ldp       x22, x21, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a08cb58: adrp      x8, #0xffffff800a7e2000    ; PAGE=0xffffff800a7e2000 OFF=0x2762000
+  0xffffff800a08cb5c: mov       w9, #3
+  0xffffff800a08cb60: str       w9, [x8, #0x690]    ; [x8+#0x690]
+  0xffffff800a08cb64: ldp       x29, x30, [sp], #0x30    ; [sp+#0x0]
+  0xffffff800a08cb68: ret       
+
+====================================================================================================
+### kmalloc_slab @ 0xffffff8008245ae8  (OFF=0x1c5ae8)
+====================================================================================================
+  0xffffff8008245ae8: stp       x29, x30, [sp, #-0x10]!    ; [sp+#0x-10]
+  0xffffff8008245aec: mov       x29, sp
+  0xffffff8008245af0: cmp       x0, #0xc0
+  0xffffff8008245af4: b.hi      #0xffffff8008245b14
+  0xffffff8008245af8: cbz       x0, #0xffffff8008245b60
+  0xffffff8008245afc: sub       w8, w0, #1    ; IMM=0x1
+  0xffffff8008245b00: adrp      x9, #0xffffff8009ff5000    ; PAGE=0xffffff8009ff5000 OFF=0x1f75000
+  0xffffff8008245b04: lsr       w8, w8, #3
+  0xffffff8008245b08: add       x9, x9, #0xcb0    ; IMM=0xcb0
+  0xffffff8008245b0c: ldrb      w9, [x9, w8, uxtw]    ; [x9+#0x0]
+  0xffffff8008245b10: b         #0xffffff8008245b30    ; -> 0xffffff8008245b30
+  0xffffff8008245b14: cmp       x0, #2, lsl #12
+  0xffffff8008245b18: b.hi      #0xffffff8008245b88
+  0xffffff8008245b1c: subs      w8, w0, #1
+  0xffffff8008245b20: clz       w8, w8
+  0xffffff8008245b24: mov       w9, #0x20
+  0xffffff8008245b28: sub       w8, w9, w8
+  0xffffff8008245b2c: csel      w9, wzr, w8, eq
+  0xffffff8008245b30: adrp      x8, #0xffffff800a7e4000    ; PAGE=0xffffff800a7e4000 OFF=0x2764000
+  0xffffff8008245b34: ldr       w10, [x8, #0x218]    ; [x8+#0x218]
+  0xffffff8008245b38: ubfx      w8, w1, #4, #1
+  0xffffff8008245b3c: mov       w9, w9
+  0xffffff8008245b40: cbnz      w10, #0xffffff8008245b6c
+  0xffffff8008245b44: adrp      x11, #0xffffff8009ff5000    ; PAGE=0xffffff8009ff5000 OFF=0x1f75000
+  0xffffff8008245b48: mov       w10, #0x70
+  0xffffff8008245b4c: add       x11, x11, #0xbd0    ; IMM=0xbd0
+  0xffffff8008245b50: madd      x8, x8, x10, x11
+  0xffffff8008245b54: ldr       x0, [x8, x9, lsl #3]    ; [x8+#0x0]
+  0xffffff8008245b58: ldp       x29, x30, [sp], #0x10    ; [sp+#0x0]
+  0xffffff8008245b5c: ret       
+
+====================================================================================================
+### security_add_hooks @ 0xffffff800a09f84c  (OFF=0x201f84c)
+====================================================================================================
+  0xffffff800a09f84c: stp       x29, x30, [sp, #-0x30]!    ; [sp+#0x-30]
+  0xffffff800a09f850: str       x21, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a09f854: stp       x20, x19, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a09f858: mov       x29, sp
+  0xffffff800a09f85c: mov       x19, x2
+  0xffffff800a09f860: cmp       w1, #1
+  0xffffff800a09f864: b.lt      #0xffffff800a09f8e0
+  0xffffff800a09f868: mov       x8, xzr
+  0xffffff800a09f86c: mov       w9, w1
+  0xffffff800a09f870: mov       w10, #0x28
+  0xffffff800a09f874: madd      x13, x8, x10, x0
+  0xffffff800a09f878: ldr       x11, [x13, #0x10]    ; [x13+#0x10]
+  0xffffff800a09f87c: mov       x12, xzr
+  0xffffff800a09f880: str       x19, [x13, #0x20]    ; [x13+#0x20]
+  0xffffff800a09f884: mov       x14, x11
+  0xffffff800a09f888: mov       x13, x12
+  0xffffff800a09f88c: ldr       x12, [x14]    ; [x14+#0x0]
+  0xffffff800a09f890: mov       x14, x12
+  0xffffff800a09f894: cbnz      x12, #0xffffff800a09f888
+  0xffffff800a09f898: madd      x12, x8, x10, x0
+  0xffffff800a09f89c: cbz       x13, #0xffffff800a09f8b8
+  0xffffff800a09f8a0: ldr       x11, [x13]    ; [x13+#0x0]
+  0xffffff800a09f8a4: madd      x14, x8, x10, x0
+  0xffffff800a09f8a8: str       x11, [x12]    ; [x12+#0x0]
+  0xffffff800a09f8ac: str       x13, [x14, #8]    ; [x14+#0x8]
+  0xffffff800a09f8b0: stlr      x12, [x13]    ; [x13+#0x0]
+  0xffffff800a09f8b4: b         #0xffffff800a09f8d4    ; -> 0xffffff800a09f8d4
+  0xffffff800a09f8b8: ldr       x13, [x11]    ; [x11+#0x0]
+  0xffffff800a09f8bc: madd      x14, x8, x10, x0
+  0xffffff800a09f8c0: str       x13, [x12]    ; [x12+#0x0]
+  0xffffff800a09f8c4: str       x11, [x14, #8]    ; [x14+#0x8]
+  0xffffff800a09f8c8: stlr      x12, [x11]    ; [x11+#0x0]
+  0xffffff800a09f8cc: cbz       x13, #0xffffff800a09f8d4
+  0xffffff800a09f8d0: str       x12, [x13, #8]    ; [x13+#0x8]
+  0xffffff800a09f8d4: add       x8, x8, #1    ; IMM=0x1
+  0xffffff800a09f8d8: cmp       x8, x9
+  0xffffff800a09f8dc: b.ne      #0xffffff800a09f874
+  0xffffff800a09f8e0: adrp      x21, #0xffffff800a902000    ; PAGE=0xffffff800a902000 OFF=0x2882000
+  0xffffff800a09f8e4: ldr       x20, [x21, #0x7f0]    ; [x21+#0x7f0]
+  0xffffff800a09f8e8: cbz       x20, #0xffffff800a09f944
+  0xffffff800a09f8ec: cbz       x19, #0xffffff800a09f96c
+  0xffffff800a09f8f0: mov       w1, #0x2c
+  0xffffff800a09f8f4: mov       x0, x20
+  0xffffff800a09f8f8: bl        #0xffffff800938cf0c    ; -> __pi_strrchr
+  0xffffff800a09f8fc: cmp       x0, #0
+  0xffffff800a09f900: csinc     x0, x20, x0, eq
+  0xffffff800a09f904: mov       x1, x19
+  0xffffff800a09f908: bl        #0xffffff800938ca6c    ; -> __pi_strcmp
+  0xffffff800a09f90c: cbz       w0, #0xffffff800a09f95c
+  0xffffff800a09f910: adrp      x1, #0xffffff8009d20000    ; PAGE=0xffffff8009d20000 OFF=0x1ca0000
+  0xffffff800a09f914: mov       w0, #0xc0
+  0xffffff800a09f918: add       x1, x1, #0xa2d    ; IMM=0xa2d
+  0xffffff800a09f91c: movk      w0, #0x60, lsl #16
+  0xffffff800a09f920: mov       x2, x20
+  0xffffff800a09f924: mov       x3, x19
+  0xffffff800a09f928: bl        #0xffffff80085068b8    ; -> kasprintf
+  0xffffff800a09f92c: cbz       x0, #0xffffff800a09f984
+  0xffffff800a09f930: mov       x19, x0
+  0xffffff800a09f934: ldr       x0, [x21, #0x7f0]    ; [x21+#0x7f0]
+  0xffffff800a09f938: bl        #0xffffff8008272138    ; -> kfree
+  0xffffff800a09f93c: str       x19, [x21, #0x7f0]    ; [x21+#0x7f0]
+  0xffffff800a09f940: b         #0xffffff800a09f95c    ; -> 0xffffff800a09f95c
+  0xffffff800a09f944: mov       w1, #0xc0
+  0xffffff800a09f948: movk      w1, #0x60, lsl #16
+  0xffffff800a09f94c: mov       x0, x19
+  0xffffff800a09f950: bl        #0xffffff800823a594    ; -> kstrdup
+  0xffffff800a09f954: str       x0, [x21, #0x7f0]    ; [x21+#0x7f0]
+  0xffffff800a09f958: cbz       x0, #0xffffff800a09f984
+  0xffffff800a09f95c: ldp       x20, x19, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a09f960: ldr       x21, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a09f964: ldp       x29, x30, [sp], #0x30    ; [sp+#0x0]
+  0xffffff800a09f968: ret       
+
+====================================================================================================
+### rest_init @ 0xffffff80093a2c60  (OFF=0x1322c60)
+====================================================================================================
+  0xffffff80093a2c60: stp       x29, x30, [sp, #-0x20]!    ; [sp+#0x-20]
+  0xffffff80093a2c64: stp       x20, x19, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff80093a2c68: mov       x29, sp
+  0xffffff80093a2c6c: bl        #0xffffff800814820c    ; -> rcu_scheduler_starting
+  0xffffff80093a2c70: adrp      x0, #0xffffff80093a2000    ; PAGE=0xffffff80093a2000 OFF=0x1322000
+  0xffffff80093a2c74: add       x0, x0, #0xd3c    ; IMM=0xd3c
+  0xffffff80093a2c78: mov       w2, #0x200
+  0xffffff80093a2c7c: mov       x1, xzr
+  0xffffff80093a2c80: bl        #0xffffff80080b69a4    ; -> kernel_thread
+  0xffffff80093a2c84: mov       w19, w0
+  0xffffff80093a2c88: bl        #0xffffff8008148d44    ; -> __rcu_read_lock
+  0xffffff80093a2c8c: adrp      x20, #0xffffff800a219000    ; PAGE=0xffffff800a219000 OFF=0x2199000
+  0xffffff80093a2c90: add       x20, x20, #0x530    ; IMM=0x530
+  0xffffff80093a2c94: mov       w0, w19
+  0xffffff80093a2c98: mov       x1, x20
+  0xffffff80093a2c9c: bl        #0xffffff80080e0058    ; -> find_task_by_pid_ns
+  0xffffff80093a2ca0: adrp      x9, #0xffffff800a19c000    ; PAGE=0xffffff800a19c000 OFF=0x211c000
+  0xffffff80093a2ca4: mrs       x8, tpidr_el1
+  0xffffff80093a2ca8: add       x9, x9, #0x28    ; IMM=0x28
+  0xffffff80093a2cac: ldr       w8, [x8, x9]    ; [x8+#0x0]
+  0xffffff80093a2cb0: adrp      x9, #0xffffff80093c8000    ; PAGE=0xffffff80093c8000 OFF=0x1348000
+  0xffffff80093a2cb4: add       x9, x9, #0xfc0    ; IMM=0xfc0
+  0xffffff80093a2cb8: and       x10, x8, #0x3f
+  0xffffff80093a2cbc: lsr       x8, x8, #3
+  0xffffff80093a2cc0: and       x8, x8, #0x1ffffff8
+  0xffffff80093a2cc4: add       x9, x9, x10, lsl #3
+  0xffffff80093a2cc8: sub       x8, x9, x8
+  0xffffff80093a2ccc: add       x1, x8, #8    ; IMM=0x8
+  0xffffff80093a2cd0: bl        #0xffffff80080f16f0    ; -> set_cpus_allowed_ptr
+  0xffffff80093a2cd4: bl        #0xffffff8008148d58    ; -> __rcu_read_unlock
+  0xffffff80093a2cd8: adrp      x0, #0xffffff80080e2000    ; PAGE=0xffffff80080e2000 OFF=0x62000
+  0xffffff80093a2cdc: add       x0, x0, #0xaa0    ; IMM=0xaa0
+  0xffffff80093a2ce0: mov       w2, #0x600
+  0xffffff80093a2ce4: mov       x1, xzr
+  0xffffff80093a2ce8: bl        #0xffffff80080b69a4    ; -> kernel_thread
+  0xffffff80093a2cec: mov       w19, w0
+  0xffffff80093a2cf0: bl        #0xffffff8008148d44    ; -> __rcu_read_lock
+  0xffffff80093a2cf4: mov       w0, w19
+  0xffffff80093a2cf8: mov       x1, x20
+  0xffffff80093a2cfc: bl        #0xffffff80080e0058    ; -> find_task_by_pid_ns
+  0xffffff80093a2d00: adrp      x8, #0xffffff800a5d2000    ; PAGE=0xffffff800a5d2000 OFF=0x2552000
+  0xffffff80093a2d04: str       x0, [x8, #0x970]    ; [x8+#0x970]
+  0xffffff80093a2d08: bl        #0xffffff8008148d58    ; -> __rcu_read_unlock
+  0xffffff80093a2d0c: adrp      x0, #0xffffff800a18a000    ; PAGE=0xffffff800a18a000 OFF=0x210a000
+  0xffffff80093a2d10: adrp      x8, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff80093a2d14: mov       w9, #1
+  0xffffff80093a2d18: add       x0, x0, #0x10    ; IMM=0x10
+  0xffffff80093a2d1c: str       w9, [x8, #0xb00]    ; [x8+#0xb00]
+  0xffffff80093a2d20: bl        #0xffffff8008117104    ; -> complete
+  0xffffff80093a2d24: bl        #0xffffff80093a4fe8    ; -> schedule_preempt_disabled
+  0xffffff80093a2d28: mov       w0, #0xd0
+  0xffffff80093a2d2c: bl        #0xffffff80080fc374    ; -> cpu_startup_entry
+  0xffffff80093a2d30: ldp       x20, x19, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff80093a2d34: ldp       x29, x30, [sp], #0x20    ; [sp+#0x0]
+  0xffffff80093a2d38: ret       
+
+====================================================================================================
+### start_kernel @ 0xffffff800a07068c  (OFF=0x1ff068c)
+====================================================================================================
+  0xffffff800a07068c: sub       sp, sp, #0x50    ; IMM=0x50
+  0xffffff800a070690: stp       x29, x30, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a070694: stp       x22, x21, [sp, #0x30]    ; [sp+#0x30]
+  0xffffff800a070698: stp       x20, x19, [sp, #0x40]    ; [sp+#0x40]
+  0xffffff800a07069c: add       x29, sp, #0x20    ; IMM=0x20
+  0xffffff800a0706a0: adrp      x8, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff800a0706a4: ldr       x8, [x8, #0xb08]    ; [x8+#0xb08]
+  0xffffff800a0706a8: adrp      x0, #0xffffff800a20d000    ; PAGE=0xffffff800a20d000 OFF=0x218d000
+  0xffffff800a0706ac: add       x0, x0, #0x6c0    ; IMM=0x6c0
+  0xffffff800a0706b0: stur      x8, [x29, #-8]    ; [fp+#0x-8]
+  0xffffff800a0706b4: bl        #0xffffff80080b3f2c    ; -> set_task_stack_end_magic
+  0xffffff800a0706b8: bl        #0xffffff800a0743a4    ; -> smp_setup_processor_id
+  0xffffff800a0706bc: bl        #0xffffff800a08280c    ; -> cgroup_init_early
+  0xffffff800a0706c0: msr       daifset, #2
+  0xffffff800a0706c4: adrp      x21, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff800a0706c8: mov       w19, #1
+  0xffffff800a0706cc: strb      w19, [x21, #0xb05]    ; [x21+#0xb05]
+  0xffffff800a0706d0: bl        #0xffffff800a0792bc    ; -> boot_cpu_init
+  0xffffff800a0706d4: adrp      x0, #0xffffff8009d1e000    ; PAGE=0xffffff8009d1e000 OFF=0x1c9e000
+  0xffffff800a0706d8: adrp      x1, #0xffffff80093c0000    ; PAGE=0xffffff80093c0000 OFF=0x1340000
+  0xffffff800a0706dc: add       x0, x0, #0x696    ; IMM=0x696
+  0xffffff800a0706e0: add       x1, x1, #0x18    ; IMM=0x18
+  0xffffff800a0706e4: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a0706e8: add       x0, sp, #8    ; IMM=0x8
+  0xffffff800a0706ec: bl        #0xffffff800a074504    ; -> setup_arch
+  0xffffff800a0706f0: ldr       x0, [sp, #8]    ; [sp+#0x8]
+  0xffffff800a0706f4: adrp      x8, #0xffffff800a23b000    ; PAGE=0xffffff800a23b000 OFF=0x21bb000
+  0xffffff800a0706f8: str       xzr, [x8, #0x148]    ; [x8+#0x148]
+  0xffffff800a0706fc: bl        #0xffffff800a070a40    ; -> setup_command_line
+  0xffffff800a070700: bl        #0xffffff800a082234    ; -> setup_nr_cpu_ids
+  0xffffff800a070704: bl        #0xffffff800a08bf20    ; -> setup_per_cpu_areas
+  0xffffff800a070708: bl        #0xffffff800a075d60    ; -> smp_prepare_boot_cpu
+  0xffffff800a07070c: bl        #0xffffff800a079348    ; -> boot_cpu_hotplug_init
+  0xffffff800a070710: mov       x0, xzr
+  0xffffff800a070714: bl        #0xffffff80093a3614    ; -> build_all_zonelists
+  0xffffff800a070718: bl        #0xffffff800a089224    ; -> page_alloc_init
+  0xffffff800a07071c: adrp      x0, #0xffffff8009f64000    ; PAGE=0xffffff8009f64000 OFF=0x1ee4000
+  0xffffff800a070720: adrp      x1, #0xffffff800a189000    ; PAGE=0xffffff800a189000 OFF=0x2109000
+  0xffffff800a070724: add       x0, x0, #0xe8b    ; IMM=0xe8b
+  0xffffff800a070728: add       x1, x1, #1    ; IMM=0x1
+  0xffffff800a07072c: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a070730: adrp      x8, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff800a070734: strb      w19, [x8, #0xb04]    ; [x8+#0xb04]
+  0xffffff800a070738: bl        #0xffffff800a070608    ; -> parse_early_param
+  0xffffff800a07073c: adrp      x2, #0xffffff800a063000    ; PAGE=0xffffff800a063000 OFF=0x1fe3000
+  0xffffff800a070740: adrp      x9, #0xffffff800a069000    ; PAGE=0xffffff800a069000 OFF=0x1fe9000
+  0xffffff800a070744: adrp      x8, #0xffffff800a5d1000    ; PAGE=0xffffff800a5d1000 OFF=0x2551000
+  0xffffff800a070748: add       x2, x2, #0xb48    ; IMM=0xb48
+  0xffffff800a07074c: add       x9, x9, #0x2a0    ; IMM=0x2a0
+  0xffffff800a070750: mov       x10, #0x6666666666666666
+  0xffffff800a070754: movk      x10, #0x6667
+  0xffffff800a070758: ldr       x1, [x8, #0x10]    ; [x8+#0x10]
+  0xffffff800a07075c: sub       x8, x9, x2
+  0xffffff800a070760: smulh     x8, x8, x10
+  0xffffff800a070764: lsr       x9, x8, #0x3f
+  0xffffff800a070768: lsr       x8, x8, #4
+  0xffffff800a07076c: adrp      x0, #0xffffff8009d7f000    ; PAGE=0xffffff8009d7f000 OFF=0x1cff000
+  0xffffff800a070770: adrp      x7, #0xffffff800a070000    ; PAGE=0xffffff800a070000 OFF=0x1ff0000
+  0xffffff800a070774: add       w3, w8, w9
+  0xffffff800a070778: add       x0, x0, #0x745    ; IMM=0x745
+  0xffffff800a07077c: add       x7, x7, #0xb00    ; IMM=0xb00
+  0xffffff800a070780: mov       w4, #0xffff
+  0xffffff800a070784: mov       w5, #0xffff
+  0xffffff800a070788: mov       x6, xzr
+  0xffffff800a07078c: bl        #0xffffff80080e0a98    ; -> parse_args
+  0xffffff800a070790: cbz       x0, #0xffffff800a0707c8
+  0xffffff800a070794: mov       x1, x0
+  0xffffff800a070798: cmn       x0, #1, lsl #12
+  0xffffff800a07079c: b.hi      #0xffffff800a0707c8
+  0xffffff800a0707a0: adrp      x0, #0xffffff8009f4d000    ; PAGE=0xffffff8009f4d000 OFF=0x1ecd000
+  0xffffff800a0707a4: adrp      x7, #0xffffff800a070000    ; PAGE=0xffffff800a070000 OFF=0x1ff0000
+  0xffffff800a0707a8: add       x0, x0, #0x42e    ; IMM=0x42e
+  0xffffff800a0707ac: add       x7, x7, #0xc2c    ; IMM=0xc2c
+  0xffffff800a0707b0: mov       w4, #0xffff
+  0xffffff800a0707b4: mov       w5, #0xffff
+  0xffffff800a0707b8: mov       x2, xzr
+  0xffffff800a0707bc: mov       w3, wzr
+  0xffffff800a0707c0: mov       x6, xzr
+  0xffffff800a0707c4: bl        #0xffffff80080e0a98    ; -> parse_args
+  0xffffff800a0707c8: mov       w0, wzr
+  0xffffff800a0707cc: bl        #0xffffff800a07ea8c    ; -> setup_log_buf
+  0xffffff800a0707d0: bl        #0xffffff800a091300    ; -> vfs_caches_init_early
+  0xffffff800a0707d4: bl        #0xffffff800a07a608    ; -> sort_main_extable
+  0xffffff800a0707d8: bl        #0xffffff800a074dcc    ; -> trap_init
+  0xffffff800a0707dc: bl        #0xffffff800a070cb0    ; -> mm_init
+  0xffffff800a0707e0: adrp      x20, #0xffffff80093b6000    ; PAGE=0xffffff80093b6000 OFF=0x1336000
+  0xffffff800a0707e4: ldr       x20, [x20, #0xea0]    ; [x20+#0xea0]
+  0xffffff800a0707e8: cbz       x20, #0xffffff800a0707f8
+  0xffffff800a0707ec: adrp      x0, #0xffffff8009e5a000    ; PAGE=0xffffff8009e5a000 OFF=0x1dda000
+  0xffffff800a0707f0: add       x0, x0, #0x305    ; IMM=0x305
+  0xffffff800a0707f4: bl        #0xffffff80085d9524    ; -> phx_set_boot_stage
+  0xffffff800a0707f8: bl        #0xffffff800a084354    ; -> early_trace_init
+  0xffffff800a0707fc: bl        #0xffffff800a07d954    ; -> sched_init
+  0xffffff800a070800: mrs       x22, sp_el0
+  0xffffff800a070804: ldr       w8, [x22, #0x18]    ; [x22+#0x18]
+  0xffffff800a070808: add       w8, w8, #1    ; IMM=0x1
+  0xffffff800a07080c: str       w8, [x22, #0x18]    ; [x22+#0x18]
+  0xffffff800a070810: mrs       x8, daif
+  0xffffff800a070814: tbz       w8, #7, #0xffffff800a0709fc
+  0xffffff800a070818: bl        #0xffffff800a0f3624    ; -> radix_tree_init
+  0xffffff800a07081c: bl        #0xffffff800a07e24c    ; -> housekeeping_init
+  0xffffff800a070820: bl        #0xffffff800a079fcc    ; -> workqueue_init_early
+  0xffffff800a070824: bl        #0xffffff800a07f904    ; -> rcu_init
+  0xffffff800a070828: bl        #0xffffff800a084668    ; -> trace_init
+  0xffffff800a07082c: adrp      x8, #0xffffff800a5d1000    ; PAGE=0xffffff800a5d1000 OFF=0x2551000
+  0xffffff800a070830: ldrb      w8, [x8, #0xc]    ; [x8+#0xc]
+  0xffffff800a070834: cbz       w8, #0xffffff800a07083c
+  0xffffff800a070838: bl        #0xffffff800a070cd8    ; -> initcall_debug_enable
+  0xffffff800a07083c: bl        #0xffffff800a07f3e0    ; -> early_irq_init
+  0xffffff800a070840: bl        #0xffffff800a073f40    ; -> init_IRQ
+  0xffffff800a070844: bl        #0xffffff800a081bbc    ; -> tick_init
+  0xffffff800a070848: bl        #0xffffff800a081220    ; -> init_timers
+  0xffffff800a07084c: bl        #0xffffff800a081314    ; -> hrtimers_init
+  0xffffff800a070850: bl        #0xffffff800a07957c    ; -> softirq_init
+  0xffffff800a070854: bl        #0xffffff800a081374    ; -> timekeeping_init
+  0xffffff800a070858: bl        #0xffffff800a0ab4d4    ; -> rand_initialize
+  0xffffff800a07085c: ldr       x19, [sp, #8]    ; [sp+#0x8]
+  0xffffff800a070860: mov       x0, x19
+  0xffffff800a070864: bl        #0xffffff800938cbc0    ; -> __pi_strlen
+  0xffffff800a070868: mov       x1, x0
+  0xffffff800a07086c: mov       x0, x19
+  0xffffff800a070870: bl        #0xffffff8008628510    ; -> add_device_randomness
+  0xffffff800a070874: add       x0, sp, #0x10    ; IMM=0x10
+  0xffffff800a070878: mov       w1, #8
+  0xffffff800a07087c: bl        #0xffffff8008629124    ; -> get_random_bytes
+  0xffffff800a070880: ldr       x8, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a070884: mov       w9, #0x1300
+  0xffffff800a070888: movk      w9, #4, lsl #16
+  0xffffff800a07088c: adrp      x10, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff800a070890: and       x8, x8, #0xffffffffffffff00
+  0xffffff800a070894: eor       x8, x8, x9
+  0xffffff800a070898: str       x8, [x22, #0x5c0]    ; [x22+#0x5c0]
+  0xffffff800a07089c: str       x8, [x10, #0xb08]    ; [x10+#0xb08]
+  0xffffff800a0708a0: bl        #0xffffff800a074d60    ; -> time_init
+  0xffffff800a0708a4: bl        #0xffffff800a0876ec    ; -> perf_event_init
+  0xffffff800a0708a8: bl        #0xffffff80093a347c    ; -> profile_init
+  0xffffff800a0708ac: bl        #0xffffff800a082090    ; -> call_function_init
+  0xffffff800a0708b0: mrs       x8, daif
+  0xffffff800a0708b4: tbz       w8, #7, #0xffffff800a070a14
+  0xffffff800a0708b8: strb      wzr, [x21, #0xb05]    ; [x21+#0xb05]
+  0xffffff800a0708bc: msr       daifclr, #2
+  0xffffff800a0708c0: cbz       x20, #0xffffff800a0708d0
+  0xffffff800a0708c4: adrp      x0, #0xffffff8009f04000    ; PAGE=0xffffff8009f04000 OFF=0x1e84000
+  0xffffff800a0708c8: add       x0, x0, #0x45c    ; IMM=0x45c
+  0xffffff800a0708cc: bl        #0xffffff80085d9524    ; -> phx_set_boot_stage
+  0xffffff800a0708d0: bl        #0xffffff800a08f714    ; -> kmem_cache_init_late
+  0xffffff800a0708d4: bl        #0xffffff800a07ee28    ; -> console_init
+  0xffffff800a0708d8: adrp      x8, #0xffffff800a5d1000    ; PAGE=0xffffff800a5d1000 OFF=0x2551000
+  0xffffff800a0708dc: ldr       x1, [x8, #0x18]    ; [x8+#0x18]
+  0xffffff800a0708e0: cbnz      x1, #0xffffff800a070a2c
+  0xffffff800a0708e4: bl        #0xffffff800a070688    ; -> mem_encrypt_init
+  0xffffff800a0708e8: adrp      x19, #0xffffff800a5d1000    ; PAGE=0xffffff800a5d1000 OFF=0x2551000
+  0xffffff800a0708ec: ldr       x8, [x19, #0x68]    ; [x19+#0x68]
+  0xffffff800a0708f0: cbz       x8, #0xffffff800a070950
+  0xffffff800a0708f4: adrp      x9, #0xffffff800a5d1000    ; PAGE=0xffffff800a5d1000 OFF=0x2551000
+  0xffffff800a0708f8: ldr       w9, [x9, #0x78]    ; [x9+#0x78]
+  0xffffff800a0708fc: cbnz      w9, #0xffffff800a070950
+  0xffffff800a070900: adrp      x10, #0xffffff8009ff5000    ; PAGE=0xffffff8009ff5000 OFF=0x1f75000
+  0xffffff800a070904: ldr       x10, [x10, #0xa78]    ; [x10+#0xa78]
+  0xffffff800a070908: lsr       x8, x8, #6
+  0xffffff800a07090c: mov       x9, #0xffbf00000000
+  0xffffff800a070910: adrp      x11, #0xffffff800a7e2000    ; PAGE=0xffffff800a7e2000 OFF=0x2762000
+  0xffffff800a070914: asr       x10, x10, #0xc
+  0xffffff800a070918: movk      x9, #0xffff, lsl #48
+  0xffffff800a07091c: and       x8, x8, #0xffffffc0
+  0xffffff800a070920: lsl       x10, x10, #6
+  0xffffff800a070924: ldr       x2, [x11, #0x790]    ; [x11+#0x790]
+  0xffffff800a070928: orr       x8, x8, x9
+  0xffffff800a07092c: sub       x9, x10, x9
+  0xffffff800a070930: add       x8, x8, x9
+  0xffffff800a070934: asr       x1, x8, #6
+  0xffffff800a070938: cmp       x1, x2
+  0xffffff800a07093c: b.hs      #0xffffff800a070950
+  0xffffff800a070940: adrp      x0, #0xffffff8009dc8000    ; PAGE=0xffffff8009dc8000 OFF=0x1d48000
+  0xffffff800a070944: add       x0, x0, #0x51a    ; IMM=0x51a
+  0xffffff800a070948: bl        #0xffffff800813242c    ; -> printk
+  0xffffff800a07094c: str       xzr, [x19, #0x68]    ; [x19+#0x68]
+  0xffffff800a070950: bl        #0xffffff800a088cb0    ; -> setup_per_cpu_pageset
+  0xffffff800a070954: adrp      x8, #0xffffff800a18a000    ; PAGE=0xffffff800a18a000 OFF=0x210a000
+  0xffffff800a070958: ldr       x8, [x8, #8]    ; [x8+#0x8]
+  0xffffff800a07095c: cbz       x8, #0xffffff800a070964
+  0xffffff800a070960: blr       x8
+  0xffffff800a070964: bl        #0xffffff800a07df64    ; -> sched_clock_init
+  0xffffff800a070968: bl        #0xffffff80080867a0    ; -> calibrate_delay
+  0xffffff800a07096c: bl        #0xffffff800a07a544    ; -> pid_idr_init
+  0xffffff800a070970: bl        #0xffffff800a08d4dc    ; -> anon_vma_init
+  0xffffff800a070974: bl        #0xffffff800a070684    ; -> thread_stack_cache_init
+  0xffffff800a070978: bl        #0xffffff800a07aac0    ; -> cred_init
+  0xffffff800a07097c: bl        #0xffffff800a078c58    ; -> fork_init
+  0xffffff800a070980: bl        #0xffffff800a078d94    ; -> proc_caches_init
+  0xffffff800a070984: bl        #0xffffff800a083480    ; -> uts_ns_init
+  0xffffff800a070988: bl        #0xffffff800a092b04    ; -> buffer_init
+  0xffffff800a07098c: bl        #0xffffff800a09f3ac    ; -> key_init
+  0xffffff800a070990: bl        #0xffffff800a09f5a8    ; -> security_init
+  0xffffff800a070994: bl        #0xffffff800a09139c    ; -> vfs_caches_init
+  0xffffff800a070998: bl        #0xffffff800a088328    ; -> pagecache_init
+  0xffffff800a07099c: bl        #0xffffff800a079dd0    ; -> signals_init
+  0xffffff800a0709a0: bl        #0xffffff800a091950    ; -> seq_file_init
+  0xffffff800a0709a4: bl        #0xffffff800a094068    ; -> proc_root_init
+  0xffffff800a0709a8: bl        #0xffffff800a092ab8    ; -> nsfs_init
+  0xffffff800a0709ac: bl        #0xffffff800a0833bc    ; -> cpuset_init
+  0xffffff800a0709b0: bl        #0xffffff800a082b5c    ; -> cgroup_init
+  0xffffff800a0709b4: bl        #0xffffff800a083c60    ; -> taskstats_init_early
+  0xffffff800a0709b8: cbz       x20, #0xffffff800a0709c8
+  0xffffff800a0709bc: adrp      x0, #0xffffff8009eec000    ; PAGE=0xffffff8009eec000 OFF=0x1e6c000
+  0xffffff800a0709c0: add       x0, x0, #0x2f1    ; IMM=0x2f1
+  0xffffff800a0709c4: bl        #0xffffff80085d9524    ; -> phx_set_boot_stage
+  0xffffff800a0709c8: bl        #0xffffff800a07067c    ; -> arch_post_acpi_subsys_init
+  0xffffff800a0709cc: bl        #0xffffff80093a2c60    ; -> rest_init
+  0xffffff800a0709d0: dsb       sy
+  0xffffff800a0709d4: adrp      x9, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff800a0709d8: ldur      x8, [x29, #-8]    ; [fp+#0x-8]
+  0xffffff800a0709dc: ldr       x9, [x9, #0xb08]    ; [x9+#0xb08]
+  0xffffff800a0709e0: cmp       x9, x8
+  0xffffff800a0709e4: b.ne      #0xffffff800a070a28
+  0xffffff800a0709e8: ldp       x20, x19, [sp, #0x40]    ; [sp+#0x40]
+  0xffffff800a0709ec: ldp       x22, x21, [sp, #0x30]    ; [sp+#0x30]
+  0xffffff800a0709f0: ldp       x29, x30, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff800a0709f4: add       sp, sp, #0x50    ; IMM=0x50
+  0xffffff800a0709f8: ret       
+
+====================================================================================================
+### utsns_get @ 0xffffff8008190510  (OFF=0x110510)
+====================================================================================================
+  0xffffff8008190510: stp       x29, x30, [sp, #-0x20]!    ; [sp+#0x-20]
+  0xffffff8008190514: stp       x20, x19, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff8008190518: mov       x29, sp
+  0xffffff800819051c: add       x19, x0, #0x830    ; IMM=0x830
+  0xffffff8008190520: mov       x20, x0
+  0xffffff8008190524: mov       x0, x19
+  0xffffff8008190528: bl        #0xffffff80093aa858    ; -> _raw_spin_lock
+  0xffffff800819052c: ldr       x8, [x20, #0x798]    ; [x20+#0x798]
+  0xffffff8008190530: cbz       x8, #0xffffff8008190544
+  0xffffff8008190534: ldr       x20, [x8, #8]    ; [x8+#0x8]
+  0xffffff8008190538: mov       x0, x20
+  0xffffff800819053c: bl        #0xffffff8008513618    ; -> refcount_inc_checked
+  0xffffff8008190540: b         #0xffffff8008190548    ; -> 0xffffff8008190548
+  0xffffff8008190544: mov       x20, xzr
+  0xffffff8008190548: mov       x0, x19
+  0xffffff800819054c: bl        #0xffffff80093aa9ac    ; -> _raw_spin_unlock
+  0xffffff8008190550: add       x8, x20, #0x1a0    ; IMM=0x1a0
+  0xffffff8008190554: cmp       x20, #0
+  0xffffff8008190558: ldp       x20, x19, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800819055c: csel      x0, xzr, x8, eq
+  0xffffff8008190560: ldp       x29, x30, [sp], #0x20    ; [sp+#0x0]
+  0xffffff8008190564: ret       
+
+====================================================================================================
+### copy_utsname @ 0xffffff8008190384  (OFF=0x110384)
+====================================================================================================
+  0xffffff8008190384: cbz       x2, #0xffffff80081904cc
+  0xffffff8008190388: stp       x29, x30, [sp, #-0x40]!    ; [sp+#0x-40]
+  0xffffff800819038c: str       x23, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff8008190390: stp       x22, x21, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff8008190394: stp       x20, x19, [sp, #0x30]    ; [sp+#0x30]
+  0xffffff8008190398: mov       x29, sp
+  0xffffff800819039c: mov       x21, x0
+  0xffffff80081903a0: mov       x0, x2
+  0xffffff80081903a4: mov       x19, x2
+  0xffffff80081903a8: mov       x20, x1
+  0xffffff80081903ac: bl        #0xffffff8008513618    ; -> refcount_inc_checked
+  0xffffff80081903b0: tbnz      w21, #0x1a, #0xffffff80081903bc
+  0xffffff80081903b4: mov       x20, x19
+  0xffffff80081903b8: b         #0xffffff800819046c    ; -> 0xffffff800819046c
+  0xffffff80081903bc: mrs       x8, sp_el0
+  0xffffff80081903c0: ldr       x8, [x8, #0x768]    ; [x8+#0x768]
+  0xffffff80081903c4: mov       w2, #2
+  0xffffff80081903c8: mov       x0, x20
+  0xffffff80081903cc: ldr       w1, [x8, #0x14]    ; [x8+#0x14]
+  0xffffff80081903d0: bl        #0xffffff80080e8178    ; -> inc_ucount
+  0xffffff80081903d4: adrp      x23, #0xffffff8009ff5000    ; PAGE=0xffffff8009ff5000 OFF=0x1f75000
+  0xffffff80081903d8: cbz       x0, #0xffffff8008190424
+  0xffffff80081903dc: mov       x21, x0
+  0xffffff80081903e0: ldr       x0, [x23, #0xad8]    ; [x23+#0xad8]
+  0xffffff80081903e4: mov       w1, #0xc0
+  0xffffff80081903e8: movk      w1, #0x60, lsl #16
+  0xffffff80081903ec: bl        #0xffffff800826faf8    ; -> kmem_cache_alloc
+  0xffffff80081903f0: cbz       x0, #0xffffff800819042c
+  0xffffff80081903f4: mov       w8, #1
+  0xffffff80081903f8: mov       x20, x0
+  0xffffff80081903fc: str       w8, [x0]    ; [x0+#0x0]
+  0xffffff8008190400: str       xzr, [x0, #0x1a0]    ; [x0+#0x1a0]
+  0xffffff8008190404: add       x0, x0, #0x1b0    ; IMM=0x1b0
+  0xffffff8008190408: bl        #0xffffff800832a714    ; -> proc_alloc_inum
+  0xffffff800819040c: cbz       w0, #0xffffff8008190484
+  0xffffff8008190410: mov       w22, w0
+  0xffffff8008190414: ldr       x0, [x23, #0xad8]    ; [x23+#0xad8]
+  0xffffff8008190418: mov       x1, x20
+  0xffffff800819041c: bl        #0xffffff8008270114    ; -> kmem_cache_free
+  0xffffff8008190420: b         #0xffffff8008190430    ; -> 0xffffff8008190430
+  0xffffff8008190424: mov       w22, #-0x1c
+  0xffffff8008190428: b         #0xffffff800819043c    ; -> 0xffffff800819043c
+  0xffffff800819042c: mov       w22, #-0xc
+  0xffffff8008190430: mov       w1, #2
+  0xffffff8008190434: mov       x0, x21
+  0xffffff8008190438: bl        #0xffffff80080e83e8    ; -> dec_ucount
+  0xffffff800819043c: sxtw      x20, w22
+  0xffffff8008190440: mov       x0, x19
+  0xffffff8008190444: bl        #0xffffff8008513754    ; -> refcount_dec_and_test_checked
+  0xffffff8008190448: tbz       w0, #0, #0xffffff800819046c
+  0xffffff800819044c: ldr       x0, [x19, #0x198]    ; [x19+#0x198]
+  0xffffff8008190450: mov       w1, #2
+  0xffffff8008190454: bl        #0xffffff80080e83e8    ; -> dec_ucount
+  0xffffff8008190458: ldr       w0, [x19, #0x1b0]    ; [x19+#0x1b0]
+  0xffffff800819045c: bl        #0xffffff800832a760    ; -> proc_free_inum
+  0xffffff8008190460: ldr       x0, [x23, #0xad8]    ; [x23+#0xad8]
+  0xffffff8008190464: mov       x1, x19
+  0xffffff8008190468: bl        #0xffffff8008270114    ; -> kmem_cache_free
+  0xffffff800819046c: mov       x0, x20
+  0xffffff8008190470: ldp       x20, x19, [sp, #0x30]    ; [sp+#0x30]
+  0xffffff8008190474: ldp       x22, x21, [sp, #0x20]    ; [sp+#0x20]
+  0xffffff8008190478: ldr       x23, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800819047c: ldp       x29, x30, [sp], #0x40    ; [sp+#0x0]
+  0xffffff8008190480: ret       
+
+====================================================================================================
+### enforcing_setup @ 0xffffff800a09fab8  (OFF=0x201fab8)
+====================================================================================================
+  0xffffff800a09fab8: sub       sp, sp, #0x20    ; IMM=0x20
+  0xffffff800a09fabc: stp       x29, x30, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a09fac0: add       x29, sp, #0x10    ; IMM=0x10
+  0xffffff800a09fac4: adrp      x8, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff800a09fac8: ldr       x8, [x8, #0xb08]    ; [x8+#0xb08]
+  0xffffff800a09facc: mov       x2, sp
+  0xffffff800a09fad0: mov       w1, wzr
+  0xffffff800a09fad4: str       x8, [sp, #8]    ; [sp+#0x8]
+  0xffffff800a09fad8: bl        #0xffffff8008514f50    ; -> kstrtoull
+  0xffffff800a09fadc: cbnz      w0, #0xffffff800a09faf4
+  0xffffff800a09fae0: ldr       x8, [sp]    ; [sp+#0x0]
+  0xffffff800a09fae4: adrp      x9, #0xffffff800a904000    ; PAGE=0xffffff800a904000 OFF=0x2884000
+  0xffffff800a09fae8: cmp       x8, #0
+  0xffffff800a09faec: cset      w8, ne
+  0xffffff800a09faf0: str       w8, [x9, #0x70]    ; [x9+#0x70]
+  0xffffff800a09faf4: adrp      x9, #0xffffff800a1fd000    ; PAGE=0xffffff800a1fd000 OFF=0x217d000
+  0xffffff800a09faf8: ldr       x8, [sp, #8]    ; [sp+#0x8]
+  0xffffff800a09fafc: ldr       x9, [x9, #0xb08]    ; [x9+#0xb08]
+  0xffffff800a09fb00: cmp       x9, x8
+  0xffffff800a09fb04: b.ne      #0xffffff800a09fb18
+  0xffffff800a09fb08: ldp       x29, x30, [sp, #0x10]    ; [sp+#0x10]
+  0xffffff800a09fb0c: mov       w0, #1
+  0xffffff800a09fb10: add       sp, sp, #0x20    ; IMM=0x20
+  0xffffff800a09fb14: ret       
+
+====================================================================================================
+### selinux_complete_init @ 0xffffff8008480600  (OFF=0x400600)
+====================================================================================================
+  0xffffff8008480600: stp       x29, x30, [sp, #-0x10]!    ; [sp+#0x-10]
+  0xffffff8008480604: mov       x29, sp
+  0xffffff8008480608: adrp      x8, #0xffffff800a544000    ; PAGE=0xffffff800a544000 OFF=0x24c4000
+  0xffffff800848060c: ldrb      w8, [x8, #0x192]    ; [x8+#0x192]
+  0xffffff8008480610: tbnz      w8, #2, #0xffffff8008480638
+  0xffffff8008480614: adrp      x8, #0xffffff800a544000    ; PAGE=0xffffff800a544000 OFF=0x24c4000
+  0xffffff8008480618: ldrb      w8, [x8, #0x1ba]    ; [x8+#0x1ba]
+  0xffffff800848061c: tbnz      w8, #2, #0xffffff8008480650
+  0xffffff8008480620: adrp      x0, #0xffffff8008480000    ; PAGE=0xffffff8008480000 OFF=0x400000
+  0xffffff8008480624: add       x0, x0, #0x668    ; IMM=0x668
+  0xffffff8008480628: mov       x1, xzr
+  0xffffff800848062c: bl        #0xffffff800829856c    ; -> iterate_supers
+  0xffffff8008480630: ldp       x29, x30, [sp], #0x10    ; [sp+#0x0]
+  0xffffff8008480634: ret       

@@ -1,0 +1,80 @@
+======================================================================================
+一、补充层符号与帧
+======================================================================================
+  sock_common_setsockopt       @0xffffff80090bc4b8 帧=0x20    首条调整=0xffffff80090bc4b8
+      bl 0xffffff80090bc53c -> #0xffffff80093aaec4
+      bl 0xffffff80090bc558 -> #0xffffff80093aafd0
+      bl 0xffffff80090bc570 -> #0xffffff8008513754
+      bl 0xffffff80090bc57c -> #0xffffff8008513754
+      bl 0xffffff80090bc588 -> #0xffffff80090b9d8c
+      bl 0xffffff80090bc59c -> #0xffffff80091f455c
+      bl 0xffffff80090bc5b0 -> #0xffffff80091f455c
+      b 0xffffff80090bc5b8 -> #0xffffff80090bc56c
+      bl 0xffffff80090bc604 -> #0xffffff800938da40
+      bl 0xffffff80090bc644 -> #0xffffff800938da40
+      b 0xffffff80090bc658 -> #0xffffff80090bc660
+      bl 0xffffff80090bc698 -> #0xffffff800938da40
+      bl 0xffffff80090bc6d4 -> #0xffffff800938da40
+      b 0xffffff80090bc6e4 -> #0xffffff80090bc6ec
+      bl 0xffffff80090bc748 -> #0xffffff8008244f50
+      bl 0xffffff80090bc770 -> #0xffffff80085068b8
+      bl 0xffffff80090bc790 -> #0xffffff80082453b8
+  compat_sock_common_setsockopt @0xffffff80090bc4d8 帧=0x30    首条调整=0xffffff80090bc4d8
+      bl 0xffffff80090bc53c -> #0xffffff80093aaec4
+      bl 0xffffff80090bc558 -> #0xffffff80093aafd0
+      bl 0xffffff80090bc570 -> #0xffffff8008513754
+      bl 0xffffff80090bc57c -> #0xffffff8008513754
+      bl 0xffffff80090bc588 -> #0xffffff80090b9d8c
+      bl 0xffffff80090bc59c -> #0xffffff80091f455c
+      bl 0xffffff80090bc5b0 -> #0xffffff80091f455c
+      b 0xffffff80090bc5b8 -> #0xffffff80090bc56c
+      bl 0xffffff80090bc604 -> #0xffffff800938da40
+      bl 0xffffff80090bc644 -> #0xffffff800938da40
+      b 0xffffff80090bc658 -> #0xffffff80090bc660
+      bl 0xffffff80090bc698 -> #0xffffff800938da40
+      bl 0xffffff80090bc6d4 -> #0xffffff800938da40
+      b 0xffffff80090bc6e4 -> #0xffffff80090bc6ec
+      bl 0xffffff80090bc748 -> #0xffffff8008244f50
+      bl 0xffffff80090bc770 -> #0xffffff80085068b8
+      bl 0xffffff80090bc790 -> #0xffffff80082453b8
+      bl 0xffffff80090bc7b8 -> #0xffffff80085068b8
+  __arm64_compat_sys_setsockopt @0xffffff80091102a0 帧=0x30    首条调整=0xffffff80091102a0
+      bl 0xffffff80091102c0 -> #0xffffff8009113324
+      bl 0xffffff80091102e8 -> #0xffffff80090b8930
+      bl 0xffffff80091102f0 -> #0xffffff8008151408
+      bl 0xffffff8009110300 -> #0xffffff8008158f8c
+      bl 0xffffff8009110308 -> #0xffffff8008151408
+      b 0xffffff8009110380 -> #0xffffff80091103c4
+      b 0xffffff8009110388 -> #0xffffff80091104fc
+      b 0xffffff80091103ec -> #0xffffff8009110428
+      b 0xffffff8009110494 -> #0xffffff80091104d0
+      b 0xffffff8009110544 -> #0xffffff80091104fc
+      bl 0xffffff8009110560 -> #0xffffff80090b8930
+      bl 0xffffff8009110568 -> #0xffffff80081513b8
+      bl 0xffffff8009110578 -> #0xffffff8008158f8c
+      bl 0xffffff8009110580 -> #0xffffff80081513b8
+  compat_sock_setsockopt       不存在
+  compat_ip_setsockopt         @0xffffff8009181b34 帧=0x30    首条调整=0xffffff8009181b34
+      b 0xffffff8009181b4c -> #0xffffff8009181bf0
+      bl 0xffffff8009181b88 -> #0xffffff80091107ec
+      b 0xffffff8009181b8c -> #0xffffff8009181bf0
+      bl 0xffffff8009181ba0 -> #0xffffff800918097c
+      bl 0xffffff8009181bec -> #0xffffff800913fd6c
+      bl 0xffffff8009181c3c -> #0xffffff8009181edc
+      b 0xffffff8009181cd0 -> #0xffffff8009181d1c
+      b 0xffffff8009181cd8 -> #0xffffff8009181e10
+      b 0xffffff8009181ce0 -> #0xffffff8009181e0c
+      b 0xffffff8009181d48 -> #0xffffff8009181d88
+      bl 0xffffff8009181d9c -> #0xffffff800913fc74
+      b 0xffffff8009181e08 -> #0xffffff8009181e78
+  sk_setsockopt                不存在
+
+======================================================================================
+二、重算：把 sock_common 层计入
+======================================================================================
+  [sock_common 0 帧（尾调用/内联）]
+    累计深度 0x290 | greqs=S0-0x280 | 覆盖深度 [0x178, 0x280)
+    waiter 深度 [0x148, 0x198) | task@0x168 在外(280 字节) | lock@0x160 在外(288 字节)
+  [sock_common 计入 0x20]
+    累计深度 0x2b0 | greqs=S0-0x2a0 | 覆盖深度 [0x198, 0x2a0)
+    waiter 深度 [0x148, 0x198) | task@0x168 在外(312 字节) | lock@0x160 在外(320 字节)

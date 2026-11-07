@@ -1,0 +1,37 @@
+# 二进制与固件（版权归属厂商，不入库）
+*.img
+*.bin
+*.elf
+*.zip
+!*.sh
+
+# 内核产物
+vmlinux*
+kernel*
+symbols.json
+
+# 大文件
+*.exe
+*.msi
+*.apk
+
+# 运行时产生
+*.log
+!evidence/logs/*.log
+__pycache__/
+*.pyc
+*.pyo
+
+# 输入目录（需自备 vmlinux 等）
+reuse-kit/inputs/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 截图
+*.png
+*.jpg

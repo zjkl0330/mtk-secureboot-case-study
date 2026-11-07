@@ -1,0 +1,41 @@
+==============================================================================
+一、符号存在性
+==============================================================================
+  tcp_zerocopy_receive       不存在
+  tcp_getsockopt             0xffffff800918c574   (OFF 0x110c574)
+  tcp_setsockopt             0xffffff800918b238   (OFF 0x110b238)
+  ip_mc_source               0xffffff80091c086c   (OFF 0x114086c)
+  ip_mc_msfilter             0xffffff80091c1130   (OFF 0x1141130)
+  ip_mc_join_group           0xffffff80091c0490   (OFF 0x1140490)
+  ip_setsockopt              0xffffff80091808e4   (OFF 0x11008e4)
+  ip_mc_block_source         不存在
+  do_ip_setsockopt           0xffffff800918097c   (OFF 0x110097c)
+  __sys_setsockopt           不存在
+  __arm64_sys_setsockopt     0xffffff80090b1178   (OFF 0x1031178)
+  __arm64_sys_getsockopt     0xffffff80090b1284   (OFF 0x1031284)
+  sock_setsockopt            0xffffff80090b7bd0   (OFF 0x1037bd0)
+  sock_getsockopt            0xffffff80090b8bd8   (OFF 0x1038bd8)
+==============================================================================
+二、栈帧测量
+==============================================================================
+### tcp_getsockopt @0xffffff800918c574 (OFF 0x110c574)  ~0xffffff800918c59c
+  （前 0x600 字节内无 sp 调整）
+
+### ip_mc_source @0xffffff80091c086c (OFF 0x114086c)  ~0xffffff80091c09e0
+  0xffffff80091c086c: sub  sp, sp, #0xb0
+  0xffffff80091c09d8: add  sp, sp, #0xb0
+  -> 前 0x600 字节内累计 sp 位移 0x0
+
+### ip_mc_msfilter @0xffffff80091c1130 (OFF 0x1141130)  ~0xffffff80091c1328
+  0xffffff80091c1130: sub  sp, sp, #0xa0
+  0xffffff80091c1320: add  sp, sp, #0xa0
+  -> 前 0x600 字节内累计 sp 位移 0x0
+
+### do_ip_setsockopt @0xffffff800918097c (OFF 0x110097c)  ~0xffffff8009180b44
+  0xffffff800918097c: sub  sp, sp, #0x190
+  -> 前 0x600 字节内累计 sp 位移 0x-190
+
+==============================================================================
+三、tcp_getsockopt 是否处理 TCP_ZEROCOPY_RECEIVE（找 bl tcp_zerocopy_receive）
+==============================================================================
+  缺少符号，无法判断：tcp_getsockopt=True tcp_zerocopy_receive=False

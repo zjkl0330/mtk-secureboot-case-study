@@ -1,0 +1,124 @@
+[1] __ksymtab_strings 候选字符串: 23339 个，范围 0x1f000c7..0x21fe16c
+[2] prel32 条目命中: 12649 个
+[3] 自校验：name==symtab[value] 精确匹配 11899/12649 (94.1%)
+    差异样例 name=__flush_icache_range symtab=__flush_cache_user_range value=0xffffff80080a80c4
+    差异样例 name=memchr symtab=__pi_memchr value=0xffffff800938c3d8
+    差异样例 name=memcmp symtab=__pi_memcmp value=0xffffff800938c400
+    差异样例 name=memcpy symtab=__memcpy value=0xffffff800938c5c0
+    差异样例 name=memmove symtab=__memmove value=0xffffff800938c740
+    差异样例 name=memset symtab=__memset value=0xffffff800938c8c0
+    差异样例 name=strcmp symtab=__pi_strcmp value=0xffffff800938ca6c
+    差异样例 name=strlen symtab=__pi_strlen value=0xffffff800938cbc0
+
+[4] 目标符号（__ksymtab 还原）
+    NAME                         ADDR                 OFF            SYMTAB-CHECK
+    init_task                    0xffffff800a20d6c0   0x218d6c0      -
+    init_uts_ns                  0xffffff800a20c828   0x218c828      -
+    init_cred                    -- 未在 __ksymtab 中导出 --
+    empty_zero_page              0xffffff800a5ce000   0x254e000      -
+    root_task_group              -- 未在 __ksymtab 中导出 --
+    system_unbound_wq            0xffffff800a1fdb88   0x217db88      -
+    system_wq                    0xffffff800a1fdb70   0x217db70      -
+    system_long_wq               0xffffff800a1fdb80   0x217db80      -
+    kmalloc_caches               0xffffff8009ff5bd0   0x1f75bd0      -
+    selinux_state                -- 未在 __ksymtab 中导出 --
+    selinux_enforcing            -- 未在 __ksymtab 中导出 --
+    security_hook_heads          -- 未在 __ksymtab 中导出 --
+    kptr_restrict                -- 未在 __ksymtab 中导出 --
+    mm_struct                    -- 未在 __ksymtab 中导出 --
+    ashmem_fops                  -- 未在 __ksymtab 中导出 --
+    anon_pipe_buf_ops            -- 未在 __ksymtab 中导出 --
+    pipefifo_fops                -- 未在 __ksymtab 中导出 --
+    init_fs                      -- 未在 __ksymtab 中导出 --
+    init_files                   -- 未在 __ksymtab 中导出 --
+    init_mm                      -- 未在 __ksymtab 中导出 --
+    init_signals                 -- 未在 __ksymtab 中导出 --
+    init_sighand                 -- 未在 __ksymtab 中导出 --
+    init_thread_union            -- 未在 __ksymtab 中导出 --
+    panic_on_oops                -- 未在 __ksymtab 中导出 --
+    randomize_va_space           -- 未在 __ksymtab 中导出 --
+    mmap_min_addr                0xffffff800a9027e8   0x28827e8      -
+
+[5] __ksymtab 中非 FUNC 符号（数据，前 80 个）
+    reject_tg6_check                   0xffffff8008431f10 OFF=0x3b1f10       symtab=-
+    dummy_dma_ops                      0xffffff80093c8058 OFF=0x1348058      symtab=-
+    cpu_bit_bitmap                     0xffffff80093c8fc0 OFF=0x1348fc0      symtab=-
+    cpu_all_bits                       0xffffff80093c91c8 OFF=0x13491c8      symtab=-
+    __cap_empty_set                    0xffffff80093cd6f8 OFF=0x134d6f8      symtab=-
+    param_ops_byte                     0xffffff80093cd8d0 OFF=0x134d8d0      symtab=-
+    param_ops_short                    0xffffff80093cd8f0 OFF=0x134d8f0      symtab=-
+    param_ops_ushort                   0xffffff80093cd910 OFF=0x134d910      symtab=-
+    param_ops_int                      0xffffff80093cd930 OFF=0x134d930      symtab=-
+    param_ops_uint                     0xffffff80093cd950 OFF=0x134d950      symtab=-
+    param_ops_long                     0xffffff80093cd970 OFF=0x134d970      symtab=-
+    param_ops_ulong                    0xffffff80093cd990 OFF=0x134d990      symtab=-
+    param_ops_ullong                   0xffffff80093cd9b0 OFF=0x134d9b0      symtab=-
+    param_ops_charp                    0xffffff80093cd9d0 OFF=0x134d9d0      symtab=-
+    param_ops_bool                     0xffffff80093cd9f0 OFF=0x134d9f0      symtab=-
+    param_ops_bool_enable_only         0xffffff80093cda10 OFF=0x134da10      symtab=-
+    param_ops_invbool                  0xffffff80093cda30 OFF=0x134da30      symtab=-
+    param_ops_bint                     0xffffff80093cda50 OFF=0x134da50      symtab=-
+    param_array_ops                    0xffffff80093cda70 OFF=0x134da70      symtab=-
+    param_ops_string                   0xffffff80093cda90 OFF=0x134da90      symtab=-
+    irqchip_fwnode_ops                 0xffffff80093ceb78 OFF=0x134eb78      symtab=-
+    irq_domain_simple_ops              0xffffff80093cebf8 OFF=0x134ebf8      symtab=-
+    removed_dma_ops                    0xffffff80093cf308 OFF=0x134f308      symtab=-
+    dma_direct_ops                     0xffffff80093cf3d8 OFF=0x134f3d8      symtab=-
+    swiotlb_dma_ops                    0xffffff80093cf4a0 OFF=0x134f4a0      symtab=-
+    generic_ro_fops                    0xffffff80093e7e28 OFF=0x1367e28      symtab=-
+    page_symlink_inode_operations      0xffffff80093e8680 OFF=0x1368680      symtab=-
+    empty_name                         0xffffff80093e8850 OFF=0x1368850      symtab=-
+    slash_name                         0xffffff80093e8860 OFF=0x1368860      symtab=-
+    empty_aops                         0xffffff80093e8880 OFF=0x1368880      symtab=-
+    simple_dentry_operations           0xffffff80093e8e40 OFF=0x1368e40      symtab=-
+    simple_dir_operations              0xffffff80093e8f00 OFF=0x1368f00      symtab=-
+    simple_dir_inode_operations        0xffffff80093e9040 OFF=0x1369040      symtab=-
+    simple_symlink_inode_operations    0xffffff80093e9340 OFF=0x1369340      symtab=-
+    nosteal_pipe_buf_ops               0xffffff80093e9db0 OFF=0x1369db0      symtab=-
+    posix_acl_access_xattr_handler     0xffffff80093eb660 OFF=0x136b660      symtab=-
+    posix_acl_default_xattr_handler    0xffffff80093eb698 OFF=0x136b698      symtab=-
+    dquot_operations                   0xffffff80093eb768 OFF=0x136b768      symtab=-
+    dquot_quotactl_sysfile_ops         0xffffff80093eb7d0 OFF=0x136b7d0      symtab=-
+    fuse_dev_operations                0xffffff8009426508 OFF=0x13a6508      symtab=-
+    crypto_ablkcipher_type             0xffffff8009430a58 OFF=0x13b0a58      symtab=-
+    crypto_givcipher_type              0xffffff8009430aa0 OFF=0x13b0aa0      symtab=-
+    crypto_blkcipher_type              0xffffff8009430ae8 OFF=0x13b0ae8      symtab=-
+    crypto_ahash_type                  0xffffff8009430b78 OFF=0x13b0b78      symtab=-
+    md5_zero_message_hash              0xffffff80094310a8 OFF=0x13b10a8      symtab=-
+    sha1_zero_message_hash             0xffffff80094310b8 OFF=0x13b10b8      symtab=-
+    sha224_zero_message_hash           0xffffff80094310cc OFF=0x13b10cc      symtab=-
+    sha256_zero_message_hash           0xffffff80094310e8 OFF=0x13b10e8      symtab=-
+    sha384_zero_message_hash           0xffffff8009431108 OFF=0x13b1108      symtab=-
+    sha512_zero_message_hash           0xffffff8009431138 OFF=0x13b1138      symtab=-
+    key_being_used_for                 0xffffff8009435e60 OFF=0x13b5e60      symtab=-
+    hash_algo_name                     0xffffff8009436210 OFF=0x13b6210      symtab=-
+    hash_digest_size                   0xffffff80094362a0 OFF=0x13b62a0      symtab=-
+    scsi_command_size_tbl              0xffffff8009436c10 OFF=0x13b6c10      symtab=-
+    guid_null                          0xffffff8009436f16 OFF=0x13b6f16      symtab=-
+    uuid_null                          0xffffff8009436f26 OFF=0x13b6f26      symtab=-
+    hex_asc                            0xffffff8009437024 OFF=0x13b7024      symtab=-
+    hex_asc_upper                      0xffffff8009437035 OFF=0x13b7035      symtab=-
+    crc_ccitt_table                    0xffffff8009437096 OFF=0x13b7096      symtab=-
+    crc_ccitt_false_table              0xffffff8009437296 OFF=0x13b7296      symtab=-
+    crc16_table                        0xffffff8009437496 OFF=0x13b7496      symtab=-
+    font_vga_8x16                      0xffffff800943fe08 OFF=0x13bfe08      symtab=-
+    vesa_modes                         0xffffff80094493d8 OFF=0x13c93d8      symtab=-
+    dmt_modes                          0xffffff8009449e98 OFF=0x13c9e98      symtab=-
+    clk_divider_ops                    0xffffff800944b910 OFF=0x13cb910      symtab=-
+    clk_divider_ro_ops                 0xffffff800944b9e0 OFF=0x13cb9e0      symtab=-
+    clk_fixed_factor_ops               0xffffff800944bab0 OFF=0x13cbab0      symtab=-
+    clk_fixed_rate_ops                 0xffffff800944bea0 OFF=0x13cbea0      symtab=-
+    clk_gate_ops                       0xffffff800944c100 OFF=0x13cc100      symtab=-
+    clk_multiplier_ops                 0xffffff800944c1d0 OFF=0x13cc1d0      symtab=-
+    clk_mux_ops                        0xffffff800944c2a0 OFF=0x13cc2a0      symtab=-
+    clk_mux_ro_ops                     0xffffff800944c370 OFF=0x13cc370      symtab=-
+    clk_fractional_divider_ops         0xffffff800944c440 OFF=0x13cc440      symtab=-
+    clk_gpio_gate_ops                  0xffffff800944c510 OFF=0x13cc510      symtab=-
+    clk_gpio_mux_ops                   0xffffff800944c5e0 OFF=0x13cc5e0      symtab=-
+    mtk_clk_gate_ops_setclr            0xffffff800944cd18 OFF=0x13ccd18      symtab=-
+    mtk_clk_gate_ops_setclr_dummy      0xffffff800944cde8 OFF=0x13ccde8      symtab=-
+    mtk_clk_gate_ops_setclr_inv        0xffffff800944ceb8 OFF=0x13cceb8      symtab=-
+    mtk_clk_gate_ops_setclr_inv_dummy  0xffffff800944cf88 OFF=0x13ccf88      symtab=-
+    mtk_clk_gate_ops_no_setclr         0xffffff800944d058 OFF=0x13cd058      symtab=-
+
+[6] 已写出 ksymtab.json（12649 条）

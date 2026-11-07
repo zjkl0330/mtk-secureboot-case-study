@@ -1,0 +1,6 @@
+21:40:06 baseline ports: none
+21:40:12 adb reboot edl rc=0 out='' err=''
+21:40:15 NEW PORT COM6 | MediaTek PreLoader USB VCOM_V2023 (Android) (COM6) | USB VID:PID=22D9:0006 SER= LOCATION=1-1.4
+21:40:15 launching: mtk.py payload --serialport COM6
+21:44:15 mtk.py TIMEOUT
+21:44:15 DONE, full log: F:\root\k9pro\Temp\payload_run.log

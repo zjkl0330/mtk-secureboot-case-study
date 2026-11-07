@@ -1,0 +1,197 @@
+================================================================================
+A. fwrpi 入口 / waiter init
+================================================================================
+0xffffff800816cf00: nop                                               
+0xffffff800816cf04: nop                                               
+0xffffff800816cf08: cbnz      w0, #0xffffff800816cb0c                 
+0xffffff800816cf0c: mov       x0, x24                                 
+0xffffff800816cf10: bl        #0xffffff80080b3bf0                      -> __mmdrop
+0xffffff800816cf14: b         #0xffffff800816cb0c                      -> 
+0xffffff800816cf18: sub       x8, x29, #0xc8                          
+0xffffff800816cf1c: ldr       x24, [x8, #0x50]                        
+0xffffff800816cf20: cbz       x24, #0xffffff800816cf58                
+0xffffff800816cf24: and       w8, w22, #3                             
+0xffffff800816cf28: ldr       x22, [sp, #0x58]                        
+0xffffff800816cf2c: cmp       w8, #2                                  
+0xffffff800816cf30: b.ne      #0xffffff800816cb44                     
+0xffffff800816cf34: mov       w0, #1                                  
+0xffffff800816cf38: add       x1, x24, #0x54                          
+0xffffff800816cf3c: bl        #0xffffff80085044dc                      -> __ll_sc_atomic_sub_return
+0xffffff800816cf40: nop                                               
+0xffffff800816cf44: nop                                               
+0xffffff800816cf48: cbnz      w0, #0xffffff800816cb44                 
+0xffffff800816cf4c: mov       x0, x24                                 
+0xffffff800816cf50: bl        #0xffffff80080b3bf0                      -> __mmdrop
+0xffffff800816cf54: b         #0xffffff800816cb44                      -> 
+0xffffff800816cf58: brk       #0x800                                  
+0xffffff800816cf5c: ldr       x22, [sp, #0x58]                        
+0xffffff800816cf60: b         #0xffffff800816cb44                      -> 
+0xffffff800816cf64: brk       #0x800                                  
+0xffffff800816cf68: b         #0xffffff800816cdf8                      -> 
+0xffffff800816cf6c: brk       #0x800                                  
+0xffffff800816cf70: mov       w25, #-0xb                              
+0xffffff800816cf74: b         #0xffffff800816ce80                      -> 
+0xffffff800816cf78: mov       w20, #-0x16                             
+0xffffff800816cf7c: sxtw      x0, w20                                 
+0xffffff800816cf80: b         #0xffffff800816cad0                      -> 
+0xffffff800816cf84: mov       w25, #-0xe                              
+0xffffff800816cf88: sxtw      x0, w25                                 
+0xffffff800816cf8c: b         #0xffffff800816cad0                      -> 
+0xffffff800816cf90: mov       x21, xzr                                
+0xffffff800816cf94: sub       x0, x29, #0xc8                          
+0xffffff800816cf98: sub       x22, x29, #0xc8                         
+0xffffff800816cf9c: bl        #0xffffff800812b96c                      -> rt_mutex_init_waiter
+0xffffff800816cfa0: sub       x2, x29, #0x28                          
+0xffffff800816cfa4: mov       w3, #1                                  
+0xffffff800816cfa8: mov       x0, x23                                 
+0xffffff800816cfac: mov       w1, w20                                 
+0xffffff800816cfb0: sub       x25, x29, #0x28                         
+0xffffff800816cfb4: bl        #0xffffff8008170850                      -> get_futex_key
+0xffffff800816cfb8: cbnz      w0, #0xffffff800816d774                 
+0xffffff800816cfbc: mov       w8, #-1                                 
+0xffffff800816cfc0: add       x3, sp, #0x70                           
+0xffffff800816cfc4: sub       x4, x29, #0xd0                          
+0xffffff800816cfc8: mov       x0, x19                                 
+0xffffff800816cfcc: mov       w1, w28                                 
+0xffffff800816cfd0: mov       w2, w24                                 
+0xffffff800816cfd4: str       w8, [sp, #0xd8]                         
+0xffffff800816cfd8: stp       x22, x25, [sp, #0xc8]                   
+0xffffff800816cfdc: bl        #0xffffff8008170228                      -> futex_wait_setup
+0xffffff800816cfe0: mov       w20, w0                                 
+0xffffff800816cfe4: cbz       w0, #0xffffff800816d028                 
+0xffffff800816cfe8: ldr       x8, [x27, #0xa0]                        
+0xffffff800816cfec: cbz       x8, #0xffffff800816d07c                 
+0xffffff800816cff0: ldur      w9, [x29, #-0x18]                       
+0xffffff800816cff4: and       w9, w9, #3                              
+0xffffff800816cff8: cmp       w9, #2                                  
+0xffffff800816cffc: b.ne      #0xffffff800816d080                     
+0xffffff800816d000: mov       w0, #1                                  
+0xffffff800816d004: add       x1, x8, #0x54                           
+0xffffff800816d008: bl        #0xffffff80085044dc                      -> __ll_sc_atomic_sub_return
+0xffffff800816d00c: nop                                               
+0xffffff800816d010: nop                                               
+0xffffff800816d014: cbnz      w0, #0xffffff800816d080                 
+0xffffff800816d018: mov       x0, x8                                  
+0xffffff800816d01c: bl        #0xffffff80080b3bf0                      -> __mmdrop
+0xffffff800816d020: cbnz      x21, #0xffffff800816d084                
+0xffffff800816d024: b         #0xffffff800816d08c                      -> 
+0xffffff800816d028: ldr       x8, [sp, #0xb0]                         
+0xffffff800816d02c: ldr       x9, [x27, #0xa8]                        
+0xffffff800816d030: cmp       x8, x9                                  
+0xffffff800816d034: b.ne      #0xffffff800816d094                     
+0xffffff800816d038: ldr       x8, [sp, #0xa8]                         
+0xffffff800816d03c: ldr       x9, [x27, #0xa0]                        
+0xffffff800816d040: cmp       x8, x9                                  
+0xffffff800816d044: b.ne      #0xffffff800816d094                     
+0xffffff800816d048: ldr       w8, [sp, #0xb8]                         
+0xffffff800816d04c: ldur      w9, [x29, #-0x18]                       
+0xffffff800816d050: ldur      x19, [x29, #-0xd0]                      
+0xffffff800816d054: cmp       w8, w9                                  
+0xffffff800816d058: b.ne      #0xffffff800816d098                     
+0xffffff800816d05c: add       x0, x19, #4                             
+0xffffff800816d060: bl        #0xffffff80093aa9ac                      -> _raw_spin_unlock
+0xffffff800816d064: mov       w0, #1                                  
+0xffffff800816d068: mov       x1, x19                                 
+0xffffff800816d06c: bl        #0xffffff80085044c4                      -> __ll_sc_atomic_sub
+0xffffff800816d070: nop                                               
+0xffffff800816d074: mov       w20, #-0x16                             
+0xffffff800816d078: b         #0xffffff800816d240                      -> 
+0xffffff800816d07c: brk       #0x800                                  
+0xffffff800816d080: cbz       x21, #0xffffff800816d08c                
+0xffffff800816d084: mov       x0, x21                                 
+0xffffff800816d088: bl        #0xffffff80081572dc                      -> hrtimer_cancel
+0xffffff800816d08c: sxtw      x0, w20                                 
+0xffffff800816d090: b         #0xffffff800816cad0                      -> 
+0xffffff800816d094: ldur      x19, [x29, #-0xd0]                      
+0xffffff800816d098: add       x1, sp, #0x70                           
+0xffffff800816d09c: mov       x0, x19                                 
+0xffffff800816d0a0: mov       x2, x21                                 
+0xffffff800816d0a4: bl        #0xffffff80081705fc                      -> futex_wait_queue_me
+0xffffff800816d0a8: add       x22, x19, #4                            
+0xffffff800816d0ac: mov       x0, x22                                 
+0xffffff800816d0b0: bl        #0xffffff80093aa858                      -> _raw_spin_lock
+0xffffff800816d0b4: ldr       x8, [sp, #0xb0]                         
+0xffffff800816d0b8: ldr       x9, [x27, #0xa8]                        
+0xffffff800816d0bc: cmp       x8, x9                                  
+0xffffff800816d0c0: b.ne      #0xffffff800816d138                     
+0xffffff800816d0c4: ldr       x8, [sp, #0xa8]                         
+0xffffff800816d0c8: ldr       x9, [x27, #0xa0]                        
+0xffffff800816d0cc: cmp       x8, x9                                  
+0xffffff800816d0d0: b.ne      #0xffffff800816d138                     
+0xffffff800816d0d4: ldr       w8, [sp, #0xb8]                         
+0xffffff800816d0d8: ldur      w9, [x29, #-0x18]                       
+0xffffff800816d0dc: cmp       w8, w9                                  
+================================================================================
+B. proxy-lock 调用点
+================================================================================
+0xffffff800816ea80: mov       x0, x23                                 
+0xffffff800816ea84: sxtw      x1, w8                                  
+0xffffff800816ea88: sxtw      x2, w9                                  
+0xffffff800816ea8c: bl        #0xffffff8008504f70                      -> __ll_sc___cmpxchg_case_mb_4
+0xffffff800816ea90: nop                                               
+0xffffff800816ea94: nop                                               
+0xffffff800816ea98: cmp       w8, w0                                  
+0xffffff800816ea9c: mov       w8, w0                                  
+0xffffff800816eaa0: b.ne      #0xffffff800816ea78                     
+0xffffff800816eaa4: ldr       x1, [x19, #0x40]                        
+0xffffff800816eaa8: ldr       x2, [x19, #0x10]                        
+0xffffff800816eaac: ldp       x0, x8, [sp, #8]                        
+0xffffff800816eab0: str       x8, [x19, #0x38]                        
+0xffffff800816eab4: bl        #0xffffff800812c058                      -> rt_mutex_start_proxy_lock
+0xffffff800816eab8: mov       w21, w0                                 
+0xffffff800816eabc: cbz       w0, #0xffffff800816eaf4                 
+0xffffff800816eac0: cmp       w21, #1                                 
+0xffffff800816eac4: b.ne      #0xffffff800816eda8                     
+0xffffff800816eac8: ldur      x8, [x29, #-0x48]                       
+0xffffff800816eacc: mov       x11, x26                                
+0xffffff800816ead0: cbz       x8, #0xffffff800816ebcc                 
+0xffffff800816ead4: ldur      w9, [x29, #-0x38]                       
+0xffffff800816ead8: and       w9, w9, #3                              
+0xffffff800816eadc: cmp       w9, #2                                  
+0xffffff800816eae0: b.eq      #0xffffff800816ebb4                     
+0xffffff800816eae4: cmp       w9, #1                                  
+0xffffff800816eae8: b.ne      #0xffffff800816ebc8                     
+0xffffff800816eaec: dmb       ish                                     
+0xffffff800816eaf0: b         #0xffffff800816ebcc                      -> 
+0xffffff800816eaf4: mov       x11, x26                                
+0xffffff800816eaf8: cmp       x27, x22                                
+0xffffff800816eafc: b.eq      #0xffffff800816eb44                     
+0xffffff800816eb00: ldr       x1, [sp, #0x28]                         
+0xffffff800816eb04: mov       x0, x11                                 
+0xffffff800816eb08: mov       x26, x11                                
+0xffffff800816eb0c: bl        #0xffffff8009396a6c                      -> plist_del
+0xffffff800816eb10: mov       w0, #1                                  
+0xffffff800816eb14: mov       x1, x27                                 
+0xffffff800816eb18: bl        #0xffffff80085044c4                      -> __ll_sc_atomic_sub
+0xffffff800816eb1c: nop                                               
+0xffffff800816eb20: mov       w0, #1                                  
+0xffffff800816eb24: mov       x1, x22                                 
+0xffffff800816eb28: bl        #0xffffff80085043a4                      -> __ll_sc_atomic_add
+0xffffff800816eb2c: dmb       ish                                     
+================================================================================
+C. remove_waiter 第3调用者
+================================================================================
+0xffffff80093a7d20: ldp       x8, x1, [x19, #0x18]                    
+0xffffff80093a7d24: mov       x0, x19                                 
+0xffffff80093a7d28: mov       w3, wzr                                 
+0xffffff80093a7d2c: sub       x2, x8, x1                              
+0xffffff80093a7d30: bl        #0xffffff80081569bc                      -> hrtimer_start_range_ns
+0xffffff80093a7d34: b         #0xffffff80093a7c88                      -> 
+0xffffff80093a7d38: mov       w24, w0                                 
+0xffffff80093a7d3c: add       x1, sp, #8                              
+0xffffff80093a7d40: mov       x0, x20                                 
+0xffffff80093a7d44: str       xzr, [x22, #0x20]                       
+0xffffff80093a7d48: bl        #0xffffff800812c0e8                      -> remove_waiter
+0xffffff80093a7d4c: cbnz      w23, #0xffffff80093a7cbc                
+0xffffff80093a7d50: cmn       w24, #0x23                              
+0xffffff80093a7d54: b.ne      #0xffffff80093a7cbc                     
+0xffffff80093a7d58: adrp      x0, #0xffffff8009f1c000                 
+0xffffff80093a7d5c: add       x0, x0, #0xea5                          
+0xffffff80093a7d60: bl        #0xffffff80080b7bcc                      -> __warn_printk
+0xffffff80093a7d64: mov       w19, #1                                 
+0xffffff80093a7d68: brk       #0x800                                  
+0xffffff80093a7d6c: str       x19, [sp]                               
+0xffffff80093a7d70: str       x19, [x22, #0x20]                       
+0xffffff80093a7d74: ldr       x8, [sp]                                
+0xffffff80093a7d78: dmb       ish                                     
+0xffffff80093a7d7c: bl        #0xffffff80093a4f1c                      -> schedule

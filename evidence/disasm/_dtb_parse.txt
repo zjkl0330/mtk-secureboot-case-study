@@ -1,0 +1,16 @@
+FDT magic 命中: ['0x126d840']
+
+==============================================================================
+FDT @0x126d840  totalsize=0x33611  version=17  struct@+0x38  strings@+0x2d664
+==============================================================================
+
+  --- bootargs ---
+    console=tty0 console=ttyS0,921600n1 root=/dev/ram vmalloc=400M slub_debug=OFZPU swiotlb=noforce firmware_class.path=/vendor/firmware page_owner=on loop.max_part=7
+
+  --- kaslr-seed ---
+    节点 = /chosen
+    长度 = 8 字节
+    原始 = 0000000000000000
+    解释 = 0x0000000000000000
+    ★ 值为 0  => 若 bootloader 不覆盖，slide = 0（KASLR 实际关闭）
+

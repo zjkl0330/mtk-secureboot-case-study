@@ -1,0 +1,40 @@
+21:23:10.977 热等待启动，300 秒
+21:23:11.207 发现 OPPO-fastboot VID=0x22d9 PID=0x2769
+21:23:11.211   [OPPO-fastboot] 尝试 claim + getvar ...
+21:23:11.215   [OPPO-fastboot] claim FAIL USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.218   [OPPO-fastboot] getvar:product         -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.227   [OPPO-fastboot] getvar:unlocked        -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.230   [OPPO-fastboot] getvar:secure          -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.234   [OPPO-fastboot] getvar:is-userspace    -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.469   [OPPO-fastboot] 尝试 claim + getvar ...
+21:23:11.475   [OPPO-fastboot] claim FAIL USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.479   [OPPO-fastboot] getvar:product         -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.482   [OPPO-fastboot] getvar:unlocked        -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.486   [OPPO-fastboot] getvar:secure          -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.493   [OPPO-fastboot] getvar:is-userspace    -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.679   [OPPO-fastboot] 尝试 claim + getvar ...
+21:23:11.683   [OPPO-fastboot] claim FAIL USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.686   [OPPO-fastboot] getvar:product         -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.695   [OPPO-fastboot] getvar:unlocked        -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.699   [OPPO-fastboot] getvar:secure          -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.703   [OPPO-fastboot] getvar:is-userspace    -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.897   [OPPO-fastboot] 尝试 claim + getvar ...
+21:23:11.900   [OPPO-fastboot] claim FAIL USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.905   [OPPO-fastboot] getvar:product         -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.911   [OPPO-fastboot] getvar:unlocked        -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.915   [OPPO-fastboot] getvar:secure          -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:11.918   [OPPO-fastboot] getvar:is-userspace    -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.113   [OPPO-fastboot] 尝试 claim + getvar ...
+21:23:12.117   [OPPO-fastboot] claim FAIL USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.127   [OPPO-fastboot] getvar:product         -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.132   [OPPO-fastboot] getvar:unlocked        -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.136   [OPPO-fastboot] getvar:secure          -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.141   [OPPO-fastboot] getvar:is-userspace    -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.333   [OPPO-fastboot] 尝试 claim + getvar ...
+21:23:12.336   [OPPO-fastboot] claim FAIL USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.343   [OPPO-fastboot] getvar:product         -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.347   [OPPO-fastboot] getvar:unlocked        -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.352   [OPPO-fastboot] getvar:secure          -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:23:12.358   [OPPO-fastboot] getvar:is-userspace    -> ERR USBError: [Errno 13] Access denied (insufficient permissions)
+21:28:11.071 热等待结束
+21:28:11.079 出现统计: [('OPPO-fastboot', 1447)]

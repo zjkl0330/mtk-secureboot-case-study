@@ -1,0 +1,223 @@
+========================================================================================================
+一、ADRP 解析出的全局数据地址（去重，按地址）
+========================================================================================================
+  VADDR=0xffffff80093cd890 OFF=0x134d890     (2 处引用)
+        workqueue_init_early               0xffffff800a07a0d4  ldr    w8, [x27, w24, sxtw #2]
+        workqueue_init_early               0xffffff800a07a194  ldr    w24, [x21, x19, lsl #2]
+  VADDR=0xffffff80093cdb50 OFF=0x134db50     (1 处引用)
+        sched_init                         0xffffff800a07dc68  ldr    w11, [x9, w8, sxtw #2]
+  VADDR=0xffffff80093cdbf0 OFF=0x134dbf0     (1 处引用)
+        sched_init                         0xffffff800a07dc74  ldr    w9, [x9, w8, sxtw #2]
+  VADDR=0xffffff8009b2e168 OFF=0x1aae168     (1 处引用)
+        ashmem_ioctl                       0xffffff8008f8cd5c  ldrh   w11, [x9, x8, lsl #1]
+  VADDR=0xffffff8009d1bc1c OFF=0x1c9bc1c     (1 处引用)
+        ashmem_ioctl                       0xffffff8008f8d10c  ldr    x8, [x8]
+  VADDR=0xffffff8009d6551c OFF=0x1ce551c     (1 处引用)
+        ashmem_open                        0xffffff8008f8d824  ldr    x11, [x11]
+  VADDR=0xffffff8009ff5640 OFF=0x1f75640     (1 处引用)
+        ashmem_ioctl                       0xffffff8008f8cfd0  ldp    x10, x11, [x8]
+  VADDR=0xffffff8009ff5650 OFF=0x1f75650     (1 处引用)
+        ashmem_ioctl                       0xffffff8008f8cfd4  ldp    x12, x8, [x8, #0x10]
+  VADDR=0xffffff8009ff5a78 OFF=0x1f75a78     (1 处引用)
+        start_kernel                       0xffffff800a070904  ldr    x10, [x10, #0xa78]
+  VADDR=0xffffff8009ff5a88 OFF=0x1f75a88     (1 处引用)
+        sched_init                         0xffffff800a07dccc  ldr    x8, [x8, #0xa88]
+  VADDR=0xffffff8009ff5ad8 OFF=0x1f75ad8     (4 处引用)
+        copy_utsname                       0xffffff80081903e0  ldr    x0, [x23, #0xad8]
+        copy_utsname                       0xffffff8008190414  ldr    x0, [x23, #0xad8]
+        copy_utsname                       0xffffff8008190460  ldr    x0, [x23, #0xad8]
+  VADDR=0xffffff8009ff5bd0 OFF=0x1f75bd0     (1 处引用)
+        create_kmalloc_caches              0xffffff800a08cb14  ldr    x8, [x22, x21, lsl #3]
+  VADDR=0xffffff8009ff5c08 OFF=0x1f75c08     (1 处引用)
+        configfs_register_subsystem        0xffffff8008348be4  ldr    x0, [x8, #0xc08]
+  VADDR=0xffffff8009ff5c10 OFF=0x1f75c10     (1 处引用)
+        alloc_pipe_info                    0xffffff800829f9a0  ldr    x0, [x8, #0xc10]
+  VADDR=0xffffff8009ff5cb0 OFF=0x1f75cb0     (1 处引用)
+        kmalloc_slab                       0xffffff8008245b0c  ldrb   w9, [x9, w8, uxtw]
+  VADDR=0xffffff800a18a008 OFF=0x210a008     (1 处引用)
+        start_kernel                       0xffffff800a070958  ldr    x8, [x8, #8]
+  VADDR=0xffffff800a1d0980 OFF=0x2150980     (1 处引用)
+        workqueue_init                     0xffffff800a07a40c  ldr    x21, [x21]
+  VADDR=0xffffff800a1d0990 OFF=0x2150990     (2 处引用)
+        workqueue_init                     0xffffff800a07a488  ldr    w8, [x21, #0x10]
+        workqueue_init                     0xffffff800a07a494  str    w8, [x21, #0x10]
+  VADDR=0xffffff800a1f6980 OFF=0x2176980     (5 处引用)
+        sched_init                         0xffffff800a07daec  ldr    x8, [x26, #0x980]
+        sched_init                         0xffffff800a07db8c  ldr    x8, [x26, #0x980]
+        sched_init                         0xffffff800a07dbcc  ldr    x8, [x26, #0x980]
+  VADDR=0xffffff800a1fd000 OFF=0x217d000     (1 处引用)
+        selinux_set_mnt_opts               0xffffff8008480a68  ldr    x8, [x8]
+  VADDR=0xffffff800a1fd068 OFF=0x217d068     (1 处引用)
+        selinux_set_mnt_opts               0xffffff8008480a80  ldr    x21, [x8, #0x68]
+  VADDR=0xffffff800a1fd0d0 OFF=0x217d0d0     (1 处引用)
+        pipe_read                          0xffffff800829ff40  ldr    x22, [x8, #0xd0]
+  VADDR=0xffffff800a1fdb00 OFF=0x217db00     (1 处引用)
+        rest_init                          0xffffff80093a2d1c  str    w9, [x8, #0xb00]
+  VADDR=0xffffff800a1fdb04 OFF=0x217db04     (1 处引用)
+        start_kernel                       0xffffff800a070734  strb   w19, [x8, #0xb04]
+  VADDR=0xffffff800a1fdb05 OFF=0x217db05     (2 处引用)
+        start_kernel                       0xffffff800a0706cc  strb   w19, [x21, #0xb05]
+        start_kernel                       0xffffff800a0708b8  strb   wzr, [x21, #0xb05]
+  VADDR=0xffffff800a1fdb08 OFF=0x217db08     (21 处引用)
+        ashmem_ioctl                       0xffffff8008f8cd18  ldr    x8, [x8, #0xb08]
+        ashmem_ioctl                       0xffffff8008f8d1dc  ldr    x9, [x9, #0xb08]
+        enforcing_setup                    0xffffff800a09fac8  ldr    x8, [x8, #0xb08]
+  VADDR=0xffffff800a1fdb40 OFF=0x217db40     (3 处引用)
+        __kmalloc                          0xffffff8008271c6c  ldr    x9, [x10, w9, sxtw #3]
+        kmem_cache_alloc                   0xffffff800826fb78  ldr    x9, [x10, w9, sxtw #3]
+        __kmalloc_track_caller             0xffffff80082736f0  ldr    x9, [x10, w9, sxtw #3]
+  VADDR=0xffffff800a1fdb50 OFF=0x217db50     (1 处引用)
+        workqueue_init_early               0xffffff800a07a240  ldrb   w8, [x8, #0xb50]
+  VADDR=0xffffff800a1fdb70 OFF=0x217db70     (2 处引用)
+        workqueue_init_early               0xffffff800a07a1ec  str    x0, [x19, #0xb70]
+        workqueue_init_early               0xffffff800a07a2dc  ldr    x8, [x19, #0xb70]
+  VADDR=0xffffff800a1fdb78 OFF=0x217db78     (2 处引用)
+        workqueue_init_early               0xffffff800a07a208  str    x0, [x20, #0xb78]
+        workqueue_init_early               0xffffff800a07a2e4  ldr    x8, [x20, #0xb78]
+  VADDR=0xffffff800a1fdb80 OFF=0x217db80     (2 处引用)
+        workqueue_init_early               0xffffff800a07a248  str    x0, [x21, #0xb80]
+        workqueue_init_early               0xffffff800a07a2ec  ldr    x8, [x21, #0xb80]
+  VADDR=0xffffff800a1fdb88 OFF=0x217db88     (2 处引用)
+        workqueue_init_early               0xffffff800a07a278  str    x0, [x23, #0xb88]
+        workqueue_init_early               0xffffff800a07a2f4  ldr    x8, [x23, #0xb88]
+  VADDR=0xffffff800a1fdb90 OFF=0x217db90     (2 处引用)
+        workqueue_init_early               0xffffff800a07a294  str    x0, [x24, #0xb90]
+        workqueue_init_early               0xffffff800a07a2fc  ldr    x8, [x24, #0xb90]
+  VADDR=0xffffff800a1fdb98 OFF=0x217db98     (2 处引用)
+        workqueue_init_early               0xffffff800a07a2b0  str    x0, [x25, #0xb98]
+        workqueue_init_early               0xffffff800a07a304  ldr    x8, [x25, #0xb98]
+  VADDR=0xffffff800a1fdba0 OFF=0x217dba0     (1 处引用)
+        workqueue_init_early               0xffffff800a07a2d0  str    x0, [x9, #0xba0]
+  VADDR=0xffffff800a1fdba8 OFF=0x217dba8     (2 处引用)
+        workqueue_init_early               0xffffff800a07a224  str    x0, [x22, #0xba8]
+        workqueue_init_early               0xffffff800a07a2c8  ldr    x8, [x22, #0xba8]
+  VADDR=0xffffff800a1fdbc0 OFF=0x217dbc0     (1 处引用)
+        sched_init                         0xffffff800a07da40  str    x0, [x8, #0xbc0]
+  VADDR=0xffffff800a1fdbc8 OFF=0x217dbc8     (1 处引用)
+        sched_init                         0xffffff800a07dd20  str    w9, [x8, #0xbc8]
+  VADDR=0xffffff800a1fdbd0 OFF=0x217dbd0     (1 处引用)
+        sched_init                         0xffffff800a07dba4  ldr    w8, [x8, #0xbd0]
+  VADDR=0xffffff800a1fdca8 OFF=0x217dca8     (10 处引用)
+        sched_init                         0xffffff800a07d978  ldr    w8, [x25, #0xca8]
+        sched_init                         0xffffff800a07d9a0  ldr    w8, [x25, #0xca8]
+        sched_init                         0xffffff800a07da94  ldr    w8, [x25, #0xca8]
+  VADDR=0xffffff800a1fe220 OFF=0x217e220     (3 处引用)
+        __kmalloc                          0xffffff8008271c14  ldr    w8, [x8, #0x220]
+        kmem_cache_alloc                   0xffffff800826fb18  ldr    w8, [x8, #0x220]
+        __kmalloc_track_caller             0xffffff8008273698  ldr    w8, [x8, #0x220]
+  VADDR=0xffffff800a1fe228 OFF=0x217e228     (1 处引用)
+        fork_init                          0xffffff800a078c94  ldr    x8, [x8, #0x228]
+  VADDR=0xffffff800a1fe278 OFF=0x217e278     (7 处引用)
+        sched_init                         0xffffff800a07dad4  ldr    x8, [x8, w19, sxtw #3]
+        workqueue_init_early               0xffffff800a07a06c  ldr    x8, [x25, w19, sxtw #3]
+        workqueue_init_early               0xffffff800a07a11c  ldr    x8, [x25, x22, lsl #3]
+  VADDR=0xffffff800a1ffef0 OFF=0x217fef0     (3 处引用)
+        ashmem_init                        0xffffff800a0d93cc  str    x0, [x20, #0xef0]
+        ashmem_init                        0xffffff800a0d948c  ldr    x0, [x20, #0xef0]
+        ashmem_open                        0xffffff8008f8d808  ldr    x0, [x8, #0xef0]
+  VADDR=0xffffff800a1ffef8 OFF=0x217fef8     (4 处引用)
+        ashmem_init                        0xffffff800a0d9408  str    x0, [x21, #0xef8]
+        ashmem_init                        0xffffff800a0d9484  ldr    x0, [x21, #0xef8]
+        ashmem_ioctl                       0xffffff8008f8ce10  ldr    x0, [x8, #0xef8]
+  VADDR=0xffffff800a20d1b8 OFF=0x218d1b8     (1 处引用)
+        fork_init                          0xffffff800a078d28  str    w8, [x11, #0x1b8]
+  VADDR=0xffffff800a20d74c OFF=0x218d74c     (1 处引用)
+        sched_init                         0xffffff800a07dc58  ldr    w8, [x10]
+  VADDR=0xffffff800a20d780 OFF=0x218d780     (2 处引用)
+        sched_init                         0xffffff800a07dc44  str    x8, [x9, #0x780]
+        sched_init                         0xffffff800a07dc80  stur   x8, [x10, #0x34]
+  VADDR=0xffffff800a20d788 OFF=0x218d788     (1 处引用)
+        sched_init                         0xffffff800a07dc90  str    w9, [x10]
+  VADDR=0xffffff800a20d790 OFF=0x218d790     (1 处引用)
+        sched_init                         0xffffff800a07dc94  str    x8, [x10, #8]
+  VADDR=0xffffff800a20db00 OFF=0x218db00     (1 处引用)
+        sched_init                         0xffffff800a07dc30  ldr    w8, [x8, #0xb00]
+  VADDR=0xffffff800a20de60 OFF=0x218de60     (3 处引用)
+        fork_init                          0xffffff800a078cd4  ldr    x12, [x11, #0xe60]
+        fork_init                          0xffffff800a078cf0  ldr    x12, [x11, #0xe60]
+        fork_init                          0xffffff800a078d00  ldr    x10, [x11, #0xe60]
+  VADDR=0xffffff800a218e18 OFF=0x2198e18     (1 处引用)
+        call_usermodehelper_exec           0xffffff80080d8164  ldr    w8, [x8, #0xe18]
+  VADDR=0xffffff800a2192b8 OFF=0x21992b8     (1 处引用)
+        workqueue_init                     0xffffff800a07a3ec  ldr    x21, [x20]
+  VADDR=0xffffff800a21db98 OFF=0x219db98     (2 处引用)
+        sched_init                         0xffffff800a07d9bc  ldr    w8, [x19, #0xb98]
+        sched_init                         0xffffff800a07d9e4  ldr    w8, [x19, #0xb98]
+  VADDR=0xffffff800a21db9c OFF=0x219db9c     (2 处引用)
+        sched_init                         0xffffff800a07d9c0  ldrsw  x9, [x20, #0xb9c]
+        sched_init                         0xffffff800a07d9e8  ldrsw  x9, [x20, #0xb9c]
+  VADDR=0xffffff800a21dbd0 OFF=0x219dbd0     (2 处引用)
+        sched_init                         0xffffff800a07da30  ldr    x21, [x19]
+        sched_init                         0xffffff800a07da64  str    x20, [x8, #0xbd0]
+  VADDR=0xffffff800a23b148 OFF=0x21bb148     (1 处引用)
+        start_kernel                       0xffffff800a0706f8  str    xzr, [x8, #0x148]
+  VADDR=0xffffff800a23e7b0 OFF=0x21be7b0     (1 处引用)
+        alloc_pipe_info                    0xffffff800829f990  ldr    w21, [x8, #0x7b0]
+  VADDR=0xffffff800a23e7b8 OFF=0x21be7b8     (1 处引用)
+        alloc_pipe_info                    0xffffff800829f9f4  ldr    x8, [x8, #0x7b8]
+  VADDR=0xffffff800a260bb8 OFF=0x21e0bb8     (1 处引用)
+        selinux_init                       0xffffff800a09fba4  str    wzr, [x8, #0xbb8]
+  VADDR=0xffffff800a539bb0 OFF=0x24b9bb0     (2 处引用)
+        __kmalloc                          0xffffff8008271c38  ldr    w8, [x8, #0xbb0]
+        __kmalloc_track_caller             0xffffff80082736bc  ldr    w8, [x8, #0xbb0]
+  VADDR=0xffffff800a539bc8 OFF=0x24b9bc8     (2 处引用)
+        __kmalloc                          0xffffff8008271c8c  ldr    x25, [x8, #0xbc8]
+        __kmalloc_track_caller             0xffffff8008273710  ldr    x25, [x8, #0xbc8]
+  VADDR=0xffffff800a539bd8 OFF=0x24b9bd8     (1 处引用)
+        kmem_cache_alloc                   0xffffff800826fb44  ldr    w8, [x8, #0xbd8]
+  VADDR=0xffffff800a539bf0 OFF=0x24b9bf0     (1 处引用)
+        kmem_cache_alloc                   0xffffff800826fb98  ldr    x25, [x8, #0xbf0]
+  VADDR=0xffffff800a544192 OFF=0x24c4192     (1 处引用)
+        selinux_complete_init              0xffffff800848060c  ldrb   w8, [x8, #0x192]
+  VADDR=0xffffff800a5441ba OFF=0x24c41ba     (1 处引用)
+        selinux_complete_init              0xffffff8008480618  ldrb   w8, [x8, #0x1ba]
+
+========================================================================================================
+二、已知函数/数据地址在镜像中作为「指针值」出现的位置
+========================================================================================================
+  ashmem_fops(推测)                        0xffffff8009b2e178 -> 0xffffff800a4e1948 (OFF=0x2461948)
+  init_cred(prepare_kernel_cred)         0xffffff800a219890 -> 0xffffff800a20de20 (OFF=0x218de20), 0xffffff800a20de28 (OFF=0x218de28)
+
+========================================================================================================
+三、指定数据区指针槽内容（用于定位 miscdevice.fops 等）
+========================================================================================================
+  --- ashmem_fops(推测) @ 0xffffff8009b2e178 前后 0x60 ---
+      -30: 0x0000000000000000
+      -28: 0x0000000000000000
+      -20: 0x0000000000000000
+      -18: 0x0000000000000000
+      -10: 0x011b0092011b0000
+      -8: 0x00000094000b011b
+      +0: 0x0000000000000000
+      +8: 0xffffff8008f8cba4  <- ashmem_llseek
+      +10: 0x0000000000000000
+      +18: 0x0000000000000000
+      +20: 0xffffff8008f8cc40  <- ashmem_read_iter
+      +28: 0x0000000000000000
+      +30: 0x0000000000000000
+      +38: 0x0000000000000000
+      +40: 0x0000000000000000
+      +48: 0xffffff8008f8ccf4  <- ashmem_ioctl
+      +50: 0xffffff8008f8d634  <- compat_ashmem_ioctl
+      +58: 0xffffff8008f8d680  <- ashmem_mmap
+      +60: 0x0000000000000000
+  --- init_cred(prepare_kernel_cred) @ 0xffffff800a219890 前后 0x60 ---
+      -30: 0xffffff80080e552c  <- rcu_expedited_store
+      -28: 0xffffff8009f34bee
+      -20: 0x00000000000001a4
+      -18: 0xffffff80080e5568  <- rcu_normal_show
+      -10: 0xffffff80080e5598  <- rcu_normal_store
+      -8: 0x0000000000000002
+      +0: 0x0000000000000004
+      +8: 0x0000000000000000
+      +10: 0x0000000000000000
+      +18: 0x0000000000000000
+      +20: 0x0000000000000000
+      +28: 0x0000000000000000
+      +30: 0x0000003fffffffff
+      +38: 0x0000003fffffffff
+      +40: 0x0000003fffffffff
+      +48: 0x0000000000000000
+      +50: 0x0000000000000000
+      +58: 0x0000000000000000
+      +60: 0x0000000000000000

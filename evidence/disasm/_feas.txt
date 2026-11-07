@@ -1,0 +1,174 @@
+==============================================================================================
+一、调用链（所有 bl 目标）
+==============================================================================================
+
+### __arm64_sys_futex @ 0xffffff800816f64c
+
+### do_futex @ 0xffffff800816bed8
+  0xffffff800816bfb4: bl       -> 0xffffff800816eef8 futex_lock_pi                           <<<
+  0xffffff800816bfb8: b        -> 0xffffff800816cacc                                       
+  0xffffff800816bfc0: b        -> 0xffffff800816cad0                                       
+  0xffffff800816bfe0: bl       -> 0xffffff800816d7c0 futex_wait                              <<<
+  0xffffff800816bfe4: b        -> 0xffffff800816cacc                                       
+  0xffffff800816c000: bl       -> 0xffffff800816da8c futex_wake                              <<<
+  0xffffff800816c004: b        -> 0xffffff800816cacc                                       
+  0xffffff800816c024: b        -> 0xffffff800816cac8                                       
+  0xffffff800816c044: b        -> 0xffffff800816cac8                                       
+  0xffffff800816c078: bl       -> 0xffffff8008170850 get_futex_key                           <<<
+  0xffffff800816c0cc: bl       -> 0xffffff8008170850 get_futex_key                           <<<
+  0xffffff800816c28c: b        -> 0xffffff800816c298                                       
+  0xffffff800816c2a4: bl       -> 0xffffff80093aa858 _raw_spin_lock                        
+  0xffffff800816c2ac: b        -> 0xffffff800816c2c4                                       
+  0xffffff800816c2b4: bl       -> 0xffffff80093aa858 _raw_spin_lock                        
+  0xffffff800816c2c4: bl       -> 0xffffff80093aa858 _raw_spin_lock                        
+  0xffffff800816c2f0: bl       -> 0xffffff8009398d38 ___ratelimit                          
+  0xffffff800816c3a0: b        -> 0xffffff800816c4b8                                       
+  0xffffff800816c3a8: b        -> 0xffffff800816c890                                       
+  0xffffff800816c3b4: b        -> 0xffffff800816c868                                       
+  0xffffff800816c3dc: b        -> 0xffffff800816c548                                       
+  0xffffff800816c404: b        -> 0xffffff800816c5d8                                       
+  0xffffff800816c42c: b        -> 0xffffff800816c668                                       
+  0xffffff800816c454: b        -> 0xffffff800816c6fc                                       
+  0xffffff800816c464: bl       -> 0xffffff800829d6ac __get_task_comm                       
+  0xffffff800816c478: bl       -> 0xffffff800813242c printk                                
+  0xffffff800816c47c: b        -> 0xffffff800816c2f8                                       
+  0xffffff800816c50c: b        -> 0xffffff800816c868                                       
+  0xffffff800816c59c: b        -> 0xffffff800816c868                                       
+  0xffffff800816c62c: b        -> 0xffffff800816c868                                       
+  0xffffff800816c6c0: b        -> 0xffffff800816c868                                       
+  0xffffff800816c750: b        -> 0xffffff800816c868                                       
+  0xffffff800816c788: b        -> 0xffffff800816c868                                       
+  0xffffff800816c7c0: b        -> 0xffffff800816c868                                       
+  0xffffff800816c7f8: b        -> 0xffffff800816c868                                       
+  0xffffff800816c830: b        -> 0xffffff800816c868                                       
+  0xffffff800816c87c: b        -> 0xffffff800816c890                                       
+  0xffffff800816c894: bl       -> 0xffffff80093aa9ac _raw_spin_unlock                      
+  0xffffff800816c8a8: bl       -> 0xffffff80093aa9ac _raw_spin_unlock                      
+  0xffffff800816c8c8: bl       -> 0xffffff80093a7988 down_read                             
+  0xffffff800816c8e0: bl       -> 0xffffff800824d434 fixup_user_fault                      
+  0xffffff800816c8f0: bl       -> 0xffffff800812a910 up_read                               
+  0xffffff800816c8f8: b        -> 0xffffff800816d604                                       
+  0xffffff800816c92c: bl       -> 0xffffff80085044dc __ll_sc_atomic_sub_return             
+  0xffffff800816c940: bl       -> 0xffffff80080b3bf0 __mmdrop                              
+  0xffffff800816c944: b        -> 0xffffff800816c958                                       
+  0xffffff800816c978: bl       -> 0xffffff80085044dc __ll_sc_atomic_sub_return             
+  0xffffff800816c98c: bl       -> 0xffffff80080b3bf0 __mmdrop                              
+  0xffffff800816c990: b        -> 0xffffff800816c998                                       
+  0xffffff800816c9a8: bl       -> 0xffffff8008170850 get_futex_key                           <<<
+  0xffffff800816c9b8: b        -> 0xffffff800816cad0                                       
+  0xffffff800816c9cc: bl       -> 0xffffff80080e0300 __task_pid_nr_ns                      
+  0xffffff800816c9f0: b        -> 0xffffff800816cb44                                       
+  0xffffff800816ca04: bl       -> 0xffffff800816eef8 futex_lock_pi                           <<<
+  0xffffff800816ca08: b        -> 0xffffff800816cacc                                       
+  0xffffff800816ca80: bl       -> 0xffffff80081576b8 hrtimer_init                            <<<
+  0xffffff800816ca90: bl       -> 0xffffff8008158030 hrtimer_init_sleeper                    <<<
+  0xffffff800816caa0: bl       -> 0xffffff8008156670 ktime_add_safe                        
+  0xffffff800816caa8: b        -> 0xffffff800816cf94                                       
+  0xffffff800816cac8: bl       -> 0xffffff800816de00 futex_requeue                           <<<
+
+### futex_requeue @ 0xffffff800816de00
+  0xffffff800816deb4: bl       -> 0xffffff8008170850 get_futex_key                           <<<
+  0xffffff800816dee8: b        -> 0xffffff800816df08                                       
+  0xffffff800816df00: bl       -> 0xffffff8008170850 get_futex_key                           <<<
+
+### __arm64_sys_pselect6 @ 0xffffff80082b08b8
+  0xffffff80082b09a0: b        -> 0xffffff80082b0bcc                                       
+  0xffffff80082b09b8: bl       -> 0xffffff80081518a8 get_timespec64                        
+  0xffffff80082b09f0: bl       -> 0xffffff80081591a4 ktime_get_ts64                        
+  0xffffff80082b0a00: bl       -> 0xffffff80081517f8 timespec64_add_safe                   
+  0xffffff80082b0a0c: b        -> 0xffffff80082b0aa4                                       
+  0xffffff80082b0a78: bl       -> 0xffffff800938b8c0 __arch_copy_from_user                 
+  0xffffff80082b0aa0: bl       -> 0xffffff80080cd534 sigprocmask                           
+  0xffffff80082b0ab8: bl       -> 0xffffff80082afc98 core_sys_select                       
+  0xffffff80082b0ae4: bl       -> 0xffffff80081591a4 ktime_get_ts64                        
+  0xffffff80082b0afc: bl       -> 0xffffff8008151518 set_normalized_timespec64             
+  0xffffff80082b0b18: bl       -> 0xffffff80081519a4 put_timespec64                        
+  0xffffff80082b0b2c: b        -> 0xffffff80082b0b60                                       
+  0xffffff80082b0b4c: bl       -> 0xffffff8008504c2c __ll_sc_atomic64_or                   
+  0xffffff80082b0b5c: b        -> 0xffffff80082b0b74                                       
+  0xffffff80082b0b70: bl       -> 0xffffff80080cd534 sigprocmask                           
+  0xffffff80082b0b78: b        -> 0xffffff80082b0d64                                       
+  0xffffff80082b0b80: b        -> 0xffffff80082b0d64                                       
+  0xffffff80082b0b90: b        -> 0xffffff80082b0aa4                                       
+  0xffffff80082b0bf4: b        -> 0xffffff80082b0c30                                       
+  0xffffff80082b0c9c: b        -> 0xffffff80082b0cfc                                       
+  0xffffff80082b0ca4: b        -> 0xffffff80082b0cac                                       
+  0xffffff80082b0cbc: bl       -> 0xffffff800938c8c0 __memset                              
+  0xffffff80082b0cc0: b        -> 0xffffff80082b0d60                                       
+  0xffffff80082b0d24: b        -> 0xffffff80082b09ac                                       
+
+### core_sys_select @ 0xffffff80082afc98
+  0xffffff80082afcdc: bl       -> 0xffffff8008148d44 __rcu_read_lock                       
+  0xffffff80082afcf0: bl       -> 0xffffff8008148d58 __rcu_read_unlock                     
+  0xffffff80082afd24: bl       -> 0xffffff800823ad30 kvmalloc_node                         
+  0xffffff80082afd34: b        -> 0xffffff80082b0058                                       
+  0xffffff80082afd3c: b        -> 0xffffff80082b0058                                       
+  0xffffff80082afd8c: bl       -> 0xffffff8008289fcc __check_object_size                   
+  0xffffff80082afde8: bl       -> 0xffffff800938b8c0 __arch_copy_from_user                 
+  0xffffff80082afe04: bl       -> 0xffffff8008289fcc __check_object_size                   
+  0xffffff80082afe60: bl       -> 0xffffff800938b8c0 __arch_copy_from_user                 
+  0xffffff80082afe7c: bl       -> 0xffffff8008289fcc __check_object_size                   
+  0xffffff80082afee0: bl       -> 0xffffff800938b8c0 __arch_copy_from_user                 
+  0xffffff80082afef4: b        -> 0xffffff80082b00a4                                       
+  0xffffff80082aff00: bl       -> 0xffffff800938c8c0 __memset                              
+  0xffffff80082aff14: bl       -> 0xffffff800938c8c0 __memset                              
+  0xffffff80082aff28: bl       -> 0xffffff800938c8c0 __memset                              
+  0xffffff80082aff40: bl       -> 0xffffff800938c8c0 __memset                              
+  0xffffff80082aff50: bl       -> 0xffffff800938c8c0 __memset                              
+  0xffffff80082aff60: bl       -> 0xffffff800938c8c0 __memset                              
+  0xffffff80082aff6c: bl       -> 0xffffff80082b00b4 do_select                             
+  0xffffff80082aff94: bl       -> 0xffffff8008289fcc __check_object_size                   
+  0xffffff80082affb8: bl       -> 0xffffff800938bf00 __arch_copy_to_user                   
+  0xffffff80082affd0: bl       -> 0xffffff8008289fcc __check_object_size                   
+  0xffffff80082afff4: bl       -> 0xffffff800938bf00 __arch_copy_to_user                   
+  0xffffff80082b000c: bl       -> 0xffffff8008289fcc __check_object_size                   
+  0xffffff80082b0030: bl       -> 0xffffff800938bf00 __arch_copy_to_user                   
+  0xffffff80082b003c: b        -> 0xffffff80082b0044                                       
+  0xffffff80082b0054: bl       -> 0xffffff800823a9a4 kvfree                                
+
+==============================================================================================
+二、do_futex 内所有 SP 相对地址计算（waiter / futex_q / key 候选）
+==============================================================================================
+  0xffffff800816c028: add      x5, sp, #0x6c                     
+  0xffffff800816c04c: add      x2, sp, #0x70                     
+        | stp xzr, xzr, [x27, #0x58]
+        | str xzr, [x27, #0x50]
+        | stur x8, [x29, #-0xc8]
+        | str x27, [x27, #8]
+        | stur wzr, [x29, #-0xb8]
+  0xffffff800816c998: add      x2, sp, #0x70                     
+        | mrs x21, sp_el0
+        | mov x0, x21
+        | mov x2, xzr
+  0xffffff800816caac: add      x5, sp, #0x6c                     
+  0xffffff800816cae4: add      sp, sp, #0x1b0                    
+        | ldp x20, x19, [sp, #0x50]
+        | ldp x22, x21, [sp, #0x40]
+        | ldp x24, x23, [sp, #0x30]
+        | ldp x26, x25, [sp, #0x20]
+        | ldp x28, x27, [sp, #0x10]
+        | ldp x29, x30, [sp], #0x60
+
+==============================================================================================
+三、do_futex 局部区高位写入 [sp,#>=0x70]（找 0x50 字节 waiter 清零模式）
+==============================================================================================
+  0xffffff800816c05c: stp      xzr, xzr, [sp, #0x78]
+  0xffffff800816c060: str      xzr, [sp, #0x70]
+  0xffffff800816c0d4: ldp      w12, w8, [sp, #0x7c]
+  0xffffff800816c0d8: ldp      w9, w10, [sp, #0x70]
+  0xffffff800816c0dc: ldr      w11, [sp, #0x78]
+  0xffffff800816c958: ldr      x8, [sp, #0x70]
+  0xffffff800816c960: ldr      w9, [sp, #0x80]
+  0xffffff800816ca2c: stp      x8, x10, [sp, #0xc0]
+  0xffffff800816ca34: stp      x11, x12, [sp, #0xd0]
+  0xffffff800816ca40: stp      x8, x10, [sp, #0xa0]
+  0xffffff800816ca48: stp      x11, x12, [sp, #0xb0]
+  0xffffff800816ca50: stp      x8, x10, [sp, #0x80]
+  0xffffff800816ca58: stp      x11, x12, [sp, #0x90]
+  0xffffff800816ca5c: stp      x8, x9, [sp, #0x70]
+
+==============================================================================================
+四、rt_mutex_waiter 初始化特征（str xzr / stp xzr,xzr 连续清零 0x50 区）
+==============================================================================================
+  0xffffff800816c05c: stp      xzr, xzr, [sp, #0x78]
+  0xffffff800816c060: str      xzr, [sp, #0x70]

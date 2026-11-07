@@ -1,0 +1,86 @@
+============================================================================================
+一、全镜像 BL 调用点反查（可执行段逐字解码，不依赖符号表）
+============================================================================================
+  PF_X 段: vaddr=0xffffff8008080000 off=0x1c0 size=0x254e000
+  PF_X 段: vaddr=0xffffff800a5ce000 off=0x254e1c0 size=0x0
+
+  -> remove_waiter                  0xffffff800812c0e8  调用点 3 处
+       0xffffff800812c098  (?)
+       0xffffff800812c3c8  (?)
+       0xffffff80093a7d48  (?)
+
+  -> rt_mutex_start_proxy_lock      0xffffff800812c058  调用点 1 处
+       0xffffff800816eab4  (?)
+
+  -> futex_lock_pi                  0xffffff800816eef8  调用点 2 处
+       0xffffff800816bfb4  (?)
+       0xffffff800816ca04  (?)
+
+  -> futex_wait                     0xffffff800816d7c0  调用点 2 处
+       0xffffff800816bfe0  (?)
+       0xffffff8008170824  (?)
+
+  -> futex_requeue                  0xffffff800816de00  调用点 1 处
+       0xffffff800816cac8  (?)
+
+  -> do_futex                       0xffffff800816bed8  调用点 3 处
+       0xffffff80080b46d4  (?)
+       0xffffff800816f794  (?)
+       0xffffff800816fbc8  (?)
+
+============================================================================================
+二、__arm64_sys_futex 全长调用链（判据 2）
+============================================================================================
+  0xffffff800816f708: bl  -> 0xffffff800938b8c0  __arch_copy_from_user
+  0xffffff800816f754: b   -> 0xffffff800816f75c  ?
+  0xffffff800816f794: bl  -> 0xffffff800816bed8  do_futex
+  0xffffff800816f798: b   -> 0xffffff800816f7a0  ?
+
+============================================================================================
+三、do_futex 结尾之后的冷代码块 0x816cb00~0x816d800（找 fwrpi 实体）
+============================================================================================
+
+  [符号 ? @ 0xffffff800816cb00]
+    0xffffff800816cc64: bl  -> 0xffffff8008170850 get_futex_key
+    0xffffff800816cd54: bl  -> 0xffffff80093aa858 _raw_spin_lock
+    0xffffff800816ce04: bl  -> 0xffffff80093aa908 _raw_spin_lock_irq
+    0xffffff800816ce0c: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816ce18: add x8, sp, #0x70   <-- 栈局部地址
+    0xffffff800816ce2c: bl  -> 0xffffff800812c2cc rt_mutex_next_owner
+    0xffffff800816ce54: bl  -> 0xffffff800816fed8 cmpxchg_futex_value_locked
+    0xffffff800816ce84: bl  -> 0xffffff80093aaa30 _raw_spin_unlock_irq
+    0xffffff800816ceb4: bl  -> 0xffffff800816fed8 cmpxchg_futex_value_locked
+    0xffffff800816cec4: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816cf9c: bl  -> 0xffffff800812b96c rt_mutex_init_waiter
+    0xffffff800816cfb4: bl  -> 0xffffff8008170850 get_futex_key
+    0xffffff800816cfc0: add x3, sp, #0x70   <-- 栈局部地址
+    0xffffff800816cfdc: bl  -> 0xffffff8008170228 futex_wait_setup
+    0xffffff800816d060: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816d088: bl  -> 0xffffff80081572dc hrtimer_cancel
+    0xffffff800816d098: add x1, sp, #0x70   <-- 栈局部地址
+    0xffffff800816d0a4: bl  -> 0xffffff80081705fc futex_wait_queue_me
+    0xffffff800816d0b0: bl  -> 0xffffff80093aa858 _raw_spin_lock
+    0xffffff800816d0e8: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816d108: bl  -> 0xffffff800812c2fc rt_mutex_wait_proxy_lock
+    0xffffff800816d118: bl  -> 0xffffff80093aa858 _raw_spin_lock
+    0xffffff800816d128: bl  -> 0xffffff800812c380 rt_mutex_cleanup_proxy_lock
+    0xffffff800816d14c: add x0, sp, #0x70   <-- 栈局部地址
+    0xffffff800816d1b8: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816d23c: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816d2a4: bl  -> 0xffffff80093aa858 _raw_spin_lock
+    0xffffff800816d2a8: add x1, sp, #0x70   <-- 栈局部地址
+    0xffffff800816d2cc: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816d5e4: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816d5f8: bl  -> 0xffffff80093aa9ac _raw_spin_unlock
+    0xffffff800816d6e0: add x1, sp, #0x70   <-- 栈局部地址
+    0xffffff800816d6f4: add x0, sp, #0x70   <-- 栈局部地址
+    0xffffff800816d71c: add x1, sp, #0x70   <-- 栈局部地址
+    0xffffff800816d724: bl  -> 0xffffff80093a805c __rt_mutex_futex_unlock
+    0xffffff800816d730: bl  -> 0xffffff80093aaa30 _raw_spin_unlock_irq
+    0xffffff800816d738: add x0, sp, #0x70   <-- 栈局部地址
+    0xffffff800816d73c: bl  -> 0xffffff800812b980 rt_mutex_postunlock
+
+  [符号 futex_wait @ 0xffffff800816d7c0]
+
+  [符号 ? @ 0xffffff800816d7c4]
+    0xffffff800816d7dc: add x29, sp, #0xe0   <-- 栈局部地址

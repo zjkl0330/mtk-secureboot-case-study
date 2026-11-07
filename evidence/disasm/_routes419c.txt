@@ -1,0 +1,126 @@
+do_ip_setsockopt @0xffffff800918097c  ip_mc_source @0xffffff80091c086c  ip_mc_msfilter @0xffffff80091c1130
+
+窗口内解出 3072 条指令（0x3000 字节）
+
+====================================================================================
+一、bl ip_mc_source / ip_mc_msfilter 调用点
+====================================================================================
+  0xffffff800918175c: bl #0xffffff80091c086c
+    0xffffff800918171c: str      w9, [sp, #8]                    
+    0xffffff8009181720: bl       #0xffffff80091c05fc             
+    0xffffff8009181724: cbz      w0, #0xffffff8009181734         
+    0xffffff8009181728: mov      w21, w0                         
+    0xffffff800918172c: cmn      w0, #0x62                       
+    0xffffff8009181730: b.ne     #0xffffff8009181764             
+    0xffffff8009181734: ldr      w8, [sp, #8]                    
+    0xffffff8009181738: mov      w1, #1                          
+    0xffffff800918173c: mov      w0, #1                          
+    0xffffff8009181740: str      w8, [sp, #0x20]                 
+    0xffffff8009181744: b        #0xffffff8009181750             
+    0xffffff8009181748: mov      w0, wzr                         
+    0xffffff800918174c: mov      w1, #1                          
+    0xffffff8009181750: ldr      w4, [sp, #0x20]                 
+    0xffffff8009181754: add      x3, sp, #0x10                      <== pgsr / psfl
+    0xffffff8009181758: mov      x2, x19                         
+
+  0xffffff80091819c4: bl #0xffffff80091c1130
+    0xffffff8009181984: cmp      x8, x22                         
+    0xffffff8009181988: b.ls     #0xffffff80091819b8             
+    0xffffff800918198c: mov      x0, x21                         
+    0xffffff8009181990: bl       #0xffffff8008272138             
+    0xffffff8009181994: mov      w21, #-0x16                     
+    0xffffff8009181998: b        #0xffffff8009181764             
+    0xffffff800918199c: lsl      x9, x8, #7                      
+    0xffffff80091819a0: add      x9, x9, #0x90                   
+    0xffffff80091819a4: cmp      x9, x21                         
+    0xffffff80091819a8: b.ls     #0xffffff80091819dc             
+    0xffffff80091819ac: mov      x22, xzr                        
+    0xffffff80091819b0: mov      w21, #-0x16                     
+    0xffffff80091819b4: b        #0xffffff80091816e8             
+    0xffffff80091819b8: mov      x0, x19                         
+    0xffffff80091819bc: mov      x1, x21                         
+    0xffffff80091819c0: mov      w2, wzr                         
+
+  0xffffff8009181a7c: bl #0xffffff80091c1130
+    0xffffff8009181a3c: ldrh     w11, [x8, x11]                  
+    0xffffff8009181a40: cmp      w11, #2                         
+    0xffffff8009181a44: b.ne     #0xffffff8009181a8c             
+    0xffffff8009181a48: sxtw     x10, w10                        
+    0xffffff8009181a4c: add      x11, x8, x10, lsl #7            
+    0xffffff8009181a50: ldr      w11, [x11, #4]                  
+    0xffffff8009181a54: str      w11, [x9, x10, lsl #2]          
+    0xffffff8009181a58: ldr      w11, [x20, #0x8c]               
+    0xffffff8009181a5c: add      w10, w10, #1                    
+    0xffffff8009181a60: cmp      w10, w11                        
+    0xffffff8009181a64: b.lo     #0xffffff8009181a38             
+    0xffffff8009181a68: mov      x0, x20                         
+    0xffffff8009181a6c: bl       #0xffffff8008272138             
+    0xffffff8009181a70: mov      x0, x19                         
+    0xffffff8009181a74: mov      x1, x22                         
+    0xffffff8009181a78: mov      w2, w21                         
+
+====================================================================================
+二、MCAST_BLOCK_SOURCE(43/0x2b) / MCAST_MSFILTER(44/0x2c) 的 optname 比较
+====================================================================================
+  0xffffff8009180c7c: cmp      w22, #0x2b
+  0xffffff8009180c94: cmp      w22, #0x2c
+
+====================================================================================
+三、函数内所有 [sp,#imm] 的 stp/str（greqs / psfl 候选落点）
+====================================================================================
+  0xffffff8009180980: stp      x29, x30, [sp, #0x130]
+  0xffffff8009180984: str      x28, [sp, #0x140]
+  0xffffff8009180988: stp      x26, x25, [sp, #0x150]
+  0xffffff800918098c: stp      x24, x23, [sp, #0x160]
+  0xffffff8009180990: stp      x22, x21, [sp, #0x170]
+  0xffffff8009180994: stp      x20, x19, [sp, #0x180]
+  0xffffff8009180c80: stp      wzr, w9, [sp, #0x14]
+  0xffffff8009180c84: str      w8, [sp, #0x10]
+  0xffffff8009180de0: stp      w8, wzr, [sp, #0x10]
+  0xffffff8009180de4: str      w9, [sp, #0x18]
+  0xffffff8009180e68: str      xzr, [sp, #0x20]
+  0xffffff800918139c: stp      w8, w9, [sp, #0x10]
+  0xffffff80091813a0: str      wzr, [sp, #0x18]
+  0xffffff8009181468: str      wzr, [sp, #0x28]
+  0xffffff800918146c: str      xzr, [sp, #0x20]
+  0xffffff80091814f0: str      wzr, [sp, #0x28]
+  0xffffff80091814f4: str      xzr, [sp, #0x20]
+  0xffffff8009181640: str      w8, [sp, #0x28]
+  0xffffff8009181718: stp      w8, wzr, [sp]
+  0xffffff800918171c: str      w9, [sp, #8]
+  0xffffff8009181740: str      w8, [sp, #0x20]
+  0xffffff8009181b34: stp      x29, x30, [sp, #-0x30]!
+  0xffffff8009181b38: stp      x22, x21, [sp, #0x10]
+  0xffffff8009181b3c: stp      x20, x19, [sp, #0x20]
+  0xffffff8009181c04: stp      x29, x30, [sp, #0x10]
+  0xffffff8009181c08: stp      x26, x25, [sp, #0x20]
+  0xffffff8009181c0c: stp      x24, x23, [sp, #0x30]
+  0xffffff8009181c10: stp      x22, x21, [sp, #0x40]
+  0xffffff8009181c14: stp      x20, x19, [sp, #0x50]
+  0xffffff8009181c38: str      x8, [sp, #8]
+  0xffffff8009181cdc: str      wzr, [sp, #4]
+  0xffffff8009181d40: str      w10, [sp, #4]
+  0xffffff8009181d80: str      w10, [sp, #4]
+  0xffffff8009181ee0: stp      x29, x30, [sp, #0x130]
+  0xffffff8009181ee4: stp      x28, x27, [sp, #0x140]
+  0xffffff8009181ee8: stp      x26, x25, [sp, #0x150]
+  0xffffff8009181eec: stp      x24, x23, [sp, #0x160]
+  0xffffff8009181ef0: stp      x22, x21, [sp, #0x170]
+  0xffffff8009181ef4: stp      x20, x19, [sp, #0x180]
+  0xffffff8009182224: stp      x19, x8, [sp, #0x48]
+  0xffffff8009182228: str      w22, [sp, #0x58]
+  0xffffff8009182254: str      w8, [sp]
+  0xffffff80091822f8: str      wzr, [sp, #0x10]
+  0xffffff8009182350: str      w0, [sp, #0x10]
+  0xffffff80091823dc: str      w8, [sp, #0x10]
+  0xffffff8009182504: str      w8, [sp, #0x10]
+  0xffffff8009182730: stp      w8, w8, [sp, #4]
+  0xffffff8009182740: str      w8, [sp]
+  0xffffff8009182768: str      w8, [sp]
+  0xffffff8009182d38: stp      x29, x30, [sp, #0x10]
+  0xffffff8009182d3c: stp      x26, x25, [sp, #0x20]
+  0xffffff8009182d40: stp      x24, x23, [sp, #0x30]
+  0xffffff8009182d44: stp      x22, x21, [sp, #0x40]
+  0xffffff8009182d48: stp      x20, x19, [sp, #0x50]
+  0xffffff8009182d68: str      x8, [sp, #8]
+  0xffffff8009182e40: str   

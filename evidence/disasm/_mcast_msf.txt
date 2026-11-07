@@ -1,0 +1,88 @@
+do_ip_setsockopt @0xffffff800918097c  OFF=0x110097c
+反汇编条数: 3072
+
+  帧: 0xffffff800918097c  sub      sp, sp, #0x190
+
+========================================================================================
+一、multicast case 比较点
+========================================================================================
+  #192  0xffffff8009180c7c  cmp w22, #0x2b     -> case 43  MCAST_BLOCK_SOURCE    group_source_req 0x108
+  #196  0xffffff8009180c8c  cmp w22, #0x2e     -> case 46  MCAST_JOIN_SOURCE_GRP group_source_req 0x108
+  #198  0xffffff8009180c94  cmp w22, #0x2c     -> case 44  MCAST_UNBLOCK_SOURCE  group_source_req 0x108
+  #278  0xffffff8009180dd4  cmp w22, #0x2a     -> case 42  MCAST_JOIN_GROUP      group_req       0x80
+  #304  0xffffff8009180e3c  cmp w8, #0x30, lsl #12 -> case 48  MCAST_MSFILTER        group_filter    0x110
+  #443  0xffffff8009181068  cmp w8, #0x30, lsl #12 -> case 48  MCAST_MSFILTER        group_filter    0x110
+  #1387 0xffffff8009181f28  cmp w23, #0x30     -> case 48  MCAST_MSFILTER        group_filter    0x110
+  #2298 0xffffff8009182d64  cmp w2, #0x30      -> case 48  MCAST_MSFILTER        group_filter    0x110
+
+共 8 处
+
+========================================================================================
+二、每个 case 块的栈 buffer 偏移
+========================================================================================
+
+--- case 43 (MCAST_BLOCK_SOURCE)  @cmp 0xffffff8009180c7c ---
+    #206  0xffffff8009180cb4  bl -> ns_capable
+    #212  0xffffff8009180ccc  bl -> xfrm_user_policy
+    #241  0xffffff8009180d40  add      x0, sp, #0x20               => x0 = sp+0x20
+    #243  0xffffff8009180d48  bl -> __arch_copy_from_user            <== COPY!
+         x0 = sp+0x20  (= S0-0x0, 深度 0x20)
+    #269  0xffffff8009180db0  add      x0, sp, #0x20               => x0 = sp+0x20
+    #271  0xffffff8009180db8  bl -> __arch_copy_from_user            <== COPY!
+         x0 = sp+0x20  (= S0-0x0, 深度 0x20)
+    #279  0xffffff8009180dd8  add      x1, sp, #0x10               => x1 = sp+0x10
+
+--- case 46 (MCAST_JOIN_SOURCE_GRP)  @cmp 0xffffff8009180c8c ---
+    #206  0xffffff8009180cb4  bl -> ns_capable
+    #212  0xffffff8009180ccc  bl -> xfrm_user_policy
+    #241  0xffffff8009180d40  add      x0, sp, #0x20               => x0 = sp+0x20
+    #243  0xffffff8009180d48  bl -> __arch_copy_from_user            <== COPY!
+         x0 = sp+0x20  (= S0-0x0, 深度 0x20)
+    #269  0xffffff8009180db0  add      x0, sp, #0x20               => x0 = sp+0x20
+    #271  0xffffff8009180db8  bl -> __arch_copy_from_user            <== COPY!
+         x0 = sp+0x20  (= S0-0x0, 深度 0x20)
+    #279  0xffffff8009180dd8  add      x1, sp, #0x10               => x1 = sp+0x10
+    #284  0xffffff8009180dec  bl -> ip_mc_leave_group
+
+--- case 44 (MCAST_UNBLOCK_SOURCE)  @cmp 0xffffff8009180c94 ---
+    #206  0xffffff8009180cb4  bl -> ns_capable
+    #212  0xffffff8009180ccc  bl -> xfrm_user_policy
+    #241  0xffffff8009180d40  add      x0, sp, #0x20               => x0 = sp+0x20
+    #243  0xffffff8009180d48  bl -> __arch_copy_from_user            <== COPY!
+         x0 = sp+0x20  (= S0-0x0, 深度 0x20)
+    #269  0xffffff8009180db0  add      x0, sp, #0x20               => x0 = sp+0x20
+    #271  0xffffff8009180db8  bl -> __arch_copy_from_user            <== COPY!
+         x0 = sp+0x20  (= S0-0x0, 深度 0x20)
+    #279  0xffffff8009180dd8  add      x1, sp, #0x10               => x1 = sp+0x10
+    #284  0xffffff8009180dec  bl -> ip_mc_leave_group
+
+--- case 42 (MCAST_JOIN_GROUP)  @cmp 0xffffff8009180dd4 ---
+    #279  0xffffff8009180dd8  add      x1, sp, #0x10               => x1 = sp+0x10
+    #284  0xffffff8009180dec  bl -> ip_mc_leave_group
+    #318  0xffffff8009180e74  add      x1, sp, #0x20               => x1 = sp+0x20
+    #321  0xffffff8009180e80  bl -> ip_options_get_from_user
+
+--- case 48 (MCAST_MSFILTER)  @cmp 0xffffff8009180e3c ---
+    #318  0xffffff8009180e74  add      x1, sp, #0x20               => x1 = sp+0x20
+    #321  0xffffff8009180e80  bl -> ip_options_get_from_user
+    #377  0xffffff8009180f60  bl -> skb_queue_purge
+
+--- case 48 (MCAST_MSFILTER)  @cmp 0xffffff8009181068 ---
+    #510  0xffffff8009181174  add      x0, sp, #0x20               => x0 = sp+0x20
+    #512  0xffffff800918117c  bl -> __arch_copy_from_user            <== COPY!
+         x0 = sp+0x20  (= S0-0x0, 深度 0x20)
+
+--- case 48 (MCAST_MSFILTER)  @cmp 0xffffff8009181f28 ---
+    #1430 0xffffff8009181fd4  bl -> ip_mroute_getsockopt
+
+--- case 48 (MCAST_MSFILTER)  @cmp 0xffffff8009182d64 ---
+    #2306 0xffffff8009182d84  bl -> compat_mc_getsockopt
+    #2313 0xffffff8009182da0  bl -> do_ip_getsockopt
+
+========================================================================================
+三、参照几何
+========================================================================================
+  do_ip_setsockopt 帧 0x190，sp = S0-0x290（不计 sock_common）
+  waiter 起点      S0-0x198
+  waiter->task     S0-0x168   (0x50 结构, task@+0x30)
+  waiter->lock     S0-0

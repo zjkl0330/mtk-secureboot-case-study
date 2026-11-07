@@ -1,0 +1,105 @@
+一、do_futex 的三个调用点，各属哪个入口、帧多大
+
+  调用点 0xffffff80080b46d4  最近符号(容差0x800): mm_release+0x160
+
+==========================================================================================
+    周边 SP 操作与调用
+==========================================================================================
+  0xffffff80080b4558: bl        #0xffffff800816be74                     -> 0xffffff800816be74 futex_exit_release
+  0xffffff80080b4564: bl        #0xffffff80080b4574                     -> 0xffffff80080b4574 mm_release
+  0xffffff80080b456c: ldp       x29, x30, [sp], #0x20                   <<< SP +32
+  0xffffff80080b4574: stp       x29, x30, [sp, #-0x20]!                 <<< SP -32
+  0xffffff80080b4588: bl        #0xffffff8008208328                     -> 0xffffff8008208328 uprobe_free_utask
+  0xffffff80080b4620: b         #0xffffff80080b465c                     -> 0xffffff80080b465c 
+  0xffffff80080b4680: b         #0xffffff80080b46b8                     -> 0xffffff80080b46b8 
+  0xffffff80080b46d4: bl        #0xffffff800816bed8                     -> 0xffffff800816bed8 do_futex
+  0xffffff80080b46ec: bl        #0xffffff80093aa858                     -> 0xffffff80093aa858 _raw_spin_lock
+  0xffffff80080b46fc: bl        #0xffffff8008117104                     -> 0xffffff8008117104 complete
+  0xffffff80080b4704: bl        #0xffffff80093aa9ac                     -> 0xffffff80093aa9ac _raw_spin_unlock
+  0xffffff80080b470c: ldp       x29, x30, [sp], #0x20                   <<< SP +32
+
+  调用点 0xffffff800816f794  最近符号(容差0x800): __arm64_sys_futex+0x148
+
+==========================================================================================
+    周边 SP 操作与调用
+==========================================================================================
+  0xffffff800816f618: add       sp, sp, #0x190                          <<< SP +400
+  0xffffff800816f630: bl        #0xffffff80081569bc                     -> 0xffffff80081569bc hrtimer_start_range_ns
+  0xffffff800816f634: b         #0xffffff800816f49c                     -> 0xffffff800816f49c 
+  0xffffff800816f638: bl        #0xffffff80080b7c60                     -> 0xffffff80080b7c60 __stack_chk_fail
+  0xffffff800816f648: b         #0xffffff800816efc0                     -> 0xffffff800816efc0 
+  0xffffff800816f64c: sub       sp, sp, #0x70                           <<< SP -112
+  0xffffff800816f708: bl        #0xffffff800938b8c0                     -> 0xffffff800938b8c0 __arch_copy_from_user
+  0xffffff800816f754: b         #0xffffff800816f75c                     -> 0xffffff800816f75c 
+  0xffffff800816f794: bl        #0xffffff800816bed8                     -> 0xffffff800816bed8 do_futex
+  0xffffff800816f798: b         #0xffffff800816f7a0                     -> 0xffffff800816f7a0 
+  0xffffff800816f7c8: add       sp, sp, #0x70                           <<< SP +112
+  0xffffff800816f7d0: bl        #0xffffff8008158e7c                     -> 0xffffff8008158e7c ktime_get
+
+  调用点 0xffffff800816fbc8  最近符号(容差0x800): __arm64_compat_sys_futex+0xb8
+
+==========================================================================================
+    周边 SP 操作与调用
+==========================================================================================
+  0xffffff800816fa58: b         #0xffffff800816faac                     -> 0xffffff800816faac 
+  0xffffff800816fa6c: ldp       x29, x30, [sp], #0x30                   <<< SP +48
+  0xffffff800816fad0: b         #0xffffff800816fb08                     -> 0xffffff800816fb08 
+  0xffffff800816fb0c: b         #0xffffff800816fa60                     -> 0xffffff800816fa60 
+  0xffffff800816fb10: sub       sp, sp, #0x70                           <<< SP -112
+  0xffffff800816fb7c: bl        #0xffffff800817c9a8                     -> 0xffffff800817c9a8 compat_get_timespec
+  0xffffff800816fb88: b         #0xffffff800816fbcc                     -> 0xffffff800816fbcc 
+  0xffffff800816fbc8: bl        #0xffffff800816bed8                     -> 0xffffff800816bed8 do_futex
+  0xffffff800816fbf4: add       sp, sp, #0x70                           <<< SP +112
+
+二、已知入口帧（校验）
+  __arm64_sys_futex        帧=0x70
+  __arm64_sys_select       帧=0x80
+  __arm64_sys_pselect6     帧=0xc0
+  __arm64_sys_ppoll        帧=0xb0
+  core_sys_select          帧=0x1c0
+
+三、各入口到可控栈缓冲的调用链
+
+==========================================================================================
+  __arm64_sys_select 的调用目标
+==========================================================================================
+  0xffffff80082b0708: sub       sp, sp, #0x80                           <<< SP -128
+  0xffffff80082b0798: bl        #0xffffff800938b8c0                     -> 0xffffff800938b8c0 __arch_copy_from_user
+  0xffffff80082b0800: bl        #0xffffff80081591a4                     -> 0xffffff80081591a4 ktime_get_ts64
+  0xffffff80082b0810: bl        #0xffffff80081517f8                     -> 0xffffff80081517f8 timespec64_add_safe
+  0xffffff80082b0818: b         #0xffffff80082b082c                     -> 0xffffff80082b082c 
+  0xffffff80082b0820: b         #0xffffff80082b082c                     -> 0xffffff80082b082c 
+  0xffffff80082b0840: bl        #0xffffff80082afc98                     -> 0xffffff80082afc98 core_sys_select
+  0xffffff80082b0854: bl        #0xffffff80082b19c8                     -> 0xffffff80082b19c8 poll_select_copy_remaining
+  0xffffff80082b0884: add       sp, sp, #0x80                           <<< SP +128
+
+==========================================================================================
+  __arm64_sys_ppoll 的调用目标
+==========================================================================================
+  0xffffff80082b0ee4: sub       sp, sp, #0xb0                           <<< SP -176
+  0xffffff80082b0f28: bl        #0xffffff80081518a8                     -> 0xffffff80081518a8 get_timespec64
+  0xffffff80082b0f34: b         #0xffffff80082b1108                     -> 0xffffff80082b1108 
+  0xffffff80082b0fa0: bl        #0xffffff800938b8c0                     -> 0xffffff800938b8c0 __arch_copy_from_user
+  0xffffff80082b0fc8: bl        #0xffffff80080cd534                     -> 0xffffff80080cd534 sigprocmask
+  0xffffff80082b0fd8: bl        #0xffffff80082b1b2c                     -> 0xffffff80082b1b2c do_sys_poll
+  0xffffff80082b0ff4: bl        #0xffffff8008504c2c                     -> 0xffffff8008504c2c __ll_sc_atomic64_or
+  0xffffff80082b1008: b         #0xffffff80082b1104                     -> 0xffffff80082b1104 
+  0xffffff80082b103c: bl        #0xffffff80081591a4                     -> 0xffffff80081591a4 ktime_get_ts64
+  0xffffff80082b104c: bl        #0xffffff80081517f8                     -> 0xffffff80081517f8 timespec64_add_safe
+  0xffffff80082b1054: b         #0xffffff80082b0f3c                     -> 0xffffff80082b0f3c 
+  0xffffff80082b1064: bl        #0xffffff80082b1b2c                     -> 0xffffff80082b1b2c do_sys_poll
+  0xffffff80082b1078: b         #0xffffff80082b1104                     -> 0xffffff80082b1104 
+  0xffffff80082b1080: b         #0xffffff80082b1108                     -> 0xffffff80082b1108 
+  0xffffff80082b1094: bl        #0xffffff80080cd534                     -> 0xffffff80080cd534 sigprocmask
+  0xffffff80082b10bc: bl        #0xffffff80081591a4                     -> 0xffffff80081591a4 ktime_get_ts64
+  0xffffff80082b10d4: bl        #0xffffff8008151518                     -> 0xffffff8008151518 set_normalized_timespec64
+  0xffffff80082b10f0: bl        #0xffffff80081519a4                     -> 0xffffff80081519a4 put_timespec64
+  0xffffff80082b1130: add       sp, sp, #0xb0                           <<< SP +176
+
+四、W 计算表（S0 相同、waiter 固定由 do_futex 决定）
+  pselect6  (F=0xc0  ) + sys_futex             (F=0x70  ) -> W=19   不可行
+  pselect6  (F=0xc0  ) + compat/time32 入口?     (F=0xd0  ) -> W=7    可行
+  pselect6  (F=0xc0  ) + 假设 0xf0               (F=0xf0  ) -> W=3    可行
+  select    (F=0x80  ) + sys_futex             (F=0x70  ) -> W=11   不可行
+  select    (F=0x80  ) + compat/time32 入口?     (F=0xd0  ) -> W=-1   可行
+  select    (F=0x80  ) + 假设 0xf0               (F=0xf0  ) -> W=-5   可行

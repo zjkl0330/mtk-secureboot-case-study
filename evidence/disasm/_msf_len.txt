@@ -1,0 +1,92 @@
+
+### case43/46/44 greqs copy
+
+========================================================================================
+  0xffffff8009180d48
+========================================================================================
+  0xffffff8009180ce0: b.lo      #0xffffff8009181308           
+  0xffffff8009180ce4: cmp       w23, #0xc                     
+  0xffffff8009180ce8: b.lo      #0xffffff8009181468           
+  0xffffff8009180cec: mrs       x8, sp_el0                    
+  0xffffff8009180cf0: ldrb      w10, [x8, #0x36]              
+  0xffffff8009180cf4: ldr       x9, [x8, #8]                  
+  0xffffff8009180cf8: tbnz      w10, #5, #0xffffff8009180d08  
+  0xffffff8009180cfc: ldr       x11, [x8]                     
+  0xffffff8009180d00: mov       x10, x20                      
+  0xffffff8009180d04: tbz       w11, #0x1a, #0xffffff8009180d10
+  0xffffff8009180d08: lsl       x10, x20, #8                  
+  0xffffff8009180d0c: and       x10, x20, x10, asr #8         
+  0xffffff8009180d10: adds      x10, x10, #0xc                
+  0xffffff8009180d14: csel      x9, xzr, x9, hi               
+  0xffffff8009180d18: csinv     x10, x10, xzr, lo             
+  0xffffff8009180d1c: sbcs      xzr, x10, x9                  
+  0xffffff8009180d20: cset      x10, ls                       
+  0xffffff8009180d24: cbz       x10, #0xffffff8009181a94      
+  0xffffff8009180d28: lsl       x9, x20, #8                   
+  0xffffff8009180d2c: ldr       x8, [x8, #8]                  
+  0xffffff8009180d30: and       x9, x20, x9, asr #8           
+  0xffffff8009180d34: bics      xzr, x9, x8                   
+  0xffffff8009180d38: csel      x1, x20, xzr, eq              
+  0xffffff8009180d3c: csdb                                    
+  0xffffff8009180d40: add       x0, sp, #0x20                 
+  0xffffff8009180d44: mov       w2, #0xc                         <== x2
+  0xffffff8009180d48: bl        #0xffffff800938b8c0              <<< copy_from_user
+  0xffffff8009180d4c: cbz       x0, #0xffffff80091814d4       
+  0xffffff8009180d50: b         #0xffffff8009181184           
+  0xffffff8009180d54: cmp       w23, #0x88                    
+
+  x2 赋值历史:
+    0xffffff8009180d44  mov    w2, #0xc            imm=0xc
+
+### case48  gsf   copy #1
+
+========================================================================================
+  0xffffff800918117c
+========================================================================================
+  0xffffff8009181114: b.eq      #0xffffff8009181308           
+  0xffffff8009181118: cmp       w23, #0xc                     
+  0xffffff800918111c: b.lo      #0xffffff80091814ec           
+  0xffffff8009181120: mrs       x8, sp_el0                    
+  0xffffff8009181124: ldrb      w10, [x8, #0x36]              
+  0xffffff8009181128: ldr       x9, [x8, #8]                  
+  0xffffff800918112c: tbnz      w10, #5, #0xffffff800918113c  
+  0xffffff8009181130: ldr       x11, [x8]                     
+  0xffffff8009181134: mov       x10, x20                      
+  0xffffff8009181138: tbz       w11, #0x1a, #0xffffff8009181144
+  0xffffff800918113c: lsl       x10, x20, #8                  
+  0xffffff8009181140: and       x10, x20, x10, asr #8         
+  0xffffff8009181144: adds      x10, x10, #0xc                
+  0xffffff8009181148: csel      x9, xzr, x9, hi               
+  0xffffff800918114c: csinv     x10, x10, xzr, lo             
+  0xffffff8009181150: sbcs      xzr, x10, x9                  
+  0xffffff8009181154: cset      x10, ls                       
+  0xffffff8009181158: cbz       x10, #0xffffff8009181a94      
+  0xffffff800918115c: lsl       x9, x20, #8                   
+  0xffffff8009181160: ldr       x8, [x8, #8]                  
+  0xffffff8009181164: and       x9, x20, x9, asr #8           
+  0xffffff8009181168: bics      xzr, x9, x8                   
+  0xffffff800918116c: csel      x1, x20, xzr, eq              
+  0xffffff8009181170: csdb                                    
+  0xffffff8009181174: add       x0, sp, #0x20                 
+  0xffffff8009181178: mov       w2, #0xc                         <== x2
+  0xffffff800918117c: bl        #0xffffff800938b8c0              <<< copy_from_user
+  0xffffff8009181180: cbz       x0, #0xffffff800918160c       
+  0xffffff8009181184: mov       x2, x0                           <== x2
+  0xffffff8009181188: b         #0xffffff8009181a98           
+
+  x2 赋值历史:
+    0xffffff8009181178  mov    w2, #0xc            imm=0xc
+    0xffffff8009181184  mov    x2, x0              imm=?
+
+========================================================================================
+二、扩大回溯：从 cmp case48 起点到 copy，全部 x2/w2 写入
+========================================================================================
+
+--- case48 cmp(第一处) 0xffffff8009181068 -> copy ---
+  0xffffff8009181178  mov    w2, #0xc                 imm=0xc
+  0xffffff800918117c  bl __arch_copy_from_user   <== 数据入口
+  0xffffff8009181184  mov    x2, x0                   imm=?
+  0xffffff8009181204  bl memdup_user   <== 数据入口
+
+--- case48 cmp(第二处) 0xffffff8009180e3c -> ? ---
+  0xffffff8009180e78  mov    x2, x20                  imm=?

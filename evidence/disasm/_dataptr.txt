@@ -1,0 +1,1120 @@
+====================================================================================================
+一、已知函数地址在 .kernel 段中的指针命中（共 282 处）
+====================================================================================================
+  file_off=0x134e980   VADDR=0xffffff80093ce7c0 OFF=0x134e7c0     <- noop_llseek
+  file_off=0x134f8d0   VADDR=0xffffff80093cf710 OFF=0x134f710     <- default_llseek
+  file_off=0x1350398   VADDR=0xffffff80093d01d8 OFF=0x13501d8     <- no_llseek
+  file_off=0x135a208   VADDR=0xffffff80093da048 OFF=0x135a048     <- default_llseek
+  file_off=0x135ad60   VADDR=0xffffff80093daba0 OFF=0x135aba0     <- generic_file_llseek
+  file_off=0x135ae80   VADDR=0xffffff80093dacc0 OFF=0x135acc0     <- generic_file_llseek
+  file_off=0x135afa0   VADDR=0xffffff80093dade0 OFF=0x135ade0     <- generic_file_llseek
+  file_off=0x135b540   VADDR=0xffffff80093db380 OFF=0x135b380     <- generic_file_llseek
+  file_off=0x135b660   VADDR=0xffffff80093db4a0 OFF=0x135b4a0     <- generic_file_llseek
+  file_off=0x135b9c0   VADDR=0xffffff80093db800 OFF=0x135b800     <- no_llseek
+  file_off=0x135bae0   VADDR=0xffffff80093db920 OFF=0x135b920     <- generic_file_llseek
+  file_off=0x135bc00   VADDR=0xffffff80093dba40 OFF=0x135ba40     <- generic_file_llseek
+  file_off=0x135be40   VADDR=0xffffff80093dbc80 OFF=0x135bc80     <- generic_file_llseek
+  file_off=0x135bf60   VADDR=0xffffff80093dbda0 OFF=0x135bda0     <- generic_file_llseek
+  file_off=0x135c1a0   VADDR=0xffffff80093dbfe0 OFF=0x135bfe0     <- default_llseek
+  file_off=0x135c3e0   VADDR=0xffffff80093dc220 OFF=0x135c220     <- generic_file_llseek
+  file_off=0x135c660   VADDR=0xffffff80093dc4a0 OFF=0x135c4a0     <- generic_pipe_buf_confirm
+  file_off=0x135c668   VADDR=0xffffff80093dc4a8 OFF=0x135c4a8     <- generic_pipe_buf_release
+  file_off=0x135c670   VADDR=0xffffff80093dc4b0 OFF=0x135c4b0     <- generic_pipe_buf_steal
+  file_off=0x135c678   VADDR=0xffffff80093dc4b8 OFF=0x135c4b8     <- generic_pipe_buf_get
+  file_off=0x135c688   VADDR=0xffffff80093dc4c8 OFF=0x135c4c8     <- generic_file_llseek
+  file_off=0x135c7a8   VADDR=0xffffff80093dc5e8 OFF=0x135c5e8     <- no_llseek
+  file_off=0x135c8c8   VADDR=0xffffff80093dc708 OFF=0x135c708     <- generic_file_llseek
+  file_off=0x135c9e8   VADDR=0xffffff80093dc828 OFF=0x135c828     <- no_llseek
+  file_off=0x135cb08   VADDR=0xffffff80093dc948 OFF=0x135c948     <- generic_pipe_buf_confirm
+  file_off=0x135cb18   VADDR=0xffffff80093dc958 OFF=0x135c958     <- generic_pipe_buf_nosteal
+  file_off=0x135e040   VADDR=0xffffff80093dde80 OFF=0x135de80     <- default_llseek
+  file_off=0x135e160   VADDR=0xffffff80093ddfa0 OFF=0x135dfa0     <- default_llseek
+  file_off=0x135e280   VADDR=0xffffff80093de0c0 OFF=0x135e0c0     <- default_llseek
+  file_off=0x135e4c0   VADDR=0xffffff80093de300 OFF=0x135e300     <- default_llseek
+  file_off=0x135e5e0   VADDR=0xffffff80093de420 OFF=0x135e420     <- default_llseek
+  file_off=0x135e840   VADDR=0xffffff80093de680 OFF=0x135e680     <- default_llseek
+  file_off=0x135ea80   VADDR=0xffffff80093de8c0 OFF=0x135e8c0     <- default_llseek
+  file_off=0x1363400   VADDR=0xffffff80093e3240 OFF=0x1363240     <- no_llseek
+  file_off=0x1364ac0   VADDR=0xffffff80093e4900 OFF=0x1364900     <- generic_file_splice_read
+  file_off=0x1367ff0   VADDR=0xffffff80093e7e30 OFF=0x1367e30     <- generic_file_llseek
+  file_off=0x13680a8   VADDR=0xffffff80093e7ee8 OFF=0x1367ee8     <- generic_file_splice_read
+  file_off=0x1368318   VADDR=0xffffff80093e8158 OFF=0x1368158     <- noop_llseek
+  file_off=0x1368488   VADDR=0xffffff80093e82c8 OFF=0x13682c8     <- generic_pipe_buf_confirm
+  file_off=0x1368490   VADDR=0xffffff80093e82d0 OFF=0x13682d0     <- anon_pipe_buf_release
+  file_off=0x1368498   VADDR=0xffffff80093e82d8 OFF=0x13682d8     <- anon_pipe_buf_steal
+  file_off=0x13684a0   VADDR=0xffffff80093e82e0 OFF=0x13682e0     <- generic_pipe_buf_get
+  file_off=0x13684b0   VADDR=0xffffff80093e82f0 OFF=0x13682f0     <- generic_pipe_buf_confirm
+  file_off=0x13684b8   VADDR=0xffffff80093e82f8 OFF=0x13682f8     <- anon_pipe_buf_release
+  file_off=0x13684c0   VADDR=0xffffff80093e8300 OFF=0x1368300     <- anon_pipe_buf_steal
+  file_off=0x13684c8   VADDR=0xffffff80093e8308 OFF=0x1368308     <- generic_pipe_buf_get
+  file_off=0x13684d8   VADDR=0xffffff80093e8318 OFF=0x1368318     <- no_llseek
+  file_off=0x13684f0   VADDR=0xffffff80093e8330 OFF=0x1368330     <- pipe_read
+  file_off=0x13684f8   VADDR=0xffffff80093e8338 OFF=0x1368338     <- pipe_write
+  file_off=0x13685f8   VADDR=0xffffff80093e8438 OFF=0x1368438     <- generic_pipe_buf_confirm
+  file_off=0x1368600   VADDR=0xffffff80093e8440 OFF=0x1368440     <- anon_pipe_buf_release
+  file_off=0x1368608   VADDR=0xffffff80093e8448 OFF=0x1368448     <- anon_pipe_buf_steal
+  file_off=0x1368610   VADDR=0xffffff80093e8450 OFF=0x1368450     <- generic_pipe_buf_get
+  file_off=0x1369f40   VADDR=0xffffff80093e9d80 OFF=0x1369d80     <- generic_pipe_buf_get
+  file_off=0x1369f50   VADDR=0xffffff80093e9d90 OFF=0x1369d90     <- generic_pipe_buf_confirm
+  file_off=0x1369f58   VADDR=0xffffff80093e9d98 OFF=0x1369d98     <- generic_pipe_buf_release
+  file_off=0x1369f60   VADDR=0xffffff80093e9da0 OFF=0x1369da0     <- generic_pipe_buf_steal
+  file_off=0x1369f68   VADDR=0xffffff80093e9da8 OFF=0x1369da8     <- generic_pipe_buf_get
+  file_off=0x1369f78   VADDR=0xffffff80093e9db8 OFF=0x1369db8     <- generic_pipe_buf_confirm
+  file_off=0x1369f80   VADDR=0xffffff80093e9dc0 OFF=0x1369dc0     <- generic_pipe_buf_release
+  file_off=0x1369f88   VADDR=0xffffff80093e9dc8 OFF=0x1369dc8     <- generic_pipe_buf_nosteal
+  file_off=0x1369f90   VADDR=0xffffff80093e9dd0 OFF=0x1369dd0     <- generic_pipe_buf_get
+  file_off=0x1369fa0   VADDR=0xffffff80093e9de0 OFF=0x1369de0     <- generic_pipe_buf_confirm
+  file_off=0x1369fb8   VADDR=0xffffff80093e9df8 OFF=0x1369df8     <- generic_pipe_buf_get
+  file_off=0x136a0c8   VADDR=0xffffff80093e9f08 OFF=0x1369f08     <- no_llseek
+  file_off=0x136a3b8   VADDR=0xffffff80093ea1f8 OFF=0x136a1f8     <- generic_file_splice_read
+  file_off=0x136a9b8   VADDR=0xffffff80093ea7f8 OFF=0x136a7f8     <- noop_llseek
+  file_off=0x136aad8   VADDR=0xffffff80093ea918 OFF=0x136a918     <- noop_llseek
+  file_off=0x136ad18   VADDR=0xffffff80093eab58 OFF=0x136ab58     <- noop_llseek
+  file_off=0x136ae38   VADDR=0xffffff80093eac78 OFF=0x136ac78     <- noop_llseek
+  file_off=0x136af58   VADDR=0xffffff80093ead98 OFF=0x136ad98     <- noop_llseek
+  file_off=0x136bec8   VADDR=0xffffff80093ebd08 OFF=0x136bd08     <- noop_llseek
+  file_off=0x136c108   VADDR=0xffffff80093ebf48 OFF=0x136bf48     <- noop_llseek
+  file_off=0x136c888   VADDR=0xffffff80093ec6c8 OFF=0x136c6c8     <- generic_file_llseek
+  file_off=0x136cbc8   VADDR=0xffffff80093eca08 OFF=0x136ca08     <- generic_file_llseek
+  file_off=0x136cf08   VADDR=0xffffff80093ecd48 OFF=0x136cd48     <- generic_file_llseek
+  file_off=0x136d028   VADDR=0xffffff80093ece68 OFF=0x136ce68     <- generic_file_llseek
+  file_off=0x136d4a8   VADDR=0xffffff80093ed2e8 OFF=0x136d2e8     <- generic_file_llseek
+  file_off=0x136d6e8   VADDR=0xffffff80093ed528 OFF=0x136d528     <- generic_file_llseek
+  file_off=0x136d808   VADDR=0xffffff80093ed648 OFF=0x136d648     <- generic_file_llseek
+  file_off=0x136d928   VADDR=0xffffff80093ed768 OFF=0x136d768     <- default_llseek
+  file_off=0x136da48   VADDR=0xffffff80093ed888 OFF=0x136d888     <- generic_file_llseek
+  file_off=0x136db68   VADDR=0xffffff80093ed9a8 OFF=0x136d9a8     <- generic_file_llseek
+  file_off=0x136dc88   VADDR=0xffffff80093edac8 OFF=0x136dac8     <- generic_file_llseek
+  file_off=0x136e978   VADDR=0xffffff80093ee7b8 OFF=0x136e7b8     <- generic_file_llseek
+  file_off=0x136ea98   VADDR=0xffffff80093ee8d8 OFF=0x136e8d8     <- generic_file_llseek
+  file_off=0x136ebb8   VADDR=0xffffff80093ee9f8 OFF=0x136e9f8     <- generic_file_llseek
+  file_off=0x136ecd8   VADDR=0xffffff80093eeb18 OFF=0x136eb18     <- generic_file_llseek
+  file_off=0x136f7c8   VADDR=0xffffff80093ef608 OFF=0x136f608     <- generic_file_llseek
+  file_off=0x136fd88   VADDR=0xffffff80093efbc8 OFF=0x136fbc8     <- generic_file_llseek
+  file_off=0x1370448   VADDR=0xffffff80093f0288 OFF=0x1370288     <- generic_file_llseek
+  file_off=0x1370788   VADDR=0xffffff80093f05c8 OFF=0x13705c8     <- generic_file_llseek
+  file_off=0x1370d88   VADDR=0xffffff80093f0bc8 OFF=0x1370bc8     <- generic_file_llseek
+  file_off=0x1371448   VADDR=0xffffff80093f1288 OFF=0x1371288     <- generic_file_llseek
+  file_off=0x1371748   VADDR=0xffffff80093f1588 OFF=0x1371588     <- default_llseek
+  file_off=0x1371bc8   VADDR=0xffffff80093f1a08 OFF=0x1371a08     <- generic_file_llseek
+  file_off=0x1371ce8   VADDR=0xffffff80093f1b28 OFF=0x1371b28     <- generic_file_llseek
+  file_off=0x1374608   VADDR=0xffffff80093f4448 OFF=0x1374448     <- generic_file_llseek
+  file_off=0x1374728   VADDR=0xffffff80093f4568 OFF=0x1374568     <- generic_file_llseek
+  file_off=0x1375108   VADDR=0xffffff80093f4f48 OFF=0x1374f48     <- generic_file_llseek
+  file_off=0x1375110   VADDR=0xffffff80093f4f50 OFF=0x1374f50     <- configfs_read_file
+  file_off=0x1375118   VADDR=0xffffff80093f4f58 OFF=0x1374f58     <- configfs_write_file
+  file_off=0x1375230   VADDR=0xffffff80093f5070 OFF=0x1375070     <- configfs_read_bin_file
+  file_off=0x1375238   VADDR=0xffffff80093f5078 OFF=0x1375078     <- configfs_write_bin_file
+  file_off=0x1375638   VADDR=0xffffff80093f5478 OFF=0x1375478     <- configfs_readdir
+  file_off=0x1375cc0   VADDR=0xffffff80093f5b00 OFF=0x1375b00     <- generic_file_splice_read
+  file_off=0x13781c8   VADDR=0xffffff80093f8008 OFF=0x1378008     <- generic_file_llseek
+  file_off=0x1378280   VADDR=0xffffff80093f80c0 OFF=0x13780c0     <- generic_file_splice_read
+  file_off=0x1378408   VADDR=0xffffff80093f8248 OFF=0x1378248     <- generic_file_llseek
+  file_off=0x13785c8   VADDR=0xffffff80093f8408 OFF=0x1378408     <- generic_file_llseek
+  file_off=0x1378680   VADDR=0xffffff80093f84c0 OFF=0x13784c0     <- generic_file_splice_read
+  file_off=0x1379b48   VADDR=0xffffff80093f9988 OFF=0x1379988     <- generic_file_llseek
+  file_off=0x137a048   VADDR=0xffffff80093f9e88 OFF=0x1379e88     <- generic_file_llseek
+  file_off=0x13a66d0   VADDR=0xffffff8009426510 OFF=0x13a6510     <- no_llseek
+  file_off=0x13a6b88   VADDR=0xffffff80094269c8 OFF=0x13a69c8     <- generic_file_llseek
+  file_off=0x13a6fa0   VADDR=0xffffff8009426de0 OFF=0x13a6de0     <- generic_file_splice_read
+  file_off=0x13a73f8   VADDR=0xffffff8009427238 OFF=0x13a7238     <- no_llseek
+  file_off=0x13a7518   VADDR=0xffffff8009427358 OFF=0x13a7358     <- no_llseek
+  file_off=0x13a7638   VADDR=0xffffff8009427478 OFF=0x13a7478     <- no_llseek
+  file_off=0x13a7758   VADDR=0xffffff8009427598 OFF=0x13a7598     <- no_llseek
+  file_off=0x13a8c48   VADDR=0xffffff8009428a88 OFF=0x13a8a88     <- generic_file_llseek
+  file_off=0x13a8d00   VADDR=0xffffff8009428b40 OFF=0x13a8b40     <- generic_file_splice_read
+  file_off=0x13a8e88   VADDR=0xffffff8009428cc8 OFF=0x13a8cc8     <- generic_file_llseek
+  file_off=0x13a8fa8   VADDR=0xffffff8009428de8 OFF=0x13a8de8     <- noop_llseek
+  file_off=0x13a90c8   VADDR=0xffffff8009428f08 OFF=0x13a8f08     <- noop_llseek
+  file_off=0x13a9248   VADDR=0xffffff8009429088 OFF=0x13a9088     <- noop_llseek
+  file_off=0x13a9600   VADDR=0xffffff8009429440 OFF=0x13a9440     <- generic_file_llseek
+  file_off=0x13a9940   VADDR=0xffffff8009429780 OFF=0x13a9780     <- generic_file_splice_read
+  file_off=0x13ab330   VADDR=0xffffff800942b170 OFF=0x13ab170     <- noop_llseek
+  file_off=0x13abab0   VADDR=0xffffff800942b8f0 OFF=0x13ab8f0     <- generic_file_llseek
+  file_off=0x13abe08   VADDR=0xffffff800942bc48 OFF=0x13abc48     <- generic_file_llseek
+  file_off=0x13abec0   VADDR=0xffffff800942bd00 OFF=0x13abd00     <- generic_file_splice_read
+  file_off=0x13ae448   VADDR=0xffffff800942e288 OFF=0x13ae288     <- generic_file_llseek
+  file_off=0x13aee28   VADDR=0xffffff800942ec68 OFF=0x13aec68     <- generic_file_llseek
+  file_off=0x13aef48   VADDR=0xffffff800942ed88 OFF=0x13aed88     <- generic_file_llseek
+  file_off=0x13af068   VADDR=0xffffff800942eea8 OFF=0x13aeea8     <- generic_file_llseek
+  file_off=0x13af188   VADDR=0xffffff800942efc8 OFF=0x13aefc8     <- generic_file_llseek
+  file_off=0x13af2a8   VADDR=0xffffff800942f0e8 OFF=0x13af0e8     <- generic_file_llseek
+  file_off=0x13af3c8   VADDR=0xffffff800942f208 OFF=0x13af208     <- generic_file_llseek
+  file_off=0x13af4e8   VADDR=0xffffff800942f328 OFF=0x13af328     <- generic_file_llseek
+  file_off=0x13af608   VADDR=0xffffff800942f448 OFF=0x13af448     <- generic_file_llseek
+  file_off=0x13af728   VADDR=0xffffff800942f568 OFF=0x13af568     <- generic_file_llseek
+  file_off=0x13af848   VADDR=0xffffff800942f688 OFF=0x13af688     <- generic_file_llseek
+  file_off=0x13af968   VADDR=0xffffff800942f7a8 OFF=0x13af7a8     <- generic_file_llseek
+  file_off=0x13afa88   VADDR=0xffffff800942f8c8 OFF=0x13af8c8     <- generic_file_llseek
+  file_off=0x13afcb0   VADDR=0xffffff800942faf0 OFF=0x13afaf0     <- generic_file_llseek
+  file_off=0x13afdd0   VADDR=0xffffff800942fc10 OFF=0x13afc10     <- generic_file_llseek
+  file_off=0x13b0030   VADDR=0xffffff800942fe70 OFF=0x13afe70     <- generic_file_llseek
+  file_off=0x13b0150   VADDR=0xffffff800942ff90 OFF=0x13aff90     <- generic_file_llseek
+  file_off=0x13b0270   VADDR=0xffffff80094300b0 OFF=0x13b00b0     <- generic_file_llseek
+  file_off=0x13b0390   VADDR=0xffffff80094301d0 OFF=0x13b01d0     <- generic_file_llseek
+  file_off=0x13b04b0   VADDR=0xffffff80094302f0 OFF=0x13b02f0     <- generic_file_llseek
+  file_off=0x13b05d0   VADDR=0xffffff8009430410 OFF=0x13b0410     <- generic_file_llseek
+  file_off=0x13c8098   VADDR=0xffffff8009447ed8 OFF=0x13c7ed8     <- no_llseek
+  file_off=0x13c81b8   VADDR=0xffffff8009447ff8 OFF=0x13c7ff8     <- noop_llseek
+  file_off=0x13c82d8   VADDR=0xffffff8009448118 OFF=0x13c8118     <- noop_llseek
+  file_off=0x13c9360   VADDR=0xffffff80094491a0 OFF=0x13c91a0     <- default_llseek
+  file_off=0x13e7a40   VADDR=0xffffff8009467880 OFF=0x13e7880     <- default_llseek
+  file_off=0x13e90f8   VADDR=0xffffff8009468f38 OFF=0x13e8f38     <- no_llseek
+  file_off=0x13e9218   VADDR=0xffffff8009469058 OFF=0x13e9058     <- no_llseek
+  file_off=0x13e9338   VADDR=0xffffff8009469178 OFF=0x13e9178     <- no_llseek
+  file_off=0x13e9fb0   VADDR=0xffffff8009469df0 OFF=0x13e9df0     <- noop_llseek
+  file_off=0x13eb180   VADDR=0xffffff800946afc0 OFF=0x13eafc0     <- noop_llseek
+  file_off=0x13eb7a0   VADDR=0xffffff800946b5e0 OFF=0x13eb5e0     <- noop_llseek
+  file_off=0x13eb8c0   VADDR=0xffffff800946b700 OFF=0x13eb700     <- noop_llseek
+  file_off=0x13eba28   VADDR=0xffffff800946b868 OFF=0x13eb868     <- noop_llseek
+  file_off=0x13ebb80   VADDR=0xffffff800946b9c0 OFF=0x13eb9c0     <- noop_llseek
+  file_off=0x13eed08   VADDR=0xffffff800946eb48 OFF=0x13eeb48     <- noop_llseek
+  file_off=0x1411a60   VADDR=0xffffff80094918a0 OFF=0x14118a0     <- generic_file_llseek
+  file_off=0x1411b80   VADDR=0xffffff80094919c0 OFF=0x14119c0     <- generic_file_llseek
+  file_off=0x1411ca0   VADDR=0xffffff8009491ae0 OFF=0x1411ae0     <- generic_file_llseek
+  file_off=0x1411dc0   VADDR=0xffffff8009491c00 OFF=0x1411c00     <- generic_file_llseek
+  file_off=0x1411ee0   VADDR=0xffffff8009491d20 OFF=0x1411d20     <- generic_file_llseek
+  file_off=0x141e128   VADDR=0xffffff800949df68 OFF=0x141df68     <- no_llseek
+  file_off=0x1424400   VADDR=0xffffff80094a4240 OFF=0x1424240     <- noop_llseek
+  file_off=0x14b62c8   VADDR=0xffffff8009536108 OFF=0x14b6108     <- generic_file_llseek
+  file_off=0x14b63e8   VADDR=0xffffff8009536228 OFF=0x14b6228     <- generic_file_llseek
+  file_off=0x14c7f00   VADDR=0xffffff8009547d40 OFF=0x14c7d40     <- no_llseek
+  file_off=0x14c8288   VADDR=0xffffff80095480c8 OFF=0x14c80c8     <- no_llseek
+  file_off=0x14c8bf8   VADDR=0xffffff8009548a38 OFF=0x14c8a38     <- no_llseek
+  file_off=0x14c8d30   VADDR=0xffffff8009548b70 OFF=0x14c8b70     <- no_llseek
+  file_off=0x14cc5b0   VADDR=0xffffff800954c3f0 OFF=0x14cc3f0     <- no_llseek
+  file_off=0x14cf188   VADDR=0xffffff800954efc8 OFF=0x14cefc8     <- no_llseek
+  file_off=0x14d0288   VADDR=0xffffff80095500c8 OFF=0x14d00c8     <- noop_llseek
+  file_off=0x14d5018   VADDR=0xffffff8009554e58 OFF=0x14d4e58     <- noop_llseek
+  file_off=0x14d99d0   VADDR=0xffffff8009559810 OFF=0x14d9810     <- no_llseek
+  file_off=0x14d9af0   VADDR=0xffffff8009559930 OFF=0x14d9930     <- no_llseek
+  file_off=0x14d9cc8   VADDR=0xffffff8009559b08 OFF=0x14d9b08     <- noop_llseek
+  file_off=0x14db210   VADDR=0xffffff800955b050 OFF=0x14db050     <- no_llseek
+  file_off=0x1a8b6b0   VADDR=0xffffff8009b0b4f0 OFF=0x1a8b4f0     <- no_llseek
+  file_off=0x1a8bd50   VADDR=0xffffff8009b0bb90 OFF=0x1a8bb90     <- no_llseek
+  file_off=0x1a8cc00   VADDR=0xffffff8009b0ca40 OFF=0x1a8ca40     <- no_llseek
+  file_off=0x1a8ce90   VADDR=0xffffff8009b0ccd0 OFF=0x1a8ccd0     <- no_llseek
+  file_off=0x1a9b8d0   VADDR=0xffffff8009b1b710 OFF=0x1a9b710     <- noop_llseek
+  file_off=0x1a9bcb8   VADDR=0xffffff8009b1baf8 OFF=0x1a9baf8     <- noop_llseek
+  file_off=0x1a9bfc8   VADDR=0xffffff8009b1be08 OFF=0x1a9be08     <- noop_llseek
+  file_off=0x1a9c0e8   VADDR=0xffffff8009b1bf28 OFF=0x1a9bf28     <- noop_llseek
+  file_off=0x1a9c4f0   VADDR=0xffffff8009b1c330 OFF=0x1a9c330     <- noop_llseek
+  file_off=0x1a9d558   VADDR=0xffffff8009b1d398 OFF=0x1a9d398     <- noop_llseek
+  file_off=0x1a9e518   VADDR=0xffffff8009b1e358 OFF=0x1a9e358     <- noop_llseek
+  file_off=0x1a9e638   VADDR=0xffffff8009b1e478 OFF=0x1a9e478     <- noop_llseek
+  file_off=0x1aa1ea8   VADDR=0xffffff8009b21ce8 OFF=0x1aa1ce8     <- noop_llseek
+  file_off=0x1aa25b0   VADDR=0xffffff8009b223f0 OFF=0x1aa23f0     <- no_llseek
+  file_off=0x1aa3e30   VADDR=0xffffff8009b23c70 OFF=0x1aa3c70     <- no_llseek
+  file_off=0x1aa9888   VADDR=0xffffff8009b296c8 OFF=0x1aa96c8     <- noop_llseek
+  file_off=0x1aa99c8   VADDR=0xffffff8009b29808 OFF=0x1aa9808     <- no_llseek
+  file_off=0x1aae340   VADDR=0xffffff8009b2e180 OFF=0x1aae180     <- ashmem_llseek
+  file_off=0x1aae358   VADDR=0xffffff8009b2e198 OFF=0x1aae198     <- ashmem_read_iter
+  file_off=0x1aae380   VADDR=0xffffff8009b2e1c0 OFF=0x1aae1c0     <- ashmem_ioctl
+  file_off=0x1aae388   VADDR=0xffffff8009b2e1c8 OFF=0x1aae1c8     <- compat_ashmem_ioctl
+  file_off=0x1aae390   VADDR=0xffffff8009b2e1d0 OFF=0x1aae1d0     <- ashmem_mmap
+  file_off=0x1aae3a0   VADDR=0xffffff8009b2e1e0 OFF=0x1aae1e0     <- ashmem_open
+  file_off=0x1aae3b0   VADDR=0xffffff8009b2e1f0 OFF=0x1aae1f0     <- ashmem_release
+  file_off=0x1aae410   VADDR=0xffffff8009b2e250 OFF=0x1aae250     <- ashmem_show_fdinfo
+  file_off=0x1aae9b0   VADDR=0xffffff8009b2e7f0 OFF=0x1aae7f0     <- generic_file_llseek
+  file_off=0x1ab1868   VADDR=0xffffff8009b316a8 OFF=0x1ab16a8     <- noop_llseek
+  file_off=0x1ab1d60   VADDR=0xffffff8009b31ba0 OFF=0x1ab1ba0     <- noop_llseek
+  file_off=0x1ab3978   VADDR=0xffffff8009b337b8 OFF=0x1ab37b8     <- noop_llseek
+  file_off=0x1ab5188   VADDR=0xffffff8009b34fc8 OFF=0x1ab4fc8     <- noop_llseek
+  file_off=0x1ab5460   VADDR=0xffffff8009b352a0 OFF=0x1ab52a0     <- no_llseek
+  file_off=0x1ab5a00   VADDR=0xffffff8009b35840 OFF=0x1ab5840     <- no_llseek
+  file_off=0x1ab6130   VADDR=0xffffff8009b35f70 OFF=0x1ab5f70     <- no_llseek
+  file_off=0x1ab6250   VADDR=0xffffff8009b36090 OFF=0x1ab6090     <- no_llseek
+  file_off=0x1ab6940   VADDR=0xffffff8009b36780 OFF=0x1ab6780     <- no_llseek
+  file_off=0x1ab6d70   VADDR=0xffffff8009b36bb0 OFF=0x1ab6bb0     <- no_llseek
+  file_off=0x1ad3d10   VADDR=0xffffff8009b53b50 OFF=0x1ad3b50     <- generic_file_llseek
+  file_off=0x1ad3e30   VADDR=0xffffff8009b53c70 OFF=0x1ad3c70     <- generic_file_llseek
+  file_off=0x1ad3f50   VADDR=0xffffff8009b53d90 OFF=0x1ad3d90     <- generic_file_llseek
+  file_off=0x1ad4070   VADDR=0xffffff8009b53eb0 OFF=0x1ad3eb0     <- default_llseek
+  file_off=0x1ad4190   VADDR=0xffffff8009b53fd0 OFF=0x1ad3fd0     <- default_llseek
+  file_off=0x1ad42b0   VADDR=0xffffff8009b540f0 OFF=0x1ad40f0     <- default_llseek
+  file_off=0x1ad43d0   VADDR=0xffffff8009b54210 OFF=0x1ad4210     <- default_llseek
+  file_off=0x1ad44f0   VADDR=0xffffff8009b54330 OFF=0x1ad4330     <- default_llseek
+  file_off=0x1ad4610   VADDR=0xffffff8009b54450 OFF=0x1ad4450     <- default_llseek
+  file_off=0x1ad4730   VADDR=0xffffff8009b54570 OFF=0x1ad4570     <- default_llseek
+  file_off=0x1ad4850   VADDR=0xffffff8009b54690 OFF=0x1ad4690     <- default_llseek
+  file_off=0x1ad4970   VADDR=0xffffff8009b547b0 OFF=0x1ad47b0     <- default_llseek
+  file_off=0x1ad4a90   VADDR=0xffffff8009b548d0 OFF=0x1ad48d0     <- default_llseek
+  file_off=0x1ad4bb0   VADDR=0xffffff8009b549f0 OFF=0x1ad49f0     <- generic_file_llseek
+  file_off=0x1ad55a8   VADDR=0xffffff8009b553e8 OFF=0x1ad53e8     <- default_llseek
+  file_off=0x1afa978   VADDR=0xffffff8009b7a7b8 OFF=0x1afa7b8     <- no_llseek
+  file_off=0x1b07f60   VADDR=0xffffff8009b87da0 OFF=0x1b07da0     <- default_llseek
+  file_off=0x1b21110   VADDR=0xffffff8009ba0f50 OFF=0x1b20f50     <- call_usermodehelper_exec_work
+  file_off=0x1b2dfd0   VADDR=0xffffff8009bade10 OFF=0x1b2de10     <- generic_file_llseek
+  file_off=0x1b2e000   VADDR=0xffffff8009bade40 OFF=0x1b2de40     <- noop_llseek
+  file_off=0x1b2e008   VADDR=0xffffff8009bade48 OFF=0x1b2de48     <- no_llseek
+  file_off=0x1b2e010   VADDR=0xffffff8009bade50 OFF=0x1b2de50     <- default_llseek
+  file_off=0x1b2e640   VADDR=0xffffff8009bae480 OFF=0x1b2e480     <- __get_task_comm
+  file_off=0x1b2e728   VADDR=0xffffff8009bae568 OFF=0x1b2e568     <- generic_pipe_buf_steal
+  file_off=0x1b2e730   VADDR=0xffffff8009bae570 OFF=0x1b2e570     <- generic_pipe_buf_get
+  file_off=0x1b2e738   VADDR=0xffffff8009bae578 OFF=0x1b2e578     <- generic_pipe_buf_confirm
+  file_off=0x1b2e740   VADDR=0xffffff8009bae580 OFF=0x1b2e580     <- generic_pipe_buf_release
+  file_off=0x1b2e750   VADDR=0xffffff8009bae590 OFF=0x1b2e590     <- alloc_pipe_info
+  file_off=0x1b2e788   VADDR=0xffffff8009bae5c8 OFF=0x1b2e5c8     <- pipe_read
+  file_off=0x1b2e790   VADDR=0xffffff8009bae5d0 OFF=0x1b2e5d0     <- pipe_write
+  file_off=0x1b2e7d8   VADDR=0xffffff8009bae618 OFF=0x1b2e618     <- anon_pipe_buf_release
+  file_off=0x1b2e7e0   VADDR=0xffffff8009bae620 OFF=0x1b2e620     <- anon_pipe_buf_steal
+  file_off=0x1b2fe50   VADDR=0xffffff8009bafc90 OFF=0x1b2fc90     <- generic_file_splice_read
+  file_off=0x1b2fe58   VADDR=0xffffff8009bafc98 OFF=0x1b2fc98     <- generic_pipe_buf_nosteal
+  file_off=0x1b2fec8   VADDR=0xffffff8009bafd08 OFF=0x1b2fd08     <- default_file_splice_read
+  file_off=0x1b32bf0   VADDR=0xffffff8009bb2a30 OFF=0x1b32a30     <- configfs_read_file
+  file_off=0x1b32bf8   VADDR=0xffffff8009bb2a38 OFF=0x1b32a38     <- configfs_write_file
+  file_off=0x1b32c10   VADDR=0xffffff8009bb2a50 OFF=0x1b32a50     <- configfs_read_bin_file
+  file_off=0x1b32c18   VADDR=0xffffff8009bb2a58 OFF=0x1b32a58     <- configfs_write_bin_file
+  file_off=0x1b32cc8   VADDR=0xffffff8009bb2b08 OFF=0x1b32b08     <- configfs_readdir
+  file_off=0x1b39038   VADDR=0xffffff8009bb8e78 OFF=0x1b38e78     <- cap_capable
+  file_off=0x1b7e5c0   VADDR=0xffffff8009bfe400 OFF=0x1b7e400     <- ashmem_llseek
+  file_off=0x1b7e5c8   VADDR=0xffffff8009bfe408 OFF=0x1b7e408     <- ashmem_read_iter
+  file_off=0x1b7e5d0   VADDR=0xffffff8009bfe410 OFF=0x1b7e410     <- ashmem_ioctl
+  file_off=0x1b7e5d8   VADDR=0xffffff8009bfe418 OFF=0x1b7e418     <- compat_ashmem_ioctl
+  file_off=0x1b7e5e0   VADDR=0xffffff8009bfe420 OFF=0x1b7e420     <- ashmem_mmap
+  file_off=0x1b7e5e8   VADDR=0xffffff8009bfe428 OFF=0x1b7e428     <- ashmem_open
+  file_off=0x1b7e5f0   VADDR=0xffffff8009bfe430 OFF=0x1b7e430     <- ashmem_release
+  file_off=0x1b7e5f8   VADDR=0xffffff8009bfe438 OFF=0x1b7e438     <- ashmem_show_fdinfo
+  file_off=0x1b7e600   VADDR=0xffffff8009bfe440 OFF=0x1b7e440     <- ashmem_shrink_count
+  file_off=0x1b7e608   VADDR=0xffffff8009bfe448 OFF=0x1b7e448     <- ashmem_shrink_scan
+  file_off=0x1b7e610   VADDR=0xffffff8009bfe450 OFF=0x1b7e450     <- ashmem_vmfile_mmap
+  file_off=0x1b7e618   VADDR=0xffffff8009bfe458 OFF=0x1b7e458     <- ashmem_vmfile_get_unmapped_area
+  file_off=0x1f75fe8   VADDR=0xffffff8009ff5e28 OFF=0x1f75e28     <- cap_capable
+  file_off=0x21be670   VADDR=0xffffff800a23e4b0 OFF=0x21be4b0     <- noop_llseek
+  file_off=0x2461b48   VADDR=0xffffff800a4e1988 OFF=0x2461988     <- ashmem_shrink_count
+  file_off=0x2461b50   VADDR=0xffffff800a4e1990 OFF=0x2461990     <- ashmem_shrink_scan
+
+====================================================================================================
+二、聚类：连续函数指针表（间距 <= 0x100）
+====================================================================================================
+
+  [簇 16] 起点 file_off=0x135c660  VADDR=0xffffff80093dc4a0  OFF=0x135c4a0  指针数=5 跨度=0x28
+     +0x0     (slot 0  ) generic_pipe_buf_confirm
+     +0x8     (slot 1  ) generic_pipe_buf_release
+     +0x10    (slot 2  ) generic_pipe_buf_steal
+     +0x18    (slot 3  ) generic_pipe_buf_get
+     +0x28    (slot 5  ) generic_file_llseek
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0xffffff80081b19c8 <- (代码/数据指针) s_stop
+       0x-0018: 0xffffff80081b1a44 <- (代码/数据指针) s_next
+       0x-0010: 0xffffff80081b1be0 <- (代码/数据指针) s_show
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00008: 0xffffff800829f8ec <- generic_pipe_buf_release
+       0x00010: 0xffffff800829f820 <- generic_pipe_buf_steal
+       0x00018: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00020: 0x0000000000000000
+       0x00028: 0xffffff80082923e4 <- generic_file_llseek
+       0x00030: 0xffffff80081b3a58 <- (代码/数据指针) trace_options_core_read
+       0x00038: 0xffffff80081b3aac <- (代码/数据指针) trace_options_core_write
+       0x00040: 0x0000000000000000
+       0x00048: 0x0000000000000000
+
+  [簇 20] 起点 file_off=0x135cb08  VADDR=0xffffff80093dc948  OFF=0x135c948  指针数=2 跨度=0x10
+     +0x0     (slot 0  ) generic_pipe_buf_confirm
+     +0x10    (slot 2  ) generic_pipe_buf_nosteal
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00008: 0xffffff80081b4bf4 <- (代码/数据指针) buffer_pipe_buf_release
+       0x00010: 0xffffff80082d1340 <- generic_pipe_buf_nosteal
+       0x00018: 0xffffff80081b4c38 <- (代码/数据指针) buffer_pipe_buf_get
+       0x00020: 0x20676e6963617274
+       0x00028: 0x574f482d696e696d
+       0x00030: 0x6520230a0a3a4f54
+
+  [簇 30] 起点 file_off=0x1367ff0  VADDR=0xffffff80093e7e30  OFF=0x1367e30  指针数=2 跨度=0xb8
+     +0x0     (slot 0  ) generic_file_llseek
+     +0xb8    (slot 23 ) generic_file_splice_read
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0c070400110d0b00
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff80082923e4 <- generic_file_llseek
+       0x00008: 0x0000000000000000
+       0x00010: 0x0000000000000000
+       0x00018: 0xffffff8008213928 <- (代码/数据指针) generic_file_read_iter
+       0x00020: 0x0000000000000000
+       0x00028: 0x0000000000000000
+       0x00030: 0x0000000000000000
+       0x00038: 0x0000000000000000
+       0x00040: 0x0000000000000000
+       0x00048: 0x0000000000000000
+       0x00050: 0xffffff8008214d44 <- (代码/数据指针) generic_file_readonly_mmap
+       0x00058: 0x0000000000000000
+       0x00060: 0x0000000000000000
+       0x00068: 0x0000000000000000
+       0x00070: 0x0000000000000000
+       0x00078: 0x0000000000000000
+       0x00080: 0x0000000000000000
+       0x00088: 0x0000000000000000
+       0x00090: 0x0000000000000000
+       0x00098: 0x0000000000000000
+       0x000a0: 0x0000000000000000
+       0x000a8: 0x0000000000000000
+       0x000b0: 0x0000000000000000
+       0x000b8: 0xffffff80082d11fc <- generic_file_splice_read
+       0x000c0: 0x0000000000000000
+       0x000c8: 0x0000000000000000
+       0x000d0: 0x0000000000000000
+       0x000d8: 0x0000000000000000
+
+  [簇 32] 起点 file_off=0x1368488  VADDR=0xffffff80093e82c8  OFF=0x13682c8  指针数=15 跨度=0x188
+     +0x0     (slot 0  ) generic_pipe_buf_confirm
+     +0x8     (slot 1  ) anon_pipe_buf_release
+     +0x10    (slot 2  ) anon_pipe_buf_steal
+     +0x18    (slot 3  ) generic_pipe_buf_get
+     +0x28    (slot 5  ) generic_pipe_buf_confirm
+     +0x30    (slot 6  ) anon_pipe_buf_release
+     +0x38    (slot 7  ) anon_pipe_buf_steal
+     +0x40    (slot 8  ) generic_pipe_buf_get
+     +0x50    (slot 10 ) no_llseek
+     +0x68    (slot 13 ) pipe_read
+     +0x70    (slot 14 ) pipe_write
+     +0x170   (slot 46 ) generic_pipe_buf_confirm
+     +0x178   (slot 47 ) anon_pipe_buf_release
+     +0x180   (slot 48 ) anon_pipe_buf_steal
+     +0x188   (slot 49 ) generic_pipe_buf_get
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000001
+       0x00000: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00008: 0xffffff80082a1328 <- anon_pipe_buf_release
+       0x00010: 0xffffff80082a13a4 <- anon_pipe_buf_steal
+       0x00018: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00020: 0x0000000000000000
+       0x00028: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00030: 0xffffff80082a1328 <- anon_pipe_buf_release
+       0x00038: 0xffffff80082a13a4 <- anon_pipe_buf_steal
+       0x00040: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00048: 0x0000000000000000
+       0x00050: 0xffffff80082925ec <- no_llseek
+       0x00058: 0x0000000000000000
+       0x00060: 0x0000000000000000
+       0x00068: 0xffffff800829ff04 <- pipe_read
+       0x00070: 0xffffff80082a024c <- pipe_write
+       0x00078: 0x0000000000000000
+       0x00080: 0x0000000000000000
+       0x00088: 0xffffff80082a0698 <- (代码/数据指针) pipe_poll
+       0x00090: 0xffffff80082a0744 <- (代码/数据指针) pipe_ioctl
+       0x00098: 0x0000000000000000
+       0x000a0: 0x0000000000000000
+       0x000a8: 0x0000000000000000
+       0x000b0: 0xffffff80082a08f0 <- (代码/数据指针) fifo_open
+       0x000b8: 0x0000000000000000
+       0x000c0: 0xffffff80082a0cdc <- (代码/数据指针) pipe_release
+       0x000c8: 0x0000000000000000
+       0x000d0: 0xffffff80082a0dd4 <- (代码/数据指针) pipe_fasync
+       0x000d8: 0x0000000000000000
+       0x000e0: 0x0000000000000000
+       0x000e8: 0x0000000000000000
+       0x000f0: 0x0000000000000000
+       0x000f8: 0x0000000000000000
+       0x00100: 0x0000000000000000
+       0x00108: 0x0000000000000000
+       0x00110: 0x0000000000000000
+       0x00118: 0x0000000000000000
+       0x00120: 0x0000000000000000
+       0x00128: 0x0000000000000000
+       0x00130: 0x0000000000000000
+       0x00138: 0x0000000000000000
+       0x00140: 0x0000000000000000
+       0x00148: 0x0000000000000000
+       0x00150: 0x0000000000000000
+       0x00158: 0x0000000000000000
+       0x00160: 0x0000000000000000
+       0x00168: 0x0000000000000000
+       0x00170: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00178: 0xffffff80082a1328 <- anon_pipe_buf_release
+       0x00180: 0xffffff80082a13a4 <- anon_pipe_buf_steal
+       0x00188: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00190: 0x0000000000000000
+       0x00198: 0xffffff80082b7470 <- (代码/数据指针) free_inode_nonrcu
+       0x001a0: 0x0000000000000000
+       0x001a8: 0x0000000000000000
+
+  [簇 33] 起点 file_off=0x1369f40  VADDR=0xffffff80093e9d80  OFF=0x1369d80  指针数=11 跨度=0x78
+     +0x0     (slot 0  ) generic_pipe_buf_get
+     +0x10    (slot 2  ) generic_pipe_buf_confirm
+     +0x18    (slot 3  ) generic_pipe_buf_release
+     +0x20    (slot 4  ) generic_pipe_buf_steal
+     +0x28    (slot 5  ) generic_pipe_buf_get
+     +0x38    (slot 7  ) generic_pipe_buf_confirm
+     +0x40    (slot 8  ) generic_pipe_buf_release
+     +0x48    (slot 9  ) generic_pipe_buf_nosteal
+     +0x50    (slot 10 ) generic_pipe_buf_get
+     +0x60    (slot 12 ) generic_pipe_buf_confirm
+     +0x78    (slot 15 ) generic_pipe_buf_get
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0xffffff80082d0d1c <- (代码/数据指针) page_cache_pipe_buf_confirm
+       0x-0010: 0xffffff80082d0de0 <- (代码/数据指针) page_cache_pipe_buf_release
+       0x-0008: 0xffffff80082d0e3c <- (代码/数据指针) page_cache_pipe_buf_steal
+       0x00000: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00008: 0x0000000000000000
+       0x00010: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00018: 0xffffff800829f8ec <- generic_pipe_buf_release
+       0x00020: 0xffffff800829f820 <- generic_pipe_buf_steal
+       0x00028: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00030: 0x0000000000000000
+       0x00038: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00040: 0xffffff800829f8ec <- generic_pipe_buf_release
+       0x00048: 0xffffff80082d1340 <- generic_pipe_buf_nosteal
+       0x00050: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00058: 0x0000000000000000
+       0x00060: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00068: 0xffffff80082d0de0 <- (代码/数据指针) page_cache_pipe_buf_release
+       0x00070: 0xffffff80082d351c <- (代码/数据指针) user_page_pipe_buf_steal
+       0x00078: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x00080: 0x0000000014100900
+       0x00088: 0x0000000000000000
+       0x00090: 0x0000000000000000
+       0x00098: 0x0000000000000000
+
+  [簇 69] 起点 file_off=0x1375108  VADDR=0xffffff80093f4f48  OFF=0x1374f48  指针数=3 跨度=0x10
+     +0x0     (slot 0  ) generic_file_llseek
+     +0x8     (slot 1  ) configfs_read_file
+     +0x10    (slot 2  ) configfs_write_file
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff80082923e4 <- generic_file_llseek
+       0x00008: 0xffffff8008346590 <- configfs_read_file
+       0x00010: 0xffffff80083466e8 <- configfs_write_file
+       0x00018: 0x0000000000000000
+       0x00020: 0x0000000000000000
+       0x00028: 0x0000000000000000
+       0x00030: 0x0000000000000000
+
+  [簇 70] 起点 file_off=0x1375230  VADDR=0xffffff80093f5070  OFF=0x1375070  指针数=2 跨度=0x8
+     +0x0     (slot 0  ) configfs_read_bin_file
+     +0x8     (slot 1  ) configfs_write_bin_file
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff80083468f8 <- configfs_read_bin_file
+       0x00008: 0xffffff8008346a78 <- configfs_write_bin_file
+       0x00010: 0x0000000000000000
+       0x00018: 0x0000000000000000
+       0x00020: 0x0000000000000000
+       0x00028: 0x0000000000000000
+
+  [簇 73] 起点 file_off=0x13781c8  VADDR=0xffffff80093f8008  OFF=0x1378008  指针数=2 跨度=0xb8
+     +0x0     (slot 0  ) generic_file_llseek
+     +0xb8    (slot 23 ) generic_file_splice_read
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff80082923e4 <- generic_file_llseek
+       0x00008: 0x0000000000000000
+       0x00010: 0x0000000000000000
+       0x00018: 0xffffff8008213928 <- (代码/数据指针) generic_file_read_iter
+       0x00020: 0xffffff80082157b8 <- (代码/数据指针) generic_file_write_iter
+       0x00028: 0x0000000000000000
+       0x00030: 0x0000000000000000
+       0x00038: 0x0000000000000000
+       0x00040: 0x0000000000000000
+       0x00048: 0x0000000000000000
+       0x00050: 0xffffff8008214cf0 <- (代码/数据指针) generic_file_mmap
+       0x00058: 0x0000000000000000
+       0x00060: 0x0000000000000000
+       0x00068: 0x0000000000000000
+       0x00070: 0x0000000000000000
+       0x00078: 0xffffff80082c7df4 <- (代码/数据指针) noop_fsync
+       0x00080: 0x0000000000000000
+       0x00088: 0x0000000000000000
+       0x00090: 0x0000000000000000
+       0x00098: 0xffffff80083b9678 <- (代码/数据指针) ramfs_mmu_get_unmapped_area
+       0x000a0: 0x0000000000000000
+       0x000a8: 0x0000000000000000
+       0x000b0: 0xffffff80082d16b4 <- (代码/数据指针) iter_file_splice_write
+       0x000b8: 0xffffff80082d11fc <- generic_file_splice_read
+       0x000c0: 0x0000000000000000
+       0x000c8: 0x0000000000000000
+       0x000d0: 0x0000000000000000
+       0x000d8: 0x0000000000000000
+
+  [簇 75] 起点 file_off=0x13785c8  VADDR=0xffffff80093f8408  OFF=0x1378408  指针数=2 跨度=0xb8
+     +0x0     (slot 0  ) generic_file_llseek
+     +0xb8    (slot 23 ) generic_file_splice_read
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0xffffff80083c0a0c <- (代码/数据指针) fat12_ent_next
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff80082923e4 <- generic_file_llseek
+       0x00008: 0x0000000000000000
+       0x00010: 0x0000000000000000
+       0x00018: 0xffffff8008213928 <- (代码/数据指针) generic_file_read_iter
+       0x00020: 0xffffff80082157b8 <- (代码/数据指针) generic_file_write_iter
+       0x00028: 0x0000000000000000
+       0x00030: 0x0000000000000000
+       0x00038: 0x0000000000000000
+       0x00040: 0xffffff80083c0b60 <- (代码/数据指针) fat_generic_ioctl
+       0x00048: 0xffffff80083c1440 <- (代码/数据指针) fat_generic_compat_ioctl
+       0x00050: 0xffffff8008214cf0 <- (代码/数据指针) generic_file_mmap
+       0x00058: 0x0000000000000000
+       0x00060: 0x0000000000000000
+       0x00068: 0x0000000000000000
+       0x00070: 0xffffff80083c1458 <- (代码/数据指针) fat_file_release
+       0x00078: 0xffffff80083c13e8 <- (代码/数据指针) fat_file_fsync
+       0x00080: 0x0000000000000000
+       0x00088: 0x0000000000000000
+       0x00090: 0x0000000000000000
+       0x00098: 0x0000000000000000
+       0x000a0: 0x0000000000000000
+       0x000a8: 0x0000000000000000
+       0x000b0: 0x0000000000000000
+       0x000b8: 0xffffff80082d11fc <- generic_file_splice_read
+       0x000c0: 0x0000000000000000
+       0x000c8: 0xffffff80083c149c <- (代码/数据指针) fat_fallocate
+       0x000d0: 0x0000000000000000
+       0x000d8: 0x0000000000000000
+
+  [簇 85] 起点 file_off=0x13a8c48  VADDR=0xffffff8009428a88  OFF=0x13a8a88  指针数=2 跨度=0xb8
+     +0x0     (slot 0  ) generic_file_llseek
+     +0xb8    (slot 23 ) generic_file_splice_read
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff80082923e4 <- generic_file_llseek
+       0x00008: 0x0000000000000000
+       0x00010: 0x0000000000000000
+       0x00018: 0xffffff8008213928 <- (代码/数据指针) generic_file_read_iter
+       0x00020: 0x0000000000000000
+       0x00028: 0x0000000000000000
+       0x00030: 0x0000000000000000
+       0x00038: 0x0000000000000000
+       0x00040: 0xffffff80083fb658 <- (代码/数据指针) dispatch_ioctl
+       0x00048: 0xffffff80083fb658 <- (代码/数据指针) dispatch_ioctl
+       0x00050: 0xffffff8008214cf0 <- (代码/数据指针) generic_file_mmap
+       0x00058: 0x0000000000000000
+       0x00060: 0xffffff80083fca34 <- (代码/数据指针) file_open
+       0x00068: 0x0000000000000000
+       0x00070: 0xffffff80083fcbd4 <- (代码/数据指针) file_release
+       0x00078: 0x0000000000000000
+       0x00080: 0x0000000000000000
+       0x00088: 0x0000000000000000
+       0x00090: 0x0000000000000000
+       0x00098: 0x0000000000000000
+       0x000a0: 0x0000000000000000
+       0x000a8: 0x0000000000000000
+       0x000b0: 0x0000000000000000
+       0x000b8: 0xffffff80082d11fc <- generic_file_splice_read
+       0x000c0: 0x0000000000000000
+       0x000c8: 0x0000000000000000
+       0x000d0: 0x0000000000000000
+       0x000d8: 0x0000000000000000
+
+  [簇 94] 起点 file_off=0x13abe08  VADDR=0xffffff800942bc48  OFF=0x13abc48  指针数=2 跨度=0xb8
+     +0x0     (slot 0  ) generic_file_llseek
+     +0xb8    (slot 23 ) generic_file_splice_read
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff80082923e4 <- generic_file_llseek
+       0x00008: 0x0000000000000000
+       0x00010: 0x0000000000000000
+       0x00018: 0xffffff8008213928 <- (代码/数据指针) generic_file_read_iter
+       0x00020: 0xffffff80082157b8 <- (代码/数据指针) generic_file_write_iter
+       0x00028: 0x0000000000000000
+       0x00030: 0x0000000000000000
+       0x00038: 0x0000000000000000
+       0x00040: 0xffffff8008461b7c <- (代码/数据指针) exfat_generic_ioctl
+       0x00048: 0x0000000000000000
+       0x00050: 0xffffff8008214cf0 <- (代码/数据指针) generic_file_mmap
+       0x00058: 0x0000000000000000
+       0x00060: 0x0000000000000000
+       0x00068: 0x0000000000000000
+       0x00070: 0xffffff8008462f20 <- (代码/数据指针) exfat_file_release
+       0x00078: 0xffffff80082c91d0 <- (代码/数据指针) generic_file_fsync
+       0x00080: 0x0000000000000000
+       0x00088: 0x0000000000000000
+       0x00090: 0x0000000000000000
+       0x00098: 0x0000000000000000
+       0x000a0: 0x0000000000000000
+       0x000a8: 0x0000000000000000
+       0x000b0: 0x0000000000000000
+       0x000b8: 0xffffff80082d11fc <- generic_file_splice_read
+       0x000c0: 0x0000000000000000
+       0x000c8: 0x0000000000000000
+       0x000d0: 0x0000000000000000
+       0x000d8: 0x0000000000000000
+
+  [簇 169] 起点 file_off=0x1aae340  VADDR=0xffffff8009b2e180  OFF=0x1aae180  指针数=8 跨度=0xd0
+     +0x0     (slot 0  ) ashmem_llseek
+     +0x18    (slot 3  ) ashmem_read_iter
+     +0x40    (slot 8  ) ashmem_ioctl
+     +0x48    (slot 9  ) compat_ashmem_ioctl
+     +0x50    (slot 10 ) ashmem_mmap
+     +0x60    (slot 12 ) ashmem_open
+     +0x70    (slot 14 ) ashmem_release
+     +0xd0    (slot 26 ) ashmem_show_fdinfo
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x011b0092011b0000
+       0x-0010: 0x00000094000b011b
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff8008f8cba4 <- ashmem_llseek
+       0x00008: 0x0000000000000000
+       0x00010: 0x0000000000000000
+       0x00018: 0xffffff8008f8cc40 <- ashmem_read_iter
+       0x00020: 0x0000000000000000
+       0x00028: 0x0000000000000000
+       0x00030: 0x0000000000000000
+       0x00038: 0x0000000000000000
+       0x00040: 0xffffff8008f8ccf4 <- ashmem_ioctl
+       0x00048: 0xffffff8008f8d634 <- compat_ashmem_ioctl
+       0x00050: 0xffffff8008f8d680 <- ashmem_mmap
+       0x00058: 0x0000000000000000
+       0x00060: 0xffffff8008f8d7ec <- ashmem_open
+       0x00068: 0x0000000000000000
+       0x00070: 0xffffff8008f8d86c <- ashmem_release
+       0x00078: 0x0000000000000000
+       0x00080: 0x0000000000000000
+       0x00088: 0x0000000000000000
+       0x00090: 0x0000000000000000
+       0x00098: 0x0000000000000000
+       0x000a0: 0x0000000000000000
+       0x000a8: 0x0000000000000000
+       0x000b0: 0x0000000000000000
+       0x000b8: 0x0000000000000000
+       0x000c0: 0x0000000000000000
+       0x000c8: 0x0000000000000000
+       0x000d0: 0xffffff8008f8d980 <- ashmem_show_fdinfo
+       0x000d8: 0x0000000000000000
+       0x000e0: 0x0000000000000000
+       0x000e8: 0x0000000000000000
+       0x000f0: 0x0000000000000000
+
+  [簇 199] 起点 file_off=0x1b2dfd0  VADDR=0xffffff8009bade10  OFF=0x1b2de10  指针数=4 跨度=0x40
+     +0x0     (slot 0  ) generic_file_llseek
+     +0x30    (slot 6  ) noop_llseek
+     +0x38    (slot 7  ) no_llseek
+     +0x40    (slot 8  ) default_llseek
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0xffffff800829235c <- (代码/数据指针) __arm64_sys_vhangup
+       0x-0018: 0xffffff800829238c <- (代码/数据指针) generic_file_open
+       0x-0010: 0xffffff80082923b0 <- (代码/数据指针) nonseekable_open
+       0x-0008: 0xffffff80082923c4 <- (代码/数据指针) stream_open
+       0x00000: 0xffffff80082923e4 <- generic_file_llseek
+       0x00008: 0xffffff800829240c <- (代码/数据指针) vfs_setpos
+       0x00010: 0xffffff8008292454 <- (代码/数据指针) generic_file_llseek_size
+       0x00018: 0xffffff8008292568 <- (代码/数据指针) fixed_size_llseek
+       0x00020: 0xffffff8008292590 <- (代码/数据指针) no_seek_end_llseek
+       0x00028: 0xffffff80082925bc <- (代码/数据指针) no_seek_end_llseek_size
+       0x00030: 0xffffff80082925e4 <- noop_llseek
+       0x00038: 0xffffff80082925ec <- no_llseek
+       0x00040: 0xffffff80082925f4 <- default_llseek
+       0x00048: 0xffffff80082926d0 <- (代码/数据指针) vfs_llseek
+       0x00050: 0xffffff8008292704 <- (代码/数据指针) ksys_lseek
+       0x00058: 0xffffff80082927a8 <- (代码/数据指针) __arm64_sys_lseek
+       0x00060: 0xffffff8008292854 <- (代码/数据指针) __arm64_compat_sys_lseek
+
+  [簇 200] 起点 file_off=0x1b2e640  VADDR=0xffffff8009bae480  OFF=0x1b2e480  指针数=10 跨度=0x1a0
+     +0x0     (slot 0  ) __get_task_comm
+     +0xe8    (slot 29 ) generic_pipe_buf_steal
+     +0xf0    (slot 30 ) generic_pipe_buf_get
+     +0xf8    (slot 31 ) generic_pipe_buf_confirm
+     +0x100   (slot 32 ) generic_pipe_buf_release
+     +0x110   (slot 34 ) alloc_pipe_info
+     +0x148   (slot 41 ) pipe_read
+     +0x150   (slot 42 ) pipe_write
+     +0x198   (slot 51 ) anon_pipe_buf_release
+     +0x1a0   (slot 52 ) anon_pipe_buf_steal
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0xffffff800829d344 <- (代码/数据指针) kernel_read_file
+       0x-0018: 0xffffff800829d518 <- (代码/数据指针) kernel_read_file_from_path
+       0x-0010: 0xffffff800829d5a8 <- (代码/数据指针) kernel_read_file_from_fd
+       0x-0008: 0xffffff800829d628 <- (代码/数据指针) read_code
+       0x00000: 0xffffff800829d6ac <- __get_task_comm
+       0x00008: 0xffffff800829d700 <- (代码/数据指针) __set_task_comm
+       0x00010: 0xffffff800829d80c <- (代码/数据指针) flush_old_exec
+       0x00018: 0xffffff800829df70 <- (代码/数据指针) would_dump
+       0x00020: 0xffffff800829e014 <- (代码/数据指针) setup_new_exec
+       0x00028: 0xffffff800829e190 <- (代码/数据指针) set_dumpable
+       0x00030: 0xffffff800829e1ec <- (代码/数据指针) finalize_exec
+       0x00038: 0xffffff800829e234 <- (代码/数据指针) prepare_bprm_creds
+       0x00040: 0xffffff800829e290 <- (代码/数据指针) bprm_change_interp
+       0x00048: 0xffffff800829e2e8 <- (代码/数据指针) install_exec_creds
+       0x00050: 0xffffff800829e348 <- (代码/数据指针) prepare_binprm
+       0x00058: 0xffffff800829e4b0 <- (代码/数据指针) remove_arg_zero
+       0x00060: 0xffffff800829e61c <- (代码/数据指针) get_arg_page
+       0x00068: 0xffffff800829e774 <- (代码/数据指针) search_binary_handler
+       0x00070: 0xffffff800829e948 <- (代码/数据指针) do_execve_file
+       0x00078: 0xffffff800829e97c <- (代码/数据指针) __do_execve_file
+       0x00080: 0xffffff800829f1fc <- (代码/数据指针) do_execve
+       0x00088: 0xffffff800829f230 <- (代码/数据指针) do_execveat
+       0x00090: 0xffffff800829f25c <- (代码/数据指针) set_binfmt
+       0x00098: 0xffffff800829f2a0 <- (代码/数据指针) __arm64_sys_execve
+       0x000a0: 0xffffff800829f2f0 <- (代码/数据指针) __arm64_sys_execveat
+       0x000a8: 0xffffff800829f35c <- (代码/数据指针) __arm64_compat_sys_execve
+       0x000b0: 0xffffff800829f3ac <- (代码/数据指针) __arm64_compat_sys_execveat
+       0x000b8: 0xffffff800829f418 <- (代码/数据指针) get_user_arg_ptr
+       0x000c0: 0xffffff800829f658 <- (代码/数据指针) free_bprm
+       0x000c8: 0xffffff800829f6cc <- (代码/数据指针) pipe_lock
+       0x000d0: 0xffffff800829f6e8 <- (代码/数据指针) pipe_unlock
+       0x000d8: 0xffffff800829f704 <- (代码/数据指针) pipe_double_lock
+       0x000e0: 0xffffff800829f774 <- (代码/数据指针) pipe_wait
+       0x000e8: 0xffffff800829f820 <- generic_pipe_buf_steal
+       0x000f0: 0xffffff800829f898 <- generic_pipe_buf_get
+       0x000f8: 0xffffff800829f8e4 <- generic_pipe_buf_confirm
+       0x00100: 0xffffff800829f8ec <- generic_pipe_buf_release
+       0x00108: 0xffffff800829f938 <- (代码/数据指针) pipe_buf_mark_unmergeable
+       0x00110: 0xffffff800829f960 <- alloc_pipe_info
+       0x00118: 0xffffff800829fb14 <- (代码/数据指针) free_pipe_info
+       0x00120: 0xffffff800829fbc8 <- (代码/数据指针) create_pipe_files
+       0x00128: 0xffffff800829fd74 <- (代码/数据指针) do_pipe_flags
+       0x00130: 0xffffff800829fdec <- (代码/数据指针) __do_pipe_flags
+       0x00138: 0xffffff800829fec0 <- (代码/数据指针) __arm64_sys_pipe2
+       0x00140: 0xffffff800829fee4 <- (代码/数据指针) __arm64_sys_pipe
+       0x00148: 0xffffff800829ff04 <- pipe_read
+       0x00150: 0xffffff80082a024c <- pipe_write
+       0x00158: 0xffffff80082a0698 <- (代码/数据指针) pipe_poll
+       0x00160: 0xffffff80082a0744 <- (代码/数据指针) pipe_ioctl
+       0x00168: 0xffffff80082a08f0 <- (代码/数据指针) fifo_open
+       0x00170: 0xffffff80082a0cdc <- (代码/数据指针) pipe_release
+       0x00178: 0xffffff80082a0dd4 <- (代码/数据指针) pipe_fasync
+       0x00180: 0xffffff80082a0e90 <- (代码/数据指针) round_pipe_size
+       0x00188: 0xffffff80082a0ecc <- (代码/数据指针) get_pipe_info
+       0x00190: 0xffffff80082a0ef0 <- (代码/数据指针) pipe_fcntl
+       0x00198: 0xffffff80082a1328 <- anon_pipe_buf_release
+       0x001a0: 0xffffff80082a13a4 <- anon_pipe_buf_steal
+       0x001a8: 0xffffff80082a1420 <- (代码/数据指针) do_pipe2
+       0x001b0: 0xffffff80082a1520 <- (代码/数据指针) pipefs_mount
+       0x001b8: 0xffffff80082a1558 <- (代码/数据指针) pipefs_dname
+       0x001c0: 0xffffff80082a157c <- (代码/数据指针) trace_event_raw_event_inodepath
+
+  [簇 201] 起点 file_off=0x1b2fe50  VADDR=0xffffff8009bafc90  OFF=0x1b2fc90  指针数=3 跨度=0x78
+     +0x0     (slot 0  ) generic_file_splice_read
+     +0x8     (slot 1  ) generic_pipe_buf_nosteal
+     +0x78    (slot 15 ) default_file_splice_read
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0xffffff80082d0f4c <- (代码/数据指针) splice_to_pipe
+       0x-0018: 0xffffff80082d1088 <- (代码/数据指针) add_to_pipe
+       0x-0010: 0xffffff80082d1148 <- (代码/数据指针) splice_grow_spd
+       0x-0008: 0xffffff80082d11c4 <- (代码/数据指针) splice_shrink_spd
+       0x00000: 0xffffff80082d11fc <- generic_file_splice_read
+       0x00008: 0xffffff80082d1340 <- generic_pipe_buf_nosteal
+       0x00010: 0xffffff80082d1348 <- (代码/数据指针) __splice_from_pipe
+       0x00018: 0xffffff80082d1540 <- (代码/数据指针) splice_from_pipe_next
+       0x00020: 0xffffff80082d162c <- (代码/数据指针) splice_from_pipe
+       0x00028: 0xffffff80082d16b4 <- (代码/数据指针) iter_file_splice_write
+       0x00030: 0xffffff80082d19ec <- (代码/数据指针) generic_splice_sendpage
+       0x00038: 0xffffff80082d1a74 <- (代码/数据指针) pipe_to_sendpage
+       0x00040: 0xffffff80082d1b0c <- (代码/数据指针) splice_direct_to_actor
+       0x00048: 0xffffff80082d1d80 <- (代码/数据指针) do_splice_direct
+       0x00050: 0xffffff80082d1e48 <- (代码/数据指针) direct_splice_actor
+       0x00058: 0xffffff80082d1e88 <- (代码/数据指针) __arm64_sys_vmsplice
+       0x00060: 0xffffff80082d1f88 <- (代码/数据指针) __arm64_compat_sys_vmsplice
+       0x00068: 0xffffff80082d208c <- (代码/数据指针) __arm64_sys_splice
+       0x00070: 0xffffff80082d295c <- (代码/数据指针) __arm64_sys_tee
+       0x00078: 0xffffff80082d2cbc <- default_file_splice_read
+       0x00080: 0xffffff80082d2f80 <- (代码/数据指针) default_file_splice_write
+       0x00088: 0xffffff80082d3028 <- (代码/数据指针) write_pipe_buf
+       0x00090: 0xffffff80082d308c <- (代码/数据指针) do_vmsplice
+       0x00098: 0xffffff80082d351c <- (代码/数据指针) user_page_pipe_buf_steal
+
+  [簇 202] 起点 file_off=0x1b32bf0  VADDR=0xffffff8009bb2a30  OFF=0x1b32a30  指针数=5 跨度=0xd8
+     +0x0     (slot 0  ) configfs_read_file
+     +0x8     (slot 1  ) configfs_write_file
+     +0x20    (slot 4  ) configfs_read_bin_file
+     +0x28    (slot 5  ) configfs_write_bin_file
+     +0xd8    (slot 27 ) configfs_readdir
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0xffffff80083461d8 <- (代码/数据指针) configfs_create
+       0x-0018: 0xffffff800834632c <- (代码/数据指针) configfs_get_name
+       0x-0010: 0xffffff8008346370 <- (代码/数据指针) configfs_drop_dentry
+       0x-0008: 0xffffff80083463ec <- (代码/数据指针) configfs_hash_and_remove
+       0x00000: 0xffffff8008346590 <- configfs_read_file
+       0x00008: 0xffffff80083466e8 <- configfs_write_file
+       0x00010: 0xffffff80083468a0 <- (代码/数据指针) configfs_open_file
+       0x00018: 0xffffff80083468b8 <- (代码/数据指针) configfs_release
+       0x00020: 0xffffff80083468f8 <- configfs_read_bin_file
+       0x00028: 0xffffff8008346a78 <- configfs_write_bin_file
+       0x00030: 0xffffff8008346b8c <- (代码/数据指针) configfs_open_bin_file
+       0x00038: 0xffffff8008346ba4 <- (代码/数据指针) configfs_release_bin_file
+       0x00040: 0xffffff8008346c5c <- (代码/数据指针) configfs_create_file
+       0x00048: 0xffffff8008346cd0 <- (代码/数据指针) configfs_create_bin_file
+       0x00050: 0xffffff8008346d44 <- (代码/数据指针) __configfs_open_file
+       0x00058: 0xffffff8008346f0c <- (代码/数据指针) configfs_d_iput
+       0x00060: 0xffffff8008346fe4 <- (代码/数据指针) put_fragment
+       0x00068: 0xffffff8008347020 <- (代码/数据指针) get_fragment
+       0x00070: 0xffffff8008347040 <- (代码/数据指针) configfs_make_dirent
+       0x00078: 0xffffff80083470c4 <- (代码/数据指针) configfs_new_dirent
+       0x00080: 0xffffff80083471c8 <- (代码/数据指针) configfs_dirent_is_ready
+       0x00088: 0xffffff800834720c <- (代码/数据指针) configfs_create_link
+       0x00090: 0xffffff8008347378 <- (代码/数据指针) init_symlink
+       0x00098: 0xffffff8008347388 <- (代码/数据指针) configfs_remove_default_groups
+       0x000a0: 0xffffff800834740c <- (代码/数据指针) configfs_depend_item
+       0x000a8: 0xffffff80083474f0 <- (代码/数据指针) configfs_undepend_item
+       0x000b0: 0xffffff8008347544 <- (代码/数据指针) configfs_depend_item_unlocked
+       0x000b8: 0xffffff800834767c <- (代码/数据指针) configfs_lookup
+       0x000c0: 0xffffff8008347838 <- (代码/数据指针) configfs_mkdir
+       0x000c8: 0xffffff8008347cc0 <- (代码/数据指针) configfs_rmdir
+       0x000d0: 0xffffff800834808c <- (代码/数据指针) configfs_dir_lseek
+       0x000d8: 0xffffff8008348190 <- configfs_readdir
+       0x000e0: 0xffffff80083483dc <- (代码/数据指针) configfs_dir_open
+       0x000e8: 0xffffff800834847c <- (代码/数据指针) configfs_dir_close
+       0x000f0: 0xffffff8008348540 <- (代码/数据指针) configfs_register_group
+       0x000f8: 0xffffff80083486c4 <- (代码/数据指针) link_group
+
+  [簇 204] 起点 file_off=0x1b7e5c0  VADDR=0xffffff8009bfe400  OFF=0x1b7e400  指针数=12 跨度=0x58
+     +0x0     (slot 0  ) ashmem_llseek
+     +0x8     (slot 1  ) ashmem_read_iter
+     +0x10    (slot 2  ) ashmem_ioctl
+     +0x18    (slot 3  ) compat_ashmem_ioctl
+     +0x20    (slot 4  ) ashmem_mmap
+     +0x28    (slot 5  ) ashmem_open
+     +0x30    (slot 6  ) ashmem_release
+     +0x38    (slot 7  ) ashmem_show_fdinfo
+     +0x40    (slot 8  ) ashmem_shrink_count
+     +0x48    (slot 9  ) ashmem_shrink_scan
+     +0x50    (slot 10 ) ashmem_vmfile_mmap
+     +0x58    (slot 11 ) ashmem_vmfile_get_unmapped_area
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0xffffff8008f8c8a4 <- (代码/数据指针) of_reserved_mem_device_init_by_idx
+       0x-0018: 0xffffff8008f8ca44 <- (代码/数据指针) dt_memory_reserved_pages
+       0x-0010: 0xffffff8008f8ca54 <- (代码/数据指针) of_reserved_mem_device_release
+       0x-0008: 0xffffff8008f8cb24 <- (代码/数据指针) of_reserved_mem_lookup
+       0x00000: 0xffffff8008f8cba4 <- ashmem_llseek
+       0x00008: 0xffffff8008f8cc40 <- ashmem_read_iter
+       0x00010: 0xffffff8008f8ccf4 <- ashmem_ioctl
+       0x00018: 0xffffff8008f8d634 <- compat_ashmem_ioctl
+       0x00020: 0xffffff8008f8d680 <- ashmem_mmap
+       0x00028: 0xffffff8008f8d7ec <- ashmem_open
+       0x00030: 0xffffff8008f8d86c <- ashmem_release
+       0x00038: 0xffffff8008f8d980 <- ashmem_show_fdinfo
+       0x00040: 0xffffff8008f8d9f4 <- ashmem_shrink_count
+       0x00048: 0xffffff8008f8da00 <- ashmem_shrink_scan
+       0x00050: 0xffffff8008f8db9c <- ashmem_vmfile_mmap
+       0x00058: 0xffffff8008f8dba4 <- ashmem_vmfile_get_unmapped_area
+       0x00060: 0xffffff8008f8dbcc <- (代码/数据指针) alarm_set_power_on
+       0x00068: 0xffffff8008f8dc98 <- (代码/数据指针) alarm_ioctl
+       0x00070: 0xffffff8008f8ded4 <- (代码/数据指针) alarm_compat_ioctl
+       0x00078: 0xffffff8008f8e060 <- (代码/数据指针) alarm_open
+
+  [簇 207] 起点 file_off=0x2461b48  VADDR=0xffffff800a4e1988  OFF=0x2461988  指针数=2 跨度=0x8
+     +0x0     (slot 0  ) ashmem_shrink_count
+     +0x8     (slot 1  ) ashmem_shrink_scan
+     --- 原始 words (从起点 -0x20 起) ---
+       0x-0020: 0x0000000000000000
+       0x-0018: 0x0000000000000000
+       0x-0010: 0x0000000000000000
+       0x-0008: 0x0000000000000000
+       0x00000: 0xffffff8008f8d9f4 <- ashmem_shrink_count
+       0x00008: 0xffffff8008f8da00 <- ashmem_shrink_scan
+       0x00010: 0x0000000000000000
+       0x00018: 0x0000000000000008
+       0x00020: 0x0000000000000000
+       0x00028: 0x0000000000000000
+
+====================================================================================================
+三、孤立命中（可能是单个 ops 槽 / 指针变量）
+====================================================================================================
+  VADDR=0xffffff80093ce7c0 OFF=0x134e7c0     <- noop_llseek
+  VADDR=0xffffff80093cf710 OFF=0x134f710     <- default_llseek
+  VADDR=0xffffff80093d01d8 OFF=0x13501d8     <- no_llseek
+  VADDR=0xffffff80093da048 OFF=0x135a048     <- default_llseek
+  VADDR=0xffffff80093daba0 OFF=0x135aba0     <- generic_file_llseek
+  VADDR=0xffffff80093dacc0 OFF=0x135acc0     <- generic_file_llseek
+  VADDR=0xffffff80093dade0 OFF=0x135ade0     <- generic_file_llseek
+  VADDR=0xffffff80093db380 OFF=0x135b380     <- generic_file_llseek
+  VADDR=0xffffff80093db4a0 OFF=0x135b4a0     <- generic_file_llseek
+  VADDR=0xffffff80093db800 OFF=0x135b800     <- no_llseek
+  VADDR=0xffffff80093db920 OFF=0x135b920     <- generic_file_llseek
+  VADDR=0xffffff80093dba40 OFF=0x135ba40     <- generic_file_llseek
+  VADDR=0xffffff80093dbc80 OFF=0x135bc80     <- generic_file_llseek
+  VADDR=0xffffff80093dbda0 OFF=0x135bda0     <- generic_file_llseek
+  VADDR=0xffffff80093dbfe0 OFF=0x135bfe0     <- default_llseek
+  VADDR=0xffffff80093dc220 OFF=0x135c220     <- generic_file_llseek
+  VADDR=0xffffff80093dc5e8 OFF=0x135c5e8     <- no_llseek
+  VADDR=0xffffff80093dc708 OFF=0x135c708     <- generic_file_llseek
+  VADDR=0xffffff80093dc828 OFF=0x135c828     <- no_llseek
+  VADDR=0xffffff80093dde80 OFF=0x135de80     <- default_llseek
+  VADDR=0xffffff80093ddfa0 OFF=0x135dfa0     <- default_llseek
+  VADDR=0xffffff80093de0c0 OFF=0x135e0c0     <- default_llseek
+  VADDR=0xffffff80093de300 OFF=0x135e300     <- default_llseek
+  VADDR=0xffffff80093de420 OFF=0x135e420     <- default_llseek
+  VADDR=0xffffff80093de680 OFF=0x135e680     <- default_llseek
+  VADDR=0xffffff80093de8c0 OFF=0x135e8c0     <- default_llseek
+  VADDR=0xffffff80093e3240 OFF=0x1363240     <- no_llseek
+  VADDR=0xffffff80093e4900 OFF=0x1364900     <- generic_file_splice_read
+  VADDR=0xffffff80093e8158 OFF=0x1368158     <- noop_llseek
+  VADDR=0xffffff80093e9f08 OFF=0x1369f08     <- no_llseek
+  VADDR=0xffffff80093ea1f8 OFF=0x136a1f8     <- generic_file_splice_read
+  VADDR=0xffffff80093ea7f8 OFF=0x136a7f8     <- noop_llseek
+  VADDR=0xffffff80093ea918 OFF=0x136a918     <- noop_llseek
+  VADDR=0xffffff80093eab58 OFF=0x136ab58     <- noop_llseek
+  VADDR=0xffffff80093eac78 OFF=0x136ac78     <- noop_llseek
+  VADDR=0xffffff80093ead98 OFF=0x136ad98     <- noop_llseek
+  VADDR=0xffffff80093ebd08 OFF=0x136bd08     <- noop_llseek
+  VADDR=0xffffff80093ebf48 OFF=0x136bf48     <- noop_llseek
+  VADDR=0xffffff80093ec6c8 OFF=0x136c6c8     <- generic_file_llseek
+  VADDR=0xffffff80093eca08 OFF=0x136ca08     <- generic_file_llseek
+  VADDR=0xffffff80093ecd48 OFF=0x136cd48     <- generic_file_llseek
+  VADDR=0xffffff80093ece68 OFF=0x136ce68     <- generic_file_llseek
+  VADDR=0xffffff80093ed2e8 OFF=0x136d2e8     <- generic_file_llseek
+  VADDR=0xffffff80093ed528 OFF=0x136d528     <- generic_file_llseek
+  VADDR=0xffffff80093ed648 OFF=0x136d648     <- generic_file_llseek
+  VADDR=0xffffff80093ed768 OFF=0x136d768     <- default_llseek
+  VADDR=0xffffff80093ed888 OFF=0x136d888     <- generic_file_llseek
+  VADDR=0xffffff80093ed9a8 OFF=0x136d9a8     <- generic_file_llseek
+  VADDR=0xffffff80093edac8 OFF=0x136dac8     <- generic_file_llseek
+  VADDR=0xffffff80093ee7b8 OFF=0x136e7b8     <- generic_file_llseek
+  VADDR=0xffffff80093ee8d8 OFF=0x136e8d8     <- generic_file_llseek
+  VADDR=0xffffff80093ee9f8 OFF=0x136e9f8     <- generic_file_llseek
+  VADDR=0xffffff80093eeb18 OFF=0x136eb18     <- generic_file_llseek
+  VADDR=0xffffff80093ef608 OFF=0x136f608     <- generic_file_llseek
+  VADDR=0xffffff80093efbc8 OFF=0x136fbc8     <- generic_file_llseek
+  VADDR=0xffffff80093f0288 OFF=0x1370288     <- generic_file_llseek
+  VADDR=0xffffff80093f05c8 OFF=0x13705c8     <- generic_file_llseek
+  VADDR=0xffffff80093f0bc8 OFF=0x1370bc8     <- generic_file_llseek
+  VADDR=0xffffff80093f1288 OFF=0x1371288     <- generic_file_llseek
+  VADDR=0xffffff80093f1588 OFF=0x1371588     <- default_llseek
+  VADDR=0xffffff80093f1a08 OFF=0x1371a08     <- generic_file_llseek
+  VADDR=0xffffff80093f1b28 OFF=0x1371b28     <- generic_file_llseek
+  VADDR=0xffffff80093f4448 OFF=0x1374448     <- generic_file_llseek
+  VADDR=0xffffff80093f4568 OFF=0x1374568     <- generic_file_llseek
+  VADDR=0xffffff80093f5478 OFF=0x1375478     <- configfs_readdir
+  VADDR=0xffffff80093f5b00 OFF=0x1375b00     <- generic_file_splice_read
+  VADDR=0xffffff80093f8248 OFF=0x1378248     <- generic_file_llseek
+  VADDR=0xffffff80093f9988 OFF=0x1379988     <- generic_file_llseek
+  VADDR=0xffffff80093f9e88 OFF=0x1379e88     <- generic_file_llseek
+  VADDR=0xffffff8009426510 OFF=0x13a6510     <- no_llseek
+  VADDR=0xffffff80094269c8 OFF=0x13a69c8     <- generic_file_llseek
+  VADDR=0xffffff8009426de0 OFF=0x13a6de0     <- generic_file_splice_read
+  VADDR=0xffffff8009427238 OFF=0x13a7238     <- no_llseek
+  VADDR=0xffffff8009427358 OFF=0x13a7358     <- no_llseek
+  VADDR=0xffffff8009427478 OFF=0x13a7478     <- no_llseek
+  VADDR=0xffffff8009427598 OFF=0x13a7598     <- no_llseek
+  VADDR=0xffffff8009428cc8 OFF=0x13a8cc8     <- generic_file_llseek
+  VADDR=0xffffff8009428de8 OFF=0x13a8de8     <- noop_llseek
+  VADDR=0xffffff8009428f08 OFF=0x13a8f08     <- noop_llseek
+  VADDR=0xffffff8009429088 OFF=0x13a9088     <- noop_llseek
+  VADDR=0xffffff8009429440 OFF=0x13a9440     <- generic_file_llseek
+  VADDR=0xffffff8009429780 OFF=0x13a9780     <- generic_file_splice_read
+  VADDR=0xffffff800942b170 OFF=0x13ab170     <- noop_llseek
+  VADDR=0xffffff800942b8f0 OFF=0x13ab8f0     <- generic_file_llseek
+  VADDR=0xffffff800942e288 OFF=0x13ae288     <- generic_file_llseek
+  VADDR=0xffffff800942ec68 OFF=0x13aec68     <- generic_file_llseek
+  VADDR=0xffffff800942ed88 OFF=0x13aed88     <- generic_file_llseek
+  VADDR=0xffffff800942eea8 OFF=0x13aeea8     <- generic_file_llseek
+  VADDR=0xffffff800942efc8 OFF=0x13aefc8     <- generic_file_llseek
+  VADDR=0xffffff800942f0e8 OFF=0x13af0e8     <- generic_file_llseek
+  VADDR=0xffffff800942f208 OFF=0x13af208     <- generic_file_llseek
+  VADDR=0xffffff800942f328 OFF=0x13af328     <- generic_file_llseek
+  VADDR=0xffffff800942f448 OFF=0x13af448     <- generic_file_llseek
+  VADDR=0xffffff800942f568 OFF=0x13af568     <- generic_file_llseek
+  VADDR=0xffffff800942f688 OFF=0x13af688     <- generic_file_llseek
+  VADDR=0xffffff800942f7a8 OFF=0x13af7a8     <- generic_file_llseek
+  VADDR=0xffffff800942f8c8 OFF=0x13af8c8     <- generic_file_llseek
+  VADDR=0xffffff800942faf0 OFF=0x13afaf0     <- generic_file_llseek
+  VADDR=0xffffff800942fc10 OFF=0x13afc10     <- generic_file_llseek
+  VADDR=0xffffff800942fe70 OFF=0x13afe70     <- generic_file_llseek
+  VADDR=0xffffff800942ff90 OFF=0x13aff90     <- generic_file_llseek
+  VADDR=0xffffff80094300b0 OFF=0x13b00b0     <- generic_file_llseek
+  VADDR=0xffffff80094301d0 OFF=0x13b01d0     <- generic_file_llseek
+  VADDR=0xffffff80094302f0 OFF=0x13b02f0     <- generic_file_llseek
+  VADDR=0xffffff8009430410 OFF=0x13b0410     <- generic_file_llseek
+  VADDR=0xffffff8009447ed8 OFF=0x13c7ed8     <- no_llseek
+  VADDR=0xffffff8009447ff8 OFF=0x13c7ff8     <- noop_llseek
+  VADDR=0xffffff8009448118 OFF=0x13c8118     <- noop_llseek
+  VADDR=0xffffff80094491a0 OFF=0x13c91a0     <- default_llseek
+  VADDR=0xffffff8009467880 OFF=0x13e7880     <- default_llseek
+  VADDR=0xffffff8009468f38 OFF=0x13e8f38     <- no_llseek
+  VADDR=0xffffff8009469058 OFF=0x13e9058     <- no_llseek
+  VADDR=0xffffff8009469178 OFF=0x13e9178     <- no_llseek
+  VADDR=0xffffff8009469df0 OFF=0x13e9df0     <- noop_llseek
+  VADDR=0xffffff800946afc0 OFF=0x13eafc0     <- noop_llseek
+  VADDR=0xffffff800946b5e0 OFF=0x13eb5e0     <- noop_llseek
+  VADDR=0xffffff800946b700 OFF=0x13eb700     <- noop_llseek
+  VADDR=0xffffff800946b868 OFF=0x13eb868     <- noop_llseek
+  VADDR=0xffffff800946b9c0 OFF=0x13eb9c0     <- noop_llseek
+  VADDR=0xffffff800946eb48 OFF=0x13eeb48     <- noop_llseek
+  VADDR=0xffffff80094918a0 OFF=0x14118a0     <- generic_file_llseek
+  VADDR=0xffffff80094919c0 OFF=0x14119c0     <- generic_file_llseek
+  VADDR=0xffffff8009491ae0 OFF=0x1411ae0     <- generic_file_llseek
+  VADDR=0xffffff8009491c00 OFF=0x1411c00     <- generic_file_llseek
+  VADDR=0xffffff8009491d20 OFF=0x1411d20     <- generic_file_llseek
+  VADDR=0xffffff800949df68 OFF=0x141df68     <- no_llseek
+  VADDR=0xffffff80094a4240 OFF=0x1424240     <- noop_llseek
+  VADDR=0xffffff8009536108 OFF=0x14b6108     <- generic_file_llseek
+  VADDR=0xffffff8009536228 OFF=0x14b6228     <- generic_file_llseek
+  VADDR=0xffffff8009547d40 OFF=0x14c7d40     <- no_llseek
+  VADDR=0xffffff80095480c8 OFF=0x14c80c8     <- no_llseek
+  VADDR=0xffffff8009548a38 OFF=0x14c8a38     <- no_llseek
+  VADDR=0xffffff8009548b70 OFF=0x14c8b70     <- no_llseek
+  VADDR=0xffffff800954c3f0 OFF=0x14cc3f0     <- no_llseek
+  VADDR=0xffffff800954efc8 OFF=0x14cefc8     <- no_llseek
+  VADDR=0xffffff80095500c8 OFF=0x14d00c8     <- noop_llseek
+  VADDR=0xffffff8009554e58 OFF=0x14d4e58     <- noop_llseek
+  VADDR=0xffffff8009559810 OFF=0x14d9810     <- no_llseek
+  VADDR=0xffffff8009559930 OFF=0x14d9930     <- no_llseek
+  VADDR=0xffffff8009559b08 OFF=0x14d9b08     <- noop_llseek
+  VADDR=0xffffff800955b050 OFF=0x14db050     <- no_llseek
+  VADDR=0xffffff8009b0b4f0 OFF=0x1a8b4f0     <- no_llseek
+  VADDR=0xffffff8009b0bb90 OFF=0x1a8bb90     <- no_llseek
+  VADDR=0xffffff8009b0ca40 OFF=0x1a8ca40     <- no_llseek
+  VADDR=0xffffff8009b0ccd0 OFF=0x1a8ccd0     <- no_llseek
+  VADDR=0xffffff8009b1b710 OFF=0x1a9b710     <- noop_llseek
+  VADDR=0xffffff8009b1baf8 OFF=0x1a9baf8     <- noop_llseek
+  VADDR=0xffffff8009b1be08 OFF=0x1a9be08     <- noop_llseek
+  VADDR=0xffffff8009b1bf28 OFF=0x1a9bf28     <- noop_llseek
+  VADDR=0xffffff8009b1c330 OFF=0x1a9c330     <- noop_llseek
+  VADDR=0xffffff8009b1d398 OFF=0x1a9d398     <- noop_llseek
+  VADDR=0xffffff8009b1e358 OFF=0x1a9e358     <- noop_llseek
+  VADDR=0xffffff8009b1e478 OFF=0x1a9e478     <- noop_llseek
+  VADDR=0xffffff8009b21ce8 OFF=0x1aa1ce8     <- noop_llseek
+  VADDR=0xffffff8009b223f0 OFF=0x1aa23f0     <- no_llseek
+  VADDR=0xffffff8009b23c70 OFF=0x1aa3c70     <- no_llseek
+  VADDR=0xffffff8009b296c8 OFF=0x1aa96c8     <- noop_llseek
+  VADDR=0xffffff8009b29808 OFF=0x1aa9808     <- no_llseek
+  VADDR=0xffffff8009b2e7f0 OFF=0x1aae7f0     <- generic_file_llseek
+  VADDR=0xffffff8009b316a8 OFF=0x1ab16a8     <- noop_llseek
+  VADDR=0xffffff8009b31ba0 OFF=0x1ab1ba0     <- noop_llseek
+  VADDR=0xffffff8009b337b8 OFF=0x1ab37b8     <- noop_llseek
+  VADDR=0xffffff8009b34fc8 OFF=0x1ab4fc8     <- noop_llseek
+  VADDR=0xffffff8009b352a0 OFF=0x1ab52a0     <- no_llseek
+  VADDR=0xffffff8009b35840 OFF=0x1ab5840     <- no_llseek
+  VADDR=0xffffff8009b35f70 OFF=0x1ab5f70     <- no_llseek
+  VADDR=0xffffff8009b36090 OFF=0x1ab6090     <- no_llseek
+  VADDR=0xffffff8009b36780 OFF=0x1ab6780     <- no_llseek
+  VADDR=0xffffff8009b36bb0 OFF=0x1ab6bb0     <- no_llseek
+  VADDR=0xffffff8009b53b50 OFF=0x1ad3b50     <- generic_file_llseek
+  VADDR=0xffffff8009b53c70 OFF=0x1ad3c70     <- generic_file_llseek
+  VADDR=0xffffff8009b53d90 OFF=0x1ad3d90     <- generic_file_llseek
+  VADDR=0xffffff8009b53eb0 OFF=0x1ad3eb0     <- default_llseek
+  VADDR=0xffffff8009b53fd0 OFF=0x1ad3fd0     <- default_llseek
+  VADDR=0xffffff8009b540f0 OFF=0x1ad40f0     <- default_llseek
+  VADDR=0xffffff8009b54210 OFF=0x1ad4210     <- default_llseek
+  VADDR=0xffffff8009b54330 OFF=0x1ad4330     <- default_llseek
+  VADDR=0xffffff8009b54450 OFF=0x1ad4450     <- default_llseek
+  VADDR=0xffffff8009b54570 OFF=0x1ad4570     <- default_llseek
+  VADDR=0xffffff8009b54690 OFF=0x1ad4690     <- default_llseek
+  VADDR=0xffffff8009b547b0 OFF=0x1ad47b0     <- default_llseek
+  VADDR=0xffffff8009b548d0 OFF=0x1ad48d0     <- default_llseek
+  VADDR=0xffffff8009b549f0 OFF=0x1ad49f0     <- generic_file_llseek
+  VADDR=0xffffff8009b553e8 OFF=0x1ad53e8     <- default_llseek
+  VADDR=0xffffff8009b7a7b8 OFF=0x1afa7b8     <- no_llseek
+  VADDR=0xffffff8009b87da0 OFF=0x1b07da0     <- default_llseek
+  VADDR=0xffffff8009ba0f50 OFF=0x1b20f50     <- call_usermodehelper_exec_work
+  VADDR=0xffffff8009bb8e78 OFF=0x1b38e78     <- cap_capable
+  VADDR=0xffffff8009ff5e28 OFF=0x1f75e28     <- cap_capable
+  VADDR=0xffffff800a23e4b0 OFF=0x21be4b0     <- noop_llseek

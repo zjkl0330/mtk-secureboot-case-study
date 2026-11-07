@@ -1,0 +1,316 @@
+====================================================================================================
+目标函数: kmem_cache_create=0xffffff80082453b8, security_add_hooks=0xffffff800a09f84c, init_tg_cfs_entry=0xffffff8008102288, sel_fill_super=0xffffff800848b1d0, selinux_init=0xffffff800a09fb80, security_init=0xffffff800a09f5a8, create_kmalloc_caches=0xffffff800a08caf0
+====================================================================================================
+BL 命中 32 处
+
+  bl kmem_cache_create        @0xffffff8008190798  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff8008287cf8  x0=-                                x1=0x8                    x2=-
+  bl kmem_cache_create        @0xffffff8008287d1c  x0=-                                x1=0x30                   x2=-
+  bl kmem_cache_create        @0xffffff800834b208  x0=-                                x1=0x20                   x2=-
+  bl kmem_cache_create        @0xffffff8008375640  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff80083b5a80  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff80083cfd34  x0=-                                x1=0x2d0                  x2=-
+  bl kmem_cache_create        @0xffffff80083cfd5c  x0=-                                x1=0x18                   x2=-
+  bl kmem_cache_create        @0xffffff80083d0398  x0=-                                x1=0x28                   x2=-
+  bl kmem_cache_create        @0xffffff80083d10b0  x0=-                                x1=0x38                   x2=-
+  bl kmem_cache_create        @0xffffff800844b460  x0=-                                x1=0x20                   x2=-
+  bl kmem_cache_create        @0xffffff8008452130  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff80084d2670  x0=-                                x1=0x8                    x2=-
+  bl kmem_cache_create        @0xffffff80084d425c  x0=-                                x1=0x16                   x2=-
+  bl kmem_cache_create        @0xffffff8008636f7c  x0=-                                x1=0x400                  x2=-
+  bl kmem_cache_create        @0xffffff80086391f0  x0=-                                x1=0x28                   x2=-
+  bl kmem_cache_create        @0xffffff8008742fd0  x0=-                                x1=0x40                   x2=-
+  bl kmem_cache_create        @0xffffff8008bcac48  x0=-                                x1=0x68                   x2=-
+  bl kmem_cache_create        @0xffffff8008bcacd0  x0=-                                x1=0x78                   x2=-
+  bl kmem_cache_create        @0xffffff8008c24004  x0=-                                x1=0x60                   x2=-
+  bl kmem_cache_create        @0xffffff8008f02168  x0=-                                x1=0x1348                 x2=-
+  bl kmem_cache_create        @0xffffff8008f14140  x0=-                                x1=0x1b                   x2=-
+  bl kmem_cache_create        @0xffffff8008f14190  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff8008f21078  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff800907180c  x0=-                                x1=0x1000                 x2=-
+  bl kmem_cache_create        @0xffffff80090bc790  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff80090bc7e4  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff8009147ffc  x0=-                                x1=0x100                  x2=-
+  bl kmem_cache_create        @0xffffff800914ae7c  x0=-                                x1=0xe8                   x2=-
+  bl kmem_cache_create        @0xffffff80091cc730  x0=-                                x1=-                      x2=-
+  bl kmem_cache_create        @0xffffff80091f88ac  x0=-                                x1=0x138                  x2=-
+  bl kmem_cache_create        @0xffffff80091fe628  x0=-                                x1=0x310                  x2=-
+
+====================================================================================================
+一、__kmalloc 全文：kmalloc_caches 基址究竟是哪个
+====================================================================================================
+  0xffffff8008271bc8: sub       sp, sp, #0x60                           
+  0xffffff8008271bcc: stp       x29, x30, [sp, #0x10]                   
+  0xffffff8008271bd0: str       x25, [sp, #0x20]                        
+  0xffffff8008271bd4: stp       x24, x23, [sp, #0x30]                   
+  0xffffff8008271bd8: stp       x22, x21, [sp, #0x40]                   
+  0xffffff8008271bdc: stp       x20, x19, [sp, #0x50]                   
+  0xffffff8008271be0: add       x29, sp, #0x10                          
+  0xffffff8008271be4: mov       x19, x0                                 
+  0xffffff8008271be8: cmp       x0, #2, lsl #12                         
+  0xffffff8008271bec: mov       w20, w1                                 
+  0xffffff8008271bf0: b.hi      #0xffffff8008271e68                     
+  0xffffff8008271bf4: mov       x0, x19                                 
+  0xffffff8008271bf8: mov       w1, w20                                 
+  0xffffff8008271bfc: mov       x21, x30                                
+  0xffffff8008271c00: bl        #0xffffff8008245ae8                      -> kmalloc_slab
+  0xffffff8008271c04: mov       x22, x0                                 
+  0xffffff8008271c08: cmp       x0, #0x10                               
+  0xffffff8008271c0c: b.ls      #0xffffff8008271e98                     
+  0xffffff8008271c10: adrp      x8, #0xffffff800a1fe000                 
+  0xffffff8008271c14: ldr       w8, [x8, #0x220]                        
+  0xffffff8008271c18: mov       x0, x22                                 
+  0xffffff8008271c1c: and       w23, w8, w20                            
+  0xffffff8008271c20: mov       w1, w23                                 
+  0xffffff8008271c24: bl        #0xffffff8008245e88                      -> should_failslab
+  0xffffff8008271c28: cbz       w0, #0xffffff8008271cf0                 
+  0xffffff8008271c2c: mov       x23, xzr                                
+  0xffffff8008271c30: adrp      x8, #0xffffff800a539000                 
+  0xffffff8008271c34: ldr       w22, [x22, #0x18]                       
+  0xffffff8008271c38: ldr       w8, [x8, #0xbb0]                        
+  0xffffff8008271c3c: cmp       w8, #1                                  
+  0xffffff8008271c40: b.lt      #0xffffff8008271cd0                     
+  0xffffff8008271c44: adrp      x9, #0xffffff800a19c000                 
+  0xffffff8008271c48: mrs       x8, tpidr_el1                           
+  0xffffff8008271c4c: add       x9, x9, #0x28                           
+  0xffffff8008271c50: ldr       w8, [x8, x9]                            
+  0xffffff8008271c54: adrp      x10, #0xffffff800a1fd000                
+  0xffffff8008271c58: add       x10, x10, #0xb40                        
+  0xffffff8008271c5c: add       w9, w8, #0x3f                           
+  0xffffff8008271c60: cmp       w8, #0                                  
+  0xffffff8008271c64: csel      w9, w9, w8, lt                          
+  0xffffff8008271c68: asr       w9, w9, #6                              
+  0xffffff8008271c6c: ldr       x9, [x10, w9, sxtw #3]                  
+  0xffffff8008271c70: lsr       x8, x9, x8                              
+  0xffffff8008271c74: tbz       w8, #0, #0xffffff8008271cd0             
+  0xffffff8008271c78: mrs       x24, sp_el0                             
+  0xffffff8008271c7c: ldr       w8, [x24, #0x18]                        
+  0xffffff8008271c80: add       w8, w8, #1                              
+  0xffffff8008271c84: str       w8, [x24, #0x18]                        
+  0xffffff8008271c88: adrp      x8, #0xffffff800a539000                 
+  0xffffff8008271c8c: ldr       x25, [x8, #0xbc8]                       
+  0xffffff8008271c90: cbz       x25, #0xffffff8008271cb8                
+  0xffffff8008271c94: ldp       x8, x0, [x25]                           
+  0xffffff8008271c98: mov       x1, x21                                 
+  0xffffff8008271c9c: mov       x2, x23                                 
+  0xffffff8008271ca0: mov       x3, x19                                 
+  0xffffff8008271ca4: mov       x4, x22                                 
+  0xffffff8008271ca8: mov       w5, w20                                 
+  0xffffff8008271cac: blr       x8                                      
+  0xffffff8008271cb0: ldr       x8, [x25, #0x18]!                       
+  0xffffff8008271cb4: cbnz      x8, #0xffffff8008271c94                 
+  0xffffff8008271cb8: ldr       w8, [x24, #0x18]                        
+  0xffffff8008271cbc: subs      w8, w8, #1                              
+  0xffffff8008271cc0: str       w8, [x24, #0x18]                        
+  0xffffff8008271cc4: b.ne      #0xffffff8008271cd0                     
+
+====================================================================================================
+二、selinux_init / sel_fill_super 的静态地址写入（找 selinux_state）
+====================================================================================================
+  --- selinux_init @0xffffff800a09fb80 ---
+  0xffffff800a09fb84: str       x21, [sp, #0x10]
+  0xffffff800a09fb90: adrp      x0, #0xffffff8009e13000
+  0xffffff800a09fb94: add       x0, x0, #0x932
+  0xffffff800a09fb98: bl        #0xffffff800a09f828                      -> security_module_enable
+  0xffffff800a09fb9c: adrp      x8, #0xffffff800a260000
+  0xffffff800a09fba4: str       wzr, [x8, #0xbb8]
+  --- sel_fill_super @0xffffff800848b1d0 ---
+  0xffffff800848b1d4: str       x27, [sp, #0x10]
+  0xffffff800848b1ec: adrp      x8, #0xffffff800a7e4000
+  0xffffff800848b1f0: ldr       w8, [x8, #0x218]
+  0xffffff800848b1fc: adrp      x8, #0xffffff8009ff5000
+  0xffffff800848b200: ldr       x0, [x8, #0xc08]
+  0xffffff800848b210: bl        #0xffffff800826fe08                      -> kmem_cache_alloc_trace
+  0xffffff800848b21c: adrp      x1, #0xffffff8009d09000
+  0xffffff800848b220: adrp      x2, #0xffffff800a904000
+  0xffffff800848b224: add       x0, x20, #0x40
+  0xffffff800848b228: add       x1, x1, #0x6a
+  0xffffff800848b22c: add       x2, x2, #0xb0
+  0xffffff800848b230: bl        #0xffffff800812a48c                      -> __mutex_init
+  0xffffff800848b234: adrp      x9, #0xffffff800a904000
+  0xffffff800848b238: adrp      x2, #0xffffff800942e000
+  0xffffff800848b244: add       x9, x9, #0x50
+  0xffffff800848b248: add       x2, x2, #0xa38
+  0xffffff800848b258: str       x8, [x20, #0x68]
+  0xffffff800848b25c: str       x20, [x19, #0x4a0]
+  0xffffff800848b260: bl        #0xffffff80082c8680                      -> simple_fill_super
+  0xffffff800848b268: ldr       x20, [x19, #0x4a0]
+  0xffffff800848b26c: ldr       x0, [x19, #0x68]
+  0xffffff800848b270: adrp      x1, #0xffffff8009dca000
+  0xffffff800848b274: add       x1, x1, #0x571
+  0xffffff800848b278: add       x21, x20, #0x68
+  0xffffff800848b280: bl        #0xffffff800848b6d8                      -> sel_make_dir
+  0xffffff800848b288: str       x0, [x20]
+  0xffffff800848b290: ldr       x0, [x19, #0x68]
+  0xffffff800848b294: adrp      x1, #0xffffff8009d3a000
+  0xffffff800848b298: add       x1, x1, #0x136
+  0xffffff800848b29c: bl        #0xffffff80082b4894                      -> d_alloc_name
+  0xffffff800848b2ac: bl        #0xffffff80082b83e0                      -> new_inode
+  0xffffff800848b2c0: bl        #0xffffff80082b9be4                      -> current_time
+  0xffffff800848b2d0: ldr       x8, [x21]
+  0xffffff800848b2e0: add       x8, x8, #1
+  0xffffff800848b2e4: str       x8, [x21]
+  0xffffff800848b2e8: ldr       x9, [x23, #0x38]
+  0xffffff800848b2ec: str       x8, [x23, #0x40]
+  0xffffff800848b2f8: str       w8, [x9, #0x1c]
+  0xffffff800848b308: strb      w8, [x9, #0x22]
+  0xffffff800848b30c: bl        #0xffffff80082ba2b4                      -> init_special_inode
+  0xffffff800848b318: bl        #0xffffff80082b6398                      -> d_add
+  0xffffff800848b31c: ldr       x0, [x19, #0x68]
+  0xffffff800848b320: adrp      x1, #0xffffff8009d69000
+  0xffffff800848b324: add       x1, x1, #0xfcb
+  0xffffff800848b32c: bl        #0xffffff800848b6d8                      -> sel_make_dir
+  0xffffff800848b33c: ldr       x8, [x22, #0x68]
+  0xffffff800848b340: adrp      x1, #0xffffff8009fae000
+  0xffffff800848b344: add       x1, x1, #0x870
+  0xffffff800848b34c: ldr       x25, [x8, #0x4a0]
+  0xffffff800848b350: bl        #0xffffff80082b4894                      -> d_alloc_name
+  0xffffff800848b35c: ldr       x0, [x22, #0x68]
+  0xffffff800848b360: bl        #0xffffff80082b83e0                      -> new_inode
+  0xffffff800848b374: bl        #0xffffff80082b9be4                      -> current_time
+  0xffffff800848b378: adrp      x8, #0xffffff800942f000
+  0xffffff800848b37c: add       x8, x8, #0xae8
+  0xffffff800848b38c: str       x8, [x24, #0x170]
+  0xffffff800848b390: ldr       x8, [x25, #0x68]
+  0xffffff800848b39c: add       x8, x8, #1
+  0xffffff800848b3a0: str       x8, [x25, #0x68]
+  0xffffff800848b3a4: str       x8, [x24, #0x40]
+  0xffffff800848b3a8: bl        #0xffffff80082b6398                      -> d_add
+  0xffffff800848b3ac: adrp      x1, #0xffffff8009fde000
+  0xffffff800848b3b0: add       x1, x1, #0x791
+  0xffffff800848b3b8: bl        #0xffffff80082b4894                      -> d_alloc_name
+  0xffffff800848b3c4: ldr       x0, [x22, #0x68]
+  0xffffff800848b3c8: bl        #0xffffff80082b83e0                      -> new_inode
+  0xffffff800848b3dc: bl        #0xffffff80082b9be4                      -> current_time
+  0xffffff800848b3e0: adrp      x8, #0xffffff800942f000
+  0xffffff800848b3e4: add       x8, x8, #0xc08
+  0xffffff800848b3f4: str       x8, [x24, #0x170]
+  0xffffff800848b3f8: ldr       x8, [x25, #0x68]
+  0xffffff800848b404: add       x8, x8, #1
+  0xffffff800848b408: str       x8, [x25, #0x68]
+  0xffffff800848b40c: str       x8, [x24, #0x40]
+  0xffffff800848b410: bl        #0xffffff80082b6398                      -> d_add
+  0xffffff800848b414: adrp      x1, #0xffffff8009de2000
+  0xffffff800848b418: add       x1, x1, #0x654
+  0xffffff800848b420: bl        #0xffffff80082b4894                      -> d_alloc_name
+  0xffffff800848b42c: ldr       x0, [x22, #0x68]
+  0xffffff800848b430: bl        #0xffffff80082b83e0                      -> new_inode
+  0xffffff800848b444: bl        #0xffffff80082b9be4                      -> current_time
+  0xffffff800848b448: adrp      x8, #0xffffff800942f000
+  0xffffff800848b44c: add       x8, x8, #0xd28
+  0xffffff800848b45c: str       x8, [x22, #0x170]
+  0xffffff800848b460: ldr       x8, [x25, #0x68]
+  0xffffff800848b46c: add       x8, x8, #1
+  0xffffff800848b470: str       x8, [x25, #0x68]
+  0xffffff800848b474: str       x8, [x22, #0x40]
+  0xffffff800848b478: bl        #0xffffff80082b6398                      -> d_add
+  0xffffff800848b47c: b         #0xffffff800848b488                      -> 
+  0xffffff800848b484: bl        #0xffffff80082b2b34                      -> dput
+  0xffffff800848b488: ldr       x0, [x19, #0x68]
+  0xffffff800848b48c: adrp      x1, #0xffffff8009e13000
+  0xffffff800848b490: add       x1, x1, #0x960
+  0xffffff800848b498: bl        #0xffffff800848b6d8                      -> sel_make_dir
+  0xffffff800848b4a8: ldr       x8, [x22, #0x68]
+  0xffffff800848b4ac: adrp      x1, #0xffffff8009eee000
+  0xffffff800848b4b0: add       x1, x1, #0x283
+  0xffffff800848b4b8: ldr       x24, [x8, #0x4a0]
+  0xffffff800848b4bc: bl        #0xffffff80082b4894                      -> d_alloc_name
+  0xffffff800848b4c8: ldr       x0, [x22, #0x68]
+  0xffffff800848b4cc: bl        #0xffffff80082b83e0                      -> new_inode
+  0xffffff800848b4e0: bl        #0xffffff80082b9be4                      -> current_time
+  0xffffff800848b4e4: adrp      x8, #0xffffff800942f000
+  0xffffff800848b4e8: add       x8, x8, #0xe68
+  0xffffff800848b4f8: str       x8, [x22, #0x170]
+  0xffffff800848b4fc: ldr       x8, [x24, #0x68]
+  0xffffff800848b508: add       x8, x8, #1
+  0xffffff800848b50c: str       x8, [x24, #0x68]
+  0xffffff800848b510: str       x8, [x22, #0x40]
+  0xffffff800848b514: bl        #0xffffff80082b6398                      -> d_add
+  0xffffff800848b518: ldr       x0, [x19, #0x68]
+  0xffffff800848b51c: adrp      x1, #0xffffff8009cf0000
+  0xffffff800848b520: add       x1, x1, #0xd80
+  0xffffff800848b528: bl        #0xffffff800848b6d8                      -> sel_make_dir
+  0xffffff800848b538: adrp      x27, #0xffffff800942f000
+  0xffffff800848b540: add       x27, x27, #0xf88
+  0xffffff800848b548: bl        #0xffffff80084991cc                      -> security_get_initial_sid_context
+  0xffffff800848b554: bl        #0xffffff80082b4894                      -> d_alloc_name
+  0xffffff800848b560: ldr       x0, [x22, #0x68]
+  0xffffff800848b564: bl        #0xffffff80082b83e0                      -> new_inode
+  0xffffff800848b574: bl        #0xffffff80082b9be4                      -> current_time
+  0xffffff800848b590: str       x27, [x25, #0x170]
+  0xffffff800848b594: str       x8, [x25, #0x40]
+  0xffffff800848b598: bl        #0xffffff80082b6398                      -> d_add
+  0xffffff800848b59c: add       w23, w23, #1
+  0xffffff800848b5a8: ldr       x0, [x19, #0x68]
+  0xffffff800848b5ac: adrp      x1, #0xffffff8009fae000
+  0xffffff800848b5b0: add       x1, x1, #0x848
+  0xffffff800848b5b8: bl        #0xffffff800848b6d8                      -> sel_make_dir
+  0xffffff800848b5c0: str       x0, [x20, #0x20]
+  0xffffff800848b5c8: ldr       x0, [x19, #0x68]
+  0xffffff800848b5cc: adrp      x1, #0xffffff8009dfa000
+  --- enforcing_setup @0xffffff800a09fab8 ---
+  0xffffff800a09fac0: add       x29, sp, #0x10
+  0xffffff800a09fac4: adrp      x8, #0xffffff800a1fd000
+  0xffffff800a09fac8: ldr       x8, [x8, #0xb08]
+  0xffffff800a09fad4: str       x8, [sp, #8]
+  0xffffff800a09fad8: bl        #0xffffff8008514f50                      -> kstrtoull
+  0xffffff800a09fae4: adrp      x9, #0xffffff800a904000
+  0xffffff800a09faf0: str       w8, [x9, #0x70]
+  0xffffff800a09faf4: adrp      x9, #0xffffff800a1fd000
+  0xffffff800a09fafc: ldr       x9, [x9, #0xb08]
+  0xffffff800a09fb10: add       sp, sp, #0x20
+
+====================================================================================================
+三、sched_init 中 ADRP 页基址（root_task_group 候选）
+====================================================================================================
+  page 0xffffff80093cd000 OFF=0x134d000    引用 2 次  
+  page 0xffffff8009f95000 OFF=0x1f15000    引用 1 次  
+  page 0xffffff8009ff5000 OFF=0x1f75000    引用 1 次  
+  page 0xffffff800a19c000 OFF=0x211c000    引用 1 次  
+  page 0xffffff800a1d1000 OFF=0x2151000    引用 1 次  
+  page 0xffffff800a1f6000 OFF=0x2176000    引用 1 次  
+  page 0xffffff800a1fd000 OFF=0x217d000    引用 6 次  
+  page 0xffffff800a1fe000 OFF=0x217e000    引用 1 次  
+  page 0xffffff800a20d000 OFF=0x218d000    引用 4 次  
+  page 0xffffff800a21d000 OFF=0x219d000    引用 4 次  
+  page 0xffffff800a23a000 OFF=0x21ba000    引用 1 次  
+  page 0xffffff800a5ce000 OFF=0x254e000    引用 1 次  
+  page 0xffffff800a5d1000 OFF=0x2551000    引用 2 次  
+  page 0xffffff800a5d4000 OFF=0x2554000    引用 9 次  
+
+====================================================================================================
+四、security_hook_heads 基址核验（前后 +-0x80 内容）
+====================================================================================================
+  -80: 0x0000000000000000 
+  -78: 0x0000000000000000 
+  -70: 0x0000000000000000 
+  -68: 0xffffff8009ff63d0 <- 非零
+  -60: 0xffffff800847a01c <- 非零
+  -58: 0x0000000000000000 
+  -50: 0x0000000000000000 
+  -48: 0x0000000000000000 
+  -40: 0xffffff8009ff63c8 <- 非零
+  -38: 0xffffff800847a08c <- 非零
+  -30: 0x0000000000000000 
+  -28: 0x0000000000000000 
+  -20: 0x0000000000000000 
+  -18: 0xffffff8009ff6148 <- 非零
+  -10: 0xffffff800847a348 <- 非零
+  -8: 0x0000000000000000 
+  +0: 0x0000000000000000 
+  +8: 0x0000000000000000 
+  +10: 0x0000000000000000 
+  +18: 0x0000000000000000 
+  +20: 0x0000000000000000 
+  +28: 0x0000000000000000 
+  +30: 0x0000000000000000 
+  +38: 0x0000000000000000 
+  +40: 0x0000000000000000 
+  +48: 0x0000000000000000 
+  +50: 0x0000000000000000 
+  +58: 0x0000000000000000 
+  +60: 0x0000000000000000 
+  +68: 0x0000000000000000 
+  +70: 0x0000000000000000 
+  +78: 0x0000000000000000 
+  +80: 0x0000000000000000 

@@ -1,0 +1,54 @@
+========================================================================================================
+target-PEYM00.h 独立复核（49 项）
+========================================================================================================
+  PASS ASHMEM_IOCTL_OFF                   期望=0xf0ccf4       实际=0xf0ccf4     .symtab ashmem_ioctl
+  PASS ASHMEM_COMPAT_IOCTL_OFF            期望=0xf0d634       实际=0xf0d634     .symtab compat_ashmem_ioctl
+  PASS ASHMEM_MMAP_OFF                    期望=0xf0d680       实际=0xf0d680     .symtab ashmem_mmap
+  PASS ASHMEM_OPEN_OFF                    期望=0xf0d7ec       实际=0xf0d7ec     .symtab ashmem_open
+  PASS ASHMEM_RELEASE_OFF                 期望=0xf0d86c       实际=0xf0d86c     .symtab ashmem_release
+  PASS ASHMEM_SHOW_FDINFO_OFF             期望=0xf0d980       实际=0xf0d980     .symtab ashmem_show_fdinfo
+  PASS ASHMEM_LLSEEK_OFF                  期望=0xf0cba4       实际=0xf0cba4     .symtab ashmem_llseek
+  PASS CONFIGFS_READ_ITER_OFF             期望=0x2c6590       实际=0x2c6590     .symtab configfs_read_file
+  PASS CONFIGFS_BIN_WRITE_ITER_OFF        期望=0x2c6a78       实际=0x2c6a78     .symtab configfs_write_bin_file
+  PASS COPY_SPLICE_READ_OFF               期望=0x2511fc       实际=0x2511fc     .symtab generic_file_splice_read
+  PASS NOOP_LLSEEK_OFF                    期望=0x2125e4       实际=0x2125e4     .symtab noop_llseek
+  PASS CALL_USERMODEHELPER_EXEC_WORK_OFF  期望=0x57cd8        实际=0x57cd8      .symtab call_usermodehelper_exec_work
+  PASS CAP_CAPABLE_OFF                    期望=0x3f9114       实际=0x3f9114     .symtab cap_capable
+  PASS DO_FUTEX_OFF                       期望=0xebed8        实际=0xebed8      .symtab do_futex
+  PASS REMOVE_WAITER_OFF                  期望=0xac0e8        实际=0xac0e8      .symtab remove_waiter
+  PASS RT_MUTEX_START_PROXY_LOCK_OFF      期望=0xac058        实际=0xac058      .symtab rt_mutex_start_proxy_lock
+  PASS COMMIT_CREDS_OFF                   期望=0x65ce4        实际=0x65ce4      .symtab commit_creds
+  PASS CORE_SYS_SELECT_OFF                期望=0x22fc98       实际=0x22fc98     .symtab core_sys_select
+  PASS SYS_PSELECT6_OFF                   期望=0x2308b8       实际=0x2308b8     .symtab __arm64_sys_pselect6
+  PASS SYS_FUTEX_OFF                      期望=0xef64c        实际=0xef64c      .symtab __arm64_sys_futex
+  PASS INIT_TASK_OFF                      期望=0x218d6c0      实际=0x218d6c0    ksymtab init_task
+  PASS INIT_UTS_NS_OFF                    期望=0x218c828      实际=0x218c828    ksymtab init_uts_ns
+  PASS EMPTY_ZERO_PAGE_OFF                期望=0x254e000      实际=0x254e000    ksymtab empty_zero_page
+  PASS SYSTEM_UNBOUND_WQ_OFF              期望=0x217db88      实际=0x217db88    ksymtab system_unbound_wq
+  PASS SYSTEM_WQ_OFF                      期望=0x217db70      实际=0x217db70    ksymtab system_wq
+  PASS SYSTEM_LONG_WQ_OFF                 期望=0x217db80      实际=0x217db80    ksymtab system_long_wq
+  PASS KMALLOC_CACHES_OFF                 期望=0x1f75bd0      实际=0x1f75bd0    ksymtab kmalloc_caches
+  PASS KIMAGE_VADDR_OFF                   期望=0x132e000      实际=0x132e000    ksymtab kimage_vaddr
+  PASS KIMAGE_VOFFSET_OFF                 期望=0x1f75a88      实际=0x1f75a88    ksymtab kimage_voffset
+  PASS MEMSTART_ADDR_OFF                  期望=0x1f75a78      实际=0x1f75a78    ksymtab memstart_addr
+  PASS INIT_CRED_OFF                      期望=0x2199890      实际=0x2199890    init_task.real_cred 指针
+  PASS EMPTY_ZERO_PAGE_OFF                期望=0x254e000      实际=0x254e000    .bss 起点（同时校验页对齐）
+  PASS KIMAGE_VADDR                       期望=0xffffff8008000000 实际=0xffffff8008000000 kimage_vaddr 槽内容
+  PASS ROOT_TASK_GROUP_OFF                期望=0x2554ac0      实际=0x2554ac0    init_tg_cfs_entry 的 x0
+  PASS SELINUX_STATE_OFF                  期望=0x2884050      实际=0x2884050    sel_fill_super fsi->state
+  PASS SELINUX_ENFORCING_OFF              期望=0x2884051      实际=0x2884051    state.disabled@0 / enforcing@1
+  PASS SECURITY_HOOK_HEADS_OFF            期望=0x1f760e0      实际=0x1f760e0    205 条 hook 表项 head 最小值
+  PASS KPTR_RESTRICT_OFF                  期望=0x218c340      实际=0x218c340    ctl_table .data
+  PASS SLIDE_BOOTID_CTLTABLE_OFF          期望=0x2214ac8      实际=0x2214ac8    boot_id ctl_table
+  PASS SLIDE_RANDOM_BOOT_ID_DATA_OFF      期望=0x2926ff4      实际=0x2926ff4    boot_id .data
+  PASS ASHMEM_FOPS_OFF                    fops.ioctl@+0x48 指向 ashmem_ioctl
+  PASS TASK_PRIO_OFF                      期望=0x88           实际=0x88         task_prio: ldr w8,[p,#imm]
+  PASS TASK_STATIC_PRIO_OFF               期望=0x8c           实际=0x8c         set_user_nice: str w?,[p,#imm]
+  PASS TASK_RT_PRIORITY_OFF               期望=0x94           实际=0x94         __sched_setscheduler 出现 0x94
+  PASS TASK_SCHED_CLASS_OFF               期望=0x98           实际=0x98         __sched_setscheduler 出现 0x98
+  PASS TASK_SCHED_TASK_GROUP_OFF          期望=0x340          实际=0x340        init_task 内指向 root_task_group 的槽
+  PASS MM_STRUCT_SIZEOF                   期望=0x398          实际=0x398        kmem_cache_create_usercopy('mm_struct', size)
+  PASS 无重复宏                               
+  PASS 零值 OFF 宏（均为显式禁用项）                  WAITER_TREE_ENTRY_OFF, TASK_THREAD_INFO_FLAGS_OFF, SELINUX_CRED_OSID_OFF, SECCOMP_MODE_OFF, FOPS_OWNER_OFF, PIPE_MUTEX_OFF
+========================================================================================================
+PASS 49 / FAIL 0

@@ -1,0 +1,35 @@
+===== OPPO K9 Pro 基线信息 =====
+采集时间: 2026-11-07 08:31:31
+序列号: <DEVICE_SN>
+
+--- 机型 ---
+ro.product.model                 = PEYM00
+ro.product.name                  = PEYM00
+ro.product.device                = OP5245
+ro.product.brand                 = OPPO
+ro.product.manufacturer          = OPPO
+ro.build.product                 = PEYM00
+
+--- 系统版本 ---
+ro.build.version.release         = 13
+ro.build.version.sdk             = 33
+ro.build.display.id              = PEYM00_13.1.0.254(CN01)
+ro.build.version.incremental     = R.233ce9b-1
+ro.build.version.security_patch  = 2026-01-01
+ro.vendor.build.security_patch   = 2026-01-01
+ro.build.date                    = Thu Apr  2 16:31:10 CST 2026
+ro.system.build.version.release  = 13
+
+--- 分区/槽位 ---
+ro.boot.slot_suffix              = 
+ro.build.ab_update               = 
+ro.boot.slot                     = 
+ro.boot.hardware                 = mt6893
+ro.boot.hardware.sku             = 
+
+--- Bootloader 状态 ---
+ro.boot.flash.locked             = 1
+ro.boot.verifiedbootstate        = green
+ro.boot.veritymode               = enforcing
+ro.boot.warranty_bit             = 
+ro.secure                        = 1

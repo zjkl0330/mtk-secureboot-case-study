@@ -1,0 +1,106 @@
+==========================================================================================
+一、EL0 异常 / 系统调用入口
+==========================================================================================
+### el0_svc @0xffffff8008083d00  (OFF 0x3d00)
+  0xffffff8008083d00: mov       x0, sp                      
+  0xffffff8008083d04: bl        #0xffffff800809ab44         
+  0xffffff8008083d08: b         #0xffffff8008083ba8         
+  0xffffff8008083d0c: nop                                   
+  0xffffff8008083d10: nop                                   
+  0xffffff8008083d14: nop                                   
+  0xffffff8008083d18: nop                                   
+  0xffffff8008083d1c: nop                                   
+  0xffffff8008083d20: nop                                   
+  0xffffff8008083d24: nop                                   
+  0xffffff8008083d28: nop                                   
+  0xffffff8008083d2c: nop                                   
+  0xffffff8008083d30: nop                                   
+  0xffffff8008083d34: nop                                   
+
+### el0_svc_handler @0xffffff800809ab44  (OFF 0x1ab44)
+  0xffffff800809ab44: stp       x29, x30, [sp, #-0x10]!     
+  0xffffff800809ab48: mov       x29, sp                     
+  0xffffff800809ab4c: adrp      x8, #0xffffff800a5d1000     
+  0xffffff800809ab50: ldr       w8, [x8, #0x774]            
+  0xffffff800809ab54: cmp       w8, #1                      
+  0xffffff800809ab58: mov       x8, x0                      
+  0xffffff800809ab5c: b.lt      #0xffffff800809abac         
+  0xffffff800809ab60: adrp      x9, #0xffffff800a5d1000     
+  0xffffff800809ab64: ldr       w9, [x9, #0x6d0]            
+  0xffffff800809ab68: cmp       w9, #0                      
+  0xffffff800809ab6c: b.le      #0xffffff800809ab90         
+  0xffffff800809ab70: mov       w0, #0x800000               
+  0xffffff800809ab74: mrs       x1, sp_el0                  
+  0xffffff800809ab78: bl        #0xffffff8008504b80         
+
+### el0_sync @0xffffff8008082fc0  (OFF 0x2fc0)
+  0xffffff8008082fa0: ret       x24                         
+  0xffffff8008082fa4: nop                                   
+  0xffffff8008082fa8: nop                                   
+  0xffffff8008082fac: nop                                   
+  0xffffff8008082fb0: nop                                   
+  0xffffff8008082fb4: nop                                   
+  0xffffff8008082fb8: nop                                   
+  0xffffff8008082fbc: nop                                   
+  0xffffff8008082fc0: stp       x0, x1, [sp]                
+  0xffffff8008082fc4: stp       x2, x3, [sp, #0x10]         
+  0xffffff8008082fc8: stp       x4, x5, [sp, #0x20]         
+  0xffffff8008082fcc: stp       x6, x7, [sp, #0x30]         
+  0xffffff8008082fd0: stp       x8, x9, [sp, #0x40]         
+  0xffffff8008082fd4: stp       x10, x11, [sp, #0x50]       
+
+### el0_irq @0xffffff8008083740  (OFF 0x3740)
+  0xffffff8008083720: b         #0xffffff8008083ba8         
+  0xffffff8008083724: nop                                   
+  0xffffff8008083728: nop                                   
+  0xffffff800808372c: nop                                   
+  0xffffff8008083730: nop                                   
+  0xffffff8008083734: nop                                   
+  0xffffff8008083738: nop                                   
+  0xffffff800808373c: nop                                   
+  0xffffff8008083740: stp       x0, x1, [sp]                
+  0xffffff8008083744: stp       x2, x3, [sp, #0x10]         
+  0xffffff8008083748: stp       x4, x5, [sp, #0x20]         
+  0xffffff800808374c: stp       x6, x7, [sp, #0x30]         
+  0xffffff8008083750: stp       x8, x9, [sp, #0x40]         
+  0xffffff8008083754: stp       x10, x11, [sp, #0x50]       
+
+### cpu_switch_to @0xffffff8008087838  (OFF 0x7838)
+  0xffffff8008087838: mov       x10, #0xc80                 
+  0xffffff800808783c: add       x8, x0, x10                 
+  0xffffff8008087840: mov       x9, sp                      
+  0xffffff8008087844: stp       x19, x20, [x8], #0x10       
+  0xffffff8008087848: stp       x21, x22, [x8], #0x10       
+  0xffffff800808784c: stp       x23, x24, [x8], #0x10       
+  0xffffff8008087850: stp       x25, x26, [x8], #0x10       
+  0xffffff8008087854: stp       x27, x28, [x8], #0x10       
+  0xffffff8008087858: stp       x29, x9, [x8], #0x10        
+  0xffffff800808785c: str       x30, [x8]                   
+  0xffffff8008087860: add       x8, x1, x10                 
+  0xffffff8008087864: ldp       x19, x20, [x8], #0x10       
+  0xffffff8008087868: ldp       x21, x22, [x8], #0x10       
+  0xffffff800808786c: ldp       x23, x24, [x8], #0x10       
+
+### __switch_to @0xffffff8008089a5c  (OFF 0x9a5c)
+  0xffffff8008089a5c: stp       x29, x30, [sp, #-0x20]!     
+  0xffffff8008089a60: stp       x20, x19, [sp, #0x10]       
+  0xffffff8008089a64: mov       x29, sp                     
+  0xffffff8008089a68: mov       x20, x0                     
+  0xffffff8008089a6c: mov       x0, x1                      
+  0xffffff8008089a70: mov       x19, x1                     
+  0xffffff8008089a74: bl        #0xffffff80080884c0         
+  0xffffff8008089a78: mrs       x8, tpidr_el0               
+  0xffffff8008089a7c: mrs       x9, sp_el0                  
+  0xffffff8008089a80: ldr       x10, [x9]                   
+  0xffffff8008089a84: mov       w11, #0xcf8                 
+  0xffffff8008089a88: tst       x10, #0x400000              
+  0xffffff8008089a8c: mov       w10, #0xcf0                 
+  0xffffff8008089a90: csel      x10, x10, x11, eq           
+
+### ret_to_user @0xffffff8008083ba8  (OFF 0x3ba8)
+  0xffffff8008083ba8: msr       daifset, #0xf               
+  0xffffff8008083bac: ldr       x1, [x28]                   
+  0xffffff8008083bb0: and       x2, x1, #0x3f               
+  0xffffff8008083bb4: cbnz      x2, #0xffffff8008083b98     
+  0xffffff8008083bb8: tbz       w1, #0x15, #0xffffff8008083bc8
+  0xffffff8008083bbc: mrs       x2, 

@@ -1,0 +1,189 @@
+====================================================================================================
+一、kmem_cache_create 调用点：认出 mm_struct 的 sizeof
+====================================================================================================
+  kmem_cache_create = 0xffffff80082453b8 ; 'mm_struct' 字符串 vaddr = 0xffffff8009e420b3
+
+====================================================================================================
+二、security_add_hooks 调用点 -> LSM hook 静态数组
+====================================================================================================
+
+====================================================================================================
+三、init_tg_cfs_entry / init_tg_rt_entry 调用点 -> root_task_group
+====================================================================================================
+
+====================================================================================================
+四、ctl_table 核对（kptr_restrict）
+====================================================================================================
+  --- kptr_restrict ctl_table @0xffffff800a216e30 (OFF=0x2196e30) ---
+      +0x00 procname       0xffffff8009d074b4 b'kptr_restrict\x00specul'
+      +0x08 data           0xffffff800a20c340 OFF=0x218c340
+      +0x10 maxlen/mode    0x000001a400000004
+      +0x18 child          0x0000000000000000
+      +0x20 proc_handler   0xffffff80080c32e4 proc_dointvec_minmax_sysadmin
+      +0x28 poll           0x0000000000000000
+      +0x30 extra1         0xffffff800a5d224c
+      +0x38 extra2         0xffffff800a217618
+
+====================================================================================================
+五、selinux_state 精确判定（sel_read_enforce / sel_write_enforce 全文）
+====================================================================================================
+  --- sel_read_enforce @0xffffff800848bfa8 ---
+    0xffffff800848bfa8: sub       sp, sp, #0x50                         
+    0xffffff800848bfac: stp       x29, x30, [sp, #0x20]                 
+    0xffffff800848bfb0: str       x21, [sp, #0x30]                      
+    0xffffff800848bfb4: stp       x20, x19, [sp, #0x40]                 
+    0xffffff800848bfb8: add       x29, sp, #0x20                        
+    0xffffff800848bfbc: adrp      x8, #0xffffff800a1fd000               
+    0xffffff800848bfc0: ldr       x8, [x8, #0xb08]                      
+    0xffffff800848bfc4: mov       x19, x3                               
+    0xffffff800848bfc8: mov       x20, x2                               
+    0xffffff800848bfcc: adrp      x2, #0xffffff8009cef000               
+    0xffffff800848bfd0: stur      x8, [x29, #-8]                        
+    0xffffff800848bfd4: ldr       x8, [x0, #0x20]                       
+    0xffffff800848bfd8: mov       x21, x1                               
+    0xffffff800848bfdc: add       x2, x2, #0x34e                        
+    0xffffff800848bfe0: add       x0, sp, #0xc                          
+    0xffffff800848bfe4: ldr       x8, [x8, #0x28]                       
+    0xffffff800848bfe8: mov       w1, #0xc                              
+    0xffffff800848bfec: ldr       x8, [x8, #0x4a0]                      
+    0xffffff800848bff0: ldr       x8, [x8, #0x70]                       
+    0xffffff800848bff4: ldrb      w3, [x8, #1]                          
+    0xffffff800848bff8: bl        #0xffffff800939f354                    -> scnprintf
+    0xffffff800848bffc: sxtw      x4, w0                                
+    0xffffff800848c000: add       x3, sp, #0xc                          
+    0xffffff800848c004: mov       x0, x21                               
+    0xffffff800848c008: mov       x1, x20                               
+    0xffffff800848c00c: mov       x2, x19                               
+    0xffffff800848c010: bl        #0xffffff80082c893c                    -> simple_read_from_buffer
+    0xffffff800848c014: adrp      x9, #0xffffff800a1fd000               
+    0xffffff800848c018: ldur      x8, [x29, #-8]                        
+    0xffffff800848c01c: ldr       x9, [x9, #0xb08]                      
+    0xffffff800848c020: cmp       x9, x8                                
+    0xffffff800848c024: b.ne      #0xffffff800848c03c                   
+    0xffffff800848c028: ldp       x20, x19, [sp, #0x40]                 
+    0xffffff800848c02c: ldr       x21, [sp, #0x30]                      
+    0xffffff800848c030: ldp       x29, x30, [sp, #0x20]                 
+    0xffffff800848c034: add       sp, sp, #0x50                         
+    0xffffff800848c038: ret                                             
+  --- sel_write_enforce @0xffffff800848c040 ---
+    0xffffff800848c040: sub       sp, sp, #0x60                         
+    0xffffff800848c044: stp       x29, x30, [sp, #0x20]                 
+    0xffffff800848c048: str       x23, [sp, #0x30]                      
+    0xffffff800848c04c: stp       x22, x21, [sp, #0x40]                 
+    0xffffff800848c050: stp       x20, x19, [sp, #0x50]                 
+    0xffffff800848c054: add       x29, sp, #0x20                        
+    0xffffff800848c058: adrp      x8, #0xffffff800a1fd000               
+    0xffffff800848c05c: ldr       x8, [x8, #0xb08]                      
+    0xffffff800848c060: cmp       x2, #0xfff                            
+    0xffffff800848c064: stur      x8, [x29, #-8]                        
+    0xffffff800848c068: b.ls      #0xffffff800848c074                   
+    0xffffff800848c06c: mov       x19, #-0xc                            
+    0xffffff800848c070: b         #0xffffff800848c134                    -> 
+    0xffffff800848c074: ldr       x8, [x3]                              
+    0xffffff800848c078: cbz       x8, #0xffffff800848c084               
+    0xffffff800848c07c: mov       x19, #-0x16                           
+    0xffffff800848c080: b         #0xffffff800848c134                    -> 
+    0xffffff800848c084: ldr       x8, [x0, #0x20]                       
+    0xffffff800848c088: mov       x0, x1                                
+    0xffffff800848c08c: mov       x1, x2                                
+    0xffffff800848c090: mov       x19, x2                               
+    0xffffff800848c094: ldr       x8, [x8, #0x28]                       
+    0xffffff800848c098: ldr       x8, [x8, #0x4a0]                      
+    0xffffff800848c09c: ldr       x21, [x8, #0x70]                      
+    0xffffff800848c0a0: bl        #0xffffff800823aa4c                    -> memdup_user_nul
+    0xffffff800848c0a4: mov       x20, x0                               
+    0xffffff800848c0a8: cmn       x0, #0xfff                            
+    0xffffff800848c0ac: b.lo      #0xffffff800848c0b8                   
+    0xffffff800848c0b0: mov       x19, x20                              
+    0xffffff800848c0b4: b         #0xffffff800848c134                    -> 
+    0xffffff800848c0b8: adrp      x1, #0xffffff8009cef000               
+    0xffffff800848c0bc: add       x1, x1, #0x34e                        
+    0xffffff800848c0c0: sub       x2, x29, #0xc                         
+    0xffffff800848c0c4: mov       x0, x20                               
+    0xffffff800848c0c8: bl        #0xffffff80093a06b4                    -> sscanf
+    0xffffff800848c0cc: cmp       w0, #1                                
+    0xffffff800848c0d0: b.ne      #0xffffff800848c128                   
+    0xffffff800848c0d4: ldur      w8, [x29, #-0xc]                      
+    0xffffff800848c0d8: cmp       w8, #0                                
+    0xffffff800848c0dc: cset      w8, ne                                
+    0xffffff800848c0e0: stur      w8, [x29, #-0xc]                      
+    0xffffff800848c0e4: ldrb      w22, [x21, #1]                        
+    0xffffff800848c0e8: cmp       w8, w22                               
+    0xffffff800848c0ec: b.eq      #0xffffff800848c12c                   
+    0xffffff800848c0f0: mrs       x23, sp_el0                           
+    0xffffff800848c0f4: ldr       x8, [x23, #0x768]                     
+    0xffffff800848c0f8: adrp      x0, #0xffffff800a904000               
+    0xffffff800848c0fc: add       x0, x0, #0x50                         
+    0xffffff800848c100: mov       w2, #2                                
+    0xffffff800848c104: ldr       x8, [x8, #0x78]                       
+    0xffffff800848c108: mov       w3, #1                                
+    0xffffff800848c10c: mov       w4, #0x80                             
+    0xffffff800848c110: mov       x5, xzr                               
+    0xffffff800848c114: ldr       w1, [x8, #4]                          
+    0xffffff800848c118: bl        #0xffffff800847fbcc                    -> avc_has_perm
+    0xffffff800848c11c: cbz       w0, #0xffffff800848c164               
+    0xffffff800848c120: sxtw      x19, w0                               
+    0xffffff800848c124: b         #0xffffff800848c12c                    -> 
+    0xffffff800848c128: mov       x19, #-0x16                           
+    0xffffff800848c12c: mov       x0, x20                               
+    0xffffff800848c130: bl        #0xffffff8008272138                    -> kfree
+    0xffffff800848c134: adrp      x9, #0xffffff800a1fd000               
+    0xffffff800848c138: ldur      x8, [x29, #-8]                        
+    0xffffff800848c13c: ldr       x9, [x9, #0xb08]                      
+    0xffffff800848c140: cmp       x9, x8                                
+    0xffffff800848c144: b.ne      #0xffffff800848c1f8                   
+    0xffffff800848c148: mov       x0, x19                               
+    0xffffff800848c14c: ldp       x20, x19, [sp, #0x50]                 
+    0xffffff800848c150: ldp       x22, x21, [sp, #0x40]                 
+    0xffffff800848c154: ldr       x23, [sp, #0x30]                      
+    0xffffff800848c158: ldp       x29, x30, [sp, #0x20]                 
+    0xffffff800848c15c: add       sp, sp, #0x60                         
+    0xffffff800848c160: ret                                             
+  --- enforcing_setup @0xffffff800a09fab8 ---
+    0xffffff800a09fab8: sub       sp, sp, #0x20                         
+    0xffffff800a09fabc: stp       x29, x30, [sp, #0x10]                 
+    0xffffff800a09fac0: add       x29, sp, #0x10                        
+    0xffffff800a09fac4: adrp      x8, #0xffffff800a1fd000               
+    0xffffff800a09fac8: ldr       x8, [x8, #0xb08]                      
+    0xffffff800a09facc: mov       x2, sp                                
+    0xffffff800a09fad0: mov       w1, wzr                               
+    0xffffff800a09fad4: str       x8, [sp, #8]                          
+    0xffffff800a09fad8: bl        #0xffffff8008514f50                    -> kstrtoull
+    0xffffff800a09fadc: cbnz      w0, #0xffffff800a09faf4               
+    0xffffff800a09fae0: ldr       x8, [sp]                              
+    0xffffff800a09fae4: adrp      x9, #0xffffff800a904000               
+    0xffffff800a09fae8: cmp       x8, #0                                
+    0xffffff800a09faec: cset      w8, ne                                
+    0xffffff800a09faf0: str       w8, [x9, #0x70]                       
+    0xffffff800a09faf4: adrp      x9, #0xffffff800a1fd000               
+    0xffffff800a09faf8: ldr       x8, [sp, #8]                          
+    0xffffff800a09fafc: ldr       x9, [x9, #0xb08]                      
+    0xffffff800a09fb00: cmp       x9, x8                                
+    0xffffff800a09fb04: b.ne      #0xffffff800a09fb18                   
+    0xffffff800a09fb08: ldp       x29, x30, [sp, #0x10]                 
+    0xffffff800a09fb0c: mov       w0, #1                                
+    0xffffff800a09fb10: add       sp, sp, #0x20                         
+    0xffffff800a09fb14: ret                                             
+  --- selinux_init @0xffffff800a09fb80 ---
+    0xffffff800a09fb80: stp       x29, x30, [sp, #-0x30]!               
+    0xffffff800a09fb84: str       x21, [sp, #0x10]                      
+    0xffffff800a09fb88: stp       x20, x19, [sp, #0x20]                 
+    0xffffff800a09fb8c: mov       x29, sp                               
+    0xffffff800a09fb90: adrp      x0, #0xffffff8009e13000               
+    0xffffff800a09fb94: add       x0, x0, #0x932                        
+    0xffffff800a09fb98: bl        #0xffffff800a09f828                    -> security_module_enable
+    0xffffff800a09fb9c: adrp      x8, #0xffffff800a260000               
+    0xffffff800a09fba0: cbnz      w0, #0xffffff800a09fbbc               
+    0xffffff800a09fba4: str       wzr, [x8, #0xbb8]                     
+    0xffffff800a09fba8: ldp       x20, x19, [sp, #0x20]                 
+    0xffffff800a09fbac: ldr       x21, [sp, #0x10]                      
+    0xffffff800a09fbb0: mov       w0, wzr                               
+    0xffffff800a09fbb4: ldp       x29, x30, [sp], #0x30                 
+    0xffffff800a09fbb8: ret                                             
+
+====================================================================================================
+六、security_hook_heads 稠密聚类
+====================================================================================================
+  最稠密 0x1000 窗口: 192 个 head 指针, 0xffffff8009ff60e0 .. 0xffffff8009ff66f8
+  推定 security_hook_heads 基址 = 0xffffff8009ff60e0  OFF=0x1f760e0
+  窗口内前 20 个偏移: 0x0, 0x8, 0x10, 0x18, 0x20, 0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68, 0x70, 0x80, 0x88, 0x90, 0x98, 0xa0

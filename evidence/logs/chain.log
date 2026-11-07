@@ -1,0 +1,47 @@
+21:29:18 === 阶段0：等待设备回到系统（最长 240s）===
+21:29:19 设备已回系统 (第 1 次探测)
+21:29:19 === 阶段1：reboot fastboot (fastbootd) ===
+error: closed
+21:29:37 fastbootd 就绪
+21:29:37 fastbootd 就绪
+is-userspace: yes
+Finished. Total time: 0.007s
+is-userspace: yes
+Finished. Total time: 0.002s
+21:29:38 === 阶段2：从 fastbootd 跳真 bootloader ===
+21:29:38 === 阶段2：从 fastbootd 跳真 bootloader ===
+Rebooting into bootloader                          OKAY [  0.000s]
+Finished. Total time: 0.001s
+< waiting for any device >
+21:29:39 === 阶段3：立刻抢占真 fastboot（阻塞等待，最长 90s）===
+< waiting for any device >
+21:29:54 === 阶段3：立刻抢占真 fastboot（阻塞等待，最长 90s）===
+< waiting for any device >
+21:31:10 === 阶段4：若设备仍在线，读关键变量 ===
+--- product ---
+< waiting for any device >
+--- unlocked ---
+< waiting for any device >
+21:31:25 === 阶段4：若设备仍在线，读关键变量 ===
+--- product ---
+< waiting for any device >
+--- secure ---
+< waiting for any device >
+--- unlocked ---
+< waiting for any device >
+--- is-userspace ---
+< waiting for any device >
+--- secure ---
+< waiting for any device >
+--- current-slot ---
+< waiting for any device >
+--- is-userspace ---
+< waiting for any device >
+--- serialno ---
+< waiting for any device >
+--- current-slot ---
+< waiting for any device >
+21:32:14 === 结束 ===
+--- serialno ---
+< waiting for any device >
+21:32:29 === 结束 ===
